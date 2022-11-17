@@ -3,71 +3,69 @@ import { prueba } from '../../functions/requests.js';
 import React from 'react';
 
 
-let unaVariable = 'hola'
 function Login() {
-  
-  const [isLoadingUser, setIsLoadingUser] = useState(true)// log usuario
-  const [user, setUser] = useState({}) // objeto usuario
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  let unaVariable = 'hola'
+  console.log(unaVariable)
+  const [isLoadingUser, setIsLoadingUser] = useState(true)
+  const [user, setUser] = useState({})
+  const [ email, setEmail] = useState(' ')
+  const [ password, setPassword] = useState(' ')
 
-  const emailHandle = (event) => {
+  const emailHandle = (event)=>{
     setEmail(event.target.value)
+    //console.log('email',setEmail(event.target.value));
+    
   }
 
-  const passwordHandle = (event) => {
+  const passwordHandle = (event)=>{
+    console.log(password)
     setPassword(event.target.value)
+    //console.log('contraseña', setPassword(event.target.value));
+    //setPassword(event.target.value)
   }
 
-  const fetchHandle = (event) => {
+  const fetchHandle = (event)=>{  
     event.preventDefault()
     prueba(email, password).then(res => res.json()).then(resJson => {
           setUser(resJson.user)
           setIsLoadingUser(false)
-          console.log(resJson.user.email);
+          console.log(resJson);
           unaVariable = 'chao'
           console.log(unaVariable)
-          // if(resJson.user.role = "admin"){
-          //   console.log('sig pagina')
-          // }
-          // switch (resJson.user.role) {
-          //   case "admin":   
-          //     console.log('pag admin')
-          //     break;
 
-          //   case "coc": 
-          //     console.log('sig pagina')
-          //     break;
-    
-          //   case "mesero": 
-          //     console.log('sig pagina')
-          //     break;
+          if(resJson.user.role === 'admin'){
+            console.log('es administrador');
+            // switch (resJson.user.role) {
+            //   case 1 'coci':
+                
+            //     break;
 
-          //   default:
-          //     console.log('no trabaja acá')
-          //     break;
-          // }
-          
-          // if(email == resJson.user.email){
-          //   console.log('sig pagina')
-          // }
-          // else{
-          //   console.log('no se puede ingresar')
-          // }
+            // case 2 'mesero':
+                
+            //       break;
+              
+            // }
+          }else{
+            console.log('no es administrador ');
+
+          }
+
         })
+
+        
   }
 
-
   // useEffect(() => {
-  //   prueba().then(res => res.json()).then(resJson => {
-  //     setUser(resJson.user)
-  //     setIsLoadingUser(false)
-  //     unaVariable = 'chao'
-  //     console.log(unaVariable)
-  //   })
+    // prueba().then(res => res.json()).then(resJson => {
+    //   setUser(resJson.user)
+    //   setIsLoadingUser(false)
+      // unaVariable = 'chao'
+      // console.log(unaVariable)
+    // })
   // }, [])
 
   // useEffect(() => console.log(user), [user])
+
 
 
   return (
@@ -83,7 +81,6 @@ function Login() {
             onChange={emailHandle}
           >
           </input>
-          <p>es email {email}</p>
 
           <label>Contraseña</label>
           <input
@@ -92,11 +89,12 @@ function Login() {
             placeholder="Introduce Contraseña"
             name="password"
             value={password}
-            onChange={passwordHandle}
+            onChange={passwordHandle} 
           >
           </input>
-          <p>la contraseña es {password}</p>
-          <button type="submit" > Ingresar </button>
+        <button type="submit"> Ingresar </button>
+        <p> es el email{email}</p>
+        <p> es la contraseña{password}</p>
         </form>
       </div>
     </section>
