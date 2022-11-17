@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import { prueba } from '../../functions/requests.js';
+import { postLogin, setToken_role} from '../../functions/requests.js';
 import React from 'react';
 
 
 function Login() {
-  let unaVariable = 'hola'
-  console.log(unaVariable)
+  //let unaVariable = 'hola'
+  //console.log(unaVariable)
   const [isLoadingUser, setIsLoadingUser] = useState(true)
   const [user, setUser] = useState({})
-  const [ email, setEmail] = useState(' ')
-  const [ password, setPassword] = useState(' ')
+  const [ email, setEmail] = useState('')
+  const [ password, setPassword] = useState('')
 
   const emailHandle = (event)=>{
     setEmail(event.target.value)
@@ -18,7 +18,7 @@ function Login() {
   }
 
   const passwordHandle = (event)=>{
-    console.log(password)
+    ///console.log(password)
     setPassword(event.target.value)
     //console.log('contraseña', setPassword(event.target.value));
     //setPassword(event.target.value)
@@ -26,13 +26,14 @@ function Login() {
 
   const fetchHandle = (event)=>{  
     event.preventDefault()
-    prueba(email, password).then(res => res.json()).then(resJson => {
+    postLogin(email, password).then(res => res.json()).then(resJson => {
           setUser(resJson.user)
           setIsLoadingUser(false)
           console.log(resJson);
-          unaVariable = 'chao'
-          console.log(unaVariable)
-
+          //unaVariable = 'chao'
+          //console.log(unaVariable)
+          setToken_role(resJson.accessToken, resJson.user.role )
+          console.log(setToken_role(resJson.accessToken, resJson.user.role ), 'guardar token y rol')
           if(resJson.user.role === 'admin'){
             console.log('es administrador');
             // switch (resJson.user.role) {
@@ -50,13 +51,14 @@ function Login() {
 
           }
 
+
         })
 
         
   }
 
   // useEffect(() => {
-    // prueba().then(res => res.json()).then(resJson => {
+    // postLogin().then(res => res.json()).then(resJson => {
     //   setUser(resJson.user)
     //   setIsLoadingUser(false)
       // unaVariable = 'chao'
