@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { createUsers, getToken, getRole, getUsers } from '../../functions/requests';
 import React from 'react';
 import Modal from '../../components/modal';
+import Login from '../login/login.js'
 
 const CreateUsersView = () => {
     const [newUserName, setNewUserName] = useState('')
@@ -89,10 +90,12 @@ const CreateUsersView = () => {
                 <p> es la contraseña{newUserPassword}</p>
                 <p> es la contraseña{newUserRole}</p>
             </form>
+            
             <button onClick={openModal}>abrir modal</button>
             <Modal 
                 isOpen={isOpenModal}
                 closeModal= {closeModal}
+                contenido = <Login/>
                 />
             
         </div>
