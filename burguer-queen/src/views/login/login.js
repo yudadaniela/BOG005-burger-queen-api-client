@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { postLogin, setToken_role} from '../../functions/requests.js';
 import React from 'react';
+import './styleLogin.css'
 
 
 function Login() {
@@ -72,32 +73,41 @@ function Login() {
 
   return (
     <section className="login">
-      <div>
-        <form onSubmit={fetchHandle}>
-          <label>Correo</label>
-          <input className="inputsLogin"
-            type='email'
-            placeholder="Introduce Email"
-            name="email"
-            value={email}
-            onChange={emailHandle}
-          >
-          </input>
-
-          <label>Contraseña</label>
-          <input
-            className="inputsLogin"
-            type='password'
-            placeholder="Introduce Contraseña"
-            name="password"
-            value={password}
-            onChange={passwordHandle} 
-          >
-          </input>
-        <button type="submit"> Ingresar </button>
-        <p> es el email{email}</p>
-        <p> es la contraseña{password}</p>
+    
+      <div className='nodoLogin'>
+        <form onSubmit={fetchHandle} className="formLogin">
+          <div className='containerInputsLogin'> 
+            <label className='labelInputsLogin'>Correo</label>
+            <input className="inputsLogin"
+              type='email'
+              placeholder="Introduce Email"
+              name="email"
+              value={email}
+              onChange={emailHandle}
+            >
+            </input>
+          </div>
+          <div className='containerInputsLogin'> 
+            <label className='labelInputsLogin'>Contraseña</label>
+            <input
+              className="inputsLogin"
+              type='password'
+              placeholder="Introduce Contraseña"
+              name="password"
+              value={password}
+              onChange={passwordHandle} 
+            >
+            </input>
+            
+          </div>
+          <div className='containerButtonLogin'> 
+           <button type="submit" className='buttonLogin'> Ingresar </button>
+           </div>
+         
+        {/* <p> es el email{email}</p>
+        <p> es la contraseña{password}</p> */}
         </form>
+        
       </div>
     </section>
   );
