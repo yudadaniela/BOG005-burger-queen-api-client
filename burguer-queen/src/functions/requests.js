@@ -9,16 +9,12 @@ export const postLogin = (email, password) => fetch('http://localhost:8080/login
   })
 })
 
-export const createUsers = (tokenLogin/* , email, password */) => fetch('http://localhost:8080/users', {
+export const getUsers = (tokenLogin/* , email, password */) => fetch('http://localhost:8080/users', {
   method: "GET",
   headers: {
     "Content-type": "application/json",
     "authorization": "Bearer " + tokenLogin
   },
-/*   body: JSON.stringify({
-    email: email,
-    password: password,
-  }) */
 })
 
 export const setToken_role =(token, role)=>{
@@ -31,3 +27,20 @@ export const setToken_role =(token, role)=>{
 
 export const getToken =()=>localStorage.getItem('token');
 export const getRole =()=>localStorage.getItem('role');
+
+export const createUsers = (tokenLogin , email, password, role, id) => fetch('http://localhost:8080/users', {
+  method: "POST",
+  headers: {
+    "Content-type": "application/json",
+    "authorization": "Bearer " + tokenLogin
+  },
+  body: JSON.stringify({
+    email: email,
+    password: password,
+    role: role,
+    id:id
+  })
+})
+
+
+

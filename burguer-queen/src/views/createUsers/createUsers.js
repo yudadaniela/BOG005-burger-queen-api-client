@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { createUsers, getToken, getRole } from '../../functions/requests';
+import { createUsers, getToken, getRole, getUsers } from '../../functions/requests';
 import React from 'react';
 
 const CreateUsersView = () => {
@@ -25,10 +25,12 @@ const CreateUsersView = () => {
         event.preventDefault()
         getToken()
         getRole()
-        createUsers(getToken()).then(res => res.json()).then( rtaJson => {
+        createUsers(getToken(), newUserEmail, newUserPassword, newUserRole, newUserName).then(res => res.json()).then( rtaJson => {
             console.log(rtaJson);
         })
-       
+        getUsers(getToken()).then(res => res.json()).then( rtaJson => {
+            console.log(rtaJson);
+        })
     }
 
     return (
