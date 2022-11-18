@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { createUsers, getToken, getRole, getUsers } from '../../functions/requests';
 import React from 'react';
+import Modal from '../../components/modal';
 
 const CreateUsersView = () => {
     const [newUserName, setNewUserName] = useState('')
     const [newUserEmail, setNewUserEmail] = useState('')
     const [newUserPassword, setNewUserPassword] = useState('')
     const [newUserRole, setNewUserRole] = useState('')
+    const [isOpenModal, setisOpenModal] = useState(false)
 
     const newUserNameHandle =(event)=>{
         setNewUserName(event.target.value) /// buscar****
@@ -31,6 +33,13 @@ const CreateUsersView = () => {
         getUsers(getToken()).then(res => res.json()).then( rtaJson => {
             console.log(rtaJson);
         })
+    }
+
+    const openModal =()=>{
+        setisOpenModal(true)
+    }
+    const closeModal =()=>{
+        setisOpenModal(false)
     }
 
     return (
@@ -80,6 +89,12 @@ const CreateUsersView = () => {
                 <p> es la contraseña{newUserPassword}</p>
                 <p> es la contraseña{newUserRole}</p>
             </form>
+            <button onClick={openModal}>abrir modal</button>
+            <Modal 
+                isOpen={isOpenModal}
+                closeModal= {closeModal}
+                />
+            
         </div>
     );
 }
