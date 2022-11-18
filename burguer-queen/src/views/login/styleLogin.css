@@ -2,5 +2,22 @@
     --orange: #F49750;
   }
 
-
+  .login{
+    width: 100vw;
+    height: 100vh;
+    background-image:url('../../img/Hamburger_Wall.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -1px -300px;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
+  .nodoLogin{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(24, 15, 13, 0.5);
+   
+  }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { postLogin, setToken_role} from '../../functions/requests.js';
 import React from 'react';
+import './styleLogin.css';
 
 
 function Login() {
@@ -72,7 +73,7 @@ function Login() {
 
   return (
     <section className="login">
-      <div>
+      <div className='nodoLogin'>
         <form onSubmit={fetchHandle}>
           <label>Correo</label>
           <input className="inputsLogin"
