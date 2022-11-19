@@ -9,7 +9,7 @@ const CreateUsersView = () => {
     const [newUserEmail, setNewUserEmail] = useState('')
     const [newUserPassword, setNewUserPassword] = useState('')
     const [newUserRole, setNewUserRole] = useState('')
-    const [isOpenModal, setisOpenModal] = useState(false)
+   // const [isOpenModal, setisOpenModal] = useState(false)
 
     const newUserNameHandle =(event)=>{
         setNewUserName(event.target.value) /// buscar****
@@ -36,12 +36,12 @@ const CreateUsersView = () => {
         })
     }
 
-    const openModal =()=>{
-        setisOpenModal(true)
-    }
-    const closeModal =()=>{
-        setisOpenModal(false)
-    }
+    // const openModal =()=>{
+    //     setisOpenModal(true)
+    // }
+    // const closeModal =()=>{
+    //     setisOpenModal(false)
+    // }
 
     return (
         <div>
@@ -91,12 +91,7 @@ const CreateUsersView = () => {
                 <p> es la contraseña{newUserRole}</p>
             </form>
             
-            <button onClick={openModal}>abrir modal</button>
-            <Modal 
-                isOpen={isOpenModal}
-                closeModal= {closeModal}
-                contenido = <Login/>
-                />
+           
             
         </div>
     );

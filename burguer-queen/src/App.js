@@ -4,6 +4,7 @@ import './App.css';
 import Login from './views/login/login.js';
 import CreateUsersView from './views/createUsers/createUsers';
 import Modal from './components/modal';
+import  GetUser from './views/getUsers/getUsers'
 //import { Example } from './views/login/login.js';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       <section className="App-header">
         {/* <Login/> */}
         
-        { <CreateUsersView/> }
+        { <GetUser/> }
     
       </section>
     </div>
