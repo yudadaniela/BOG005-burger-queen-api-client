@@ -1,3 +1,5 @@
+import './views/login/styleLogin.css'
+import './App.css';
 import { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './views/login/styleLogin.css'
@@ -15,7 +17,6 @@ function App() {
     <BrowserRouter>
     
       <Routes>
-      
         <Route exact path="/" element={<Login/>}/>
         <Route exact path="/getUser" element={<GetUser/>}/>
       </Routes>

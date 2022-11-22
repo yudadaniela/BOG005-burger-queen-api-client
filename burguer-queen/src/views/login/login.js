@@ -7,71 +7,53 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 function Login() {
-
   const navigate = useNavigate();
   const [user, setUser] = useState({})
   const [ email, setEmail] = useState('')
   const [ password, setPassword] = useState('')
+  const [ error, setError] = useState('')
+
 
   const emailHandle = (event)=>{
     setEmail(event.target.value)
-    //console.log('email',setEmail(event.target.value));
-    
   }
 
   const passwordHandle = (event)=>{
-    ///console.log(password)
     setPassword(event.target.value)
-    //console.log('contraseña', setPassword(event.target.value));
-    //setPassword(event.target.value)
   }
+
+
+const errorHandle =(resJson)=>{
+
+  if (resJson === 'Email and password are required')  {
+    setError('Correo y contraseña requeridos') // cambio de estado
+    throw new Error(resJson)
+  }
+  else if (resJson === 'Incorrect password' || resJson === 'Password is too short' )  {
+    setError('Contraseña incorrecta')
+    throw new Error(resJson)
+  }
+ 
+  else if (resJson === 'Cannot find user')  {
+    setError('El usuario no existe')
+    throw new Error(resJson)
+  }
+}
 
   const fetchHandle = (event)=>{  
     event.preventDefault()
-    postLogin(email, password).then(resJson => {
-          setUser(resJson.user)
-        console.log(resJson);
-          //unaVariable = 'chao'
-          //console.log(unaVariable)
-          setToken_role(resJson.accessToken, resJson.user.role )
-          console.log(setToken_role(resJson.accessToken, resJson.user.role ), 'guardar token y rol')
+    postLogin(email, password).then(res => res.json()// no deja colocar{} ni otra cosa
+    ).then(resJson => {
+      errorHandle(resJson) /// manejador de error
+      setToken_role(resJson.accessToken, resJson.user.role )// carga token y rol
+      
           if(resJson.user.role === 'admin'){
             console.log('es administrador');
             navigate("/getUser");
-
-            // switch (resJson.user.role) {
-            //   case 1 'coci':
-                
-            //     break;
-
-            // case 2 'mesero':
-                
-            //       break;
-              
-            // }
-           
-          }else{
-            console.log('no es administrador ');
-
           }
-
-
-        }).catch((error) => {console.error(error)})
-
-        
+        }).catch((error )=> {console.log(error , 'ES EL CATCH')}) 
+ 
   }
-
-  // useEffect(() => {
-    // postLogin().then(res => res.json()).then(resJson => {
-    //   setUser(resJson.user)
-    //   setIsLoadingUser(false)
-      // unaVariable = 'chao'
-      // console.log(unaVariable)
-    // })
-  // }, [])
-
-  // useEffect(() => console.log(user), [user])
-
 
 
   return (
@@ -107,8 +89,7 @@ function Login() {
            <button type="submit" className='buttonLogin'> Ingresar </button>
            </div>
          
-        {/* <p> es el email{email}</p>
-        <p> es la contraseña{password}</p> */}
+        <span>{error}</span>
         </form>
         
       </div>
@@ -117,6 +98,18 @@ function Login() {
 }
 
 export default Login;
+
+
+  // useEffect(() => {
+    // postLogin().then(res => res.json()).then(resJson => {
+    //   setUser(resJson.user)
+    //   setIsLoadingUser(false)
+      // unaVariable = 'chao'
+      // console.log(unaVariable)
+    // })
+  // }, [])
+
+  // useEffect(() => console.log(user), [user])
 
 
 
