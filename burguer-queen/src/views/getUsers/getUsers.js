@@ -25,8 +25,9 @@ function GetUser() {
         <Modal
           isOpen={isOpenModal}
           closeModal={closeModal}
-          contenido= <CreateUsersView/>
-                />
+          contenido= <CreateUsersView />
+        />
+
       </section>
     </div>
   );
