@@ -7,10 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 function Login() {
-  //let unaVariable = 'hola'
-  //console.log(unaVariable)
+
   const navigate = useNavigate();
-  const [isLoadingUser, setIsLoadingUser] = useState(true)
   const [user, setUser] = useState({})
   const [ email, setEmail] = useState('')
   const [ password, setPassword] = useState('')
@@ -30,10 +28,9 @@ function Login() {
 
   const fetchHandle = (event)=>{  
     event.preventDefault()
-    postLogin(email, password).then(res => res.json()).then(resJson => {
+    postLogin(email, password).then(resJson => {
           setUser(resJson.user)
-          setIsLoadingUser(false)
-          console.log(resJson);
+        console.log(resJson);
           //unaVariable = 'chao'
           //console.log(unaVariable)
           setToken_role(resJson.accessToken, resJson.user.role )
@@ -59,7 +56,7 @@ function Login() {
           }
 
 
-        })
+        }).catch((error) => {console.error(error)})
 
         
   }
