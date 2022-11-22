@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import { postLogin, setToken_role} from '../../functions/requests.js';
 import React from 'react';
 import './styleLogin.css'
+import { Link, useNavigate } from "react-router-dom";
+
 
 
 function Login() {
   //let unaVariable = 'hola'
   //console.log(unaVariable)
+  const navigate = useNavigate();
   const [isLoadingUser, setIsLoadingUser] = useState(true)
   const [user, setUser] = useState({})
   const [ email, setEmail] = useState('')
@@ -37,6 +40,8 @@ function Login() {
           console.log(setToken_role(resJson.accessToken, resJson.user.role ), 'guardar token y rol')
           if(resJson.user.role === 'admin'){
             console.log('es administrador');
+            navigate("/getUser");
+
             // switch (resJson.user.role) {
             //   case 1 'coci':
                 
@@ -47,6 +52,7 @@ function Login() {
             //       break;
               
             // }
+           
           }else{
             console.log('no es administrador ');
 
