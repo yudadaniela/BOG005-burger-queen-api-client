@@ -1,5 +1,6 @@
 import React from "react";
 import CreateUsersView from '../createUsers/createUsers';
+import { getToken, getRole, getUsers } from '../../functions/requests';
 import { useState, useEffect } from 'react';
 import Modal from '../../components/modal';
 //import { Example } from './views/login/login.js';
@@ -14,12 +15,18 @@ function GetUser() {
     setisOpenModal(false)
   }
 
+  const getUserHandle =() =>{
+    getToken()
+    getRole()
+    getUsers(getToken()).then(res => res.json()).then( rtaJson => {
+        console.log(rtaJson);
+    })
+  }
+
   return (
 
     <div className="App">
       <section className="App-header">
-
-
 
         <button onClick={openModal}>abrir modal</button>
         <Modal

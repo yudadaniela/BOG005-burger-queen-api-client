@@ -51,9 +51,9 @@ const errorHandle =(resJson)=>{
             console.log('es administrador');
             navigate("/getUser");
           }
-        }).catch((error )=> {console.log(error , 'ES EL CATCH')}) 
+        }).catch((error )=> {console.log(error)}) 
  
-  }
+}
 
 
   return (
