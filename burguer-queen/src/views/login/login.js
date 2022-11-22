@@ -6,13 +6,13 @@ import './styleLogin.css'
 
 
 function Login() {
-  //let unaVariable = 'hola'
-  //console.log(unaVariable)
   const navigate = useNavigate();
   const [isLoadingUser, setIsLoadingUser] = useState(true)
   const [user, setUser] = useState({})
   const [ email, setEmail] = useState('')
   const [ password, setPassword] = useState('')
+  const [ error, setError] = useState({})
+
 
   const emailHandle = (event)=>{
     setEmail(event.target.value)
@@ -27,37 +27,50 @@ function Login() {
     //setPassword(event.target.value)
   }
 
+/*   const errorHandle =(error) => {
+    setError(error)
+  } */
+
   const fetchHandle = (event)=>{  
     event.preventDefault()
-    postLogin(email, password).then(res => res.json()).then(resJson => {
-          setUser(resJson.user)
-          setIsLoadingUser(false)
-          console.log(resJson);
+    postLogin(email, password).then(res => {res.json()
+    console.log(res.statusText , 'estado');
+      /* if(res.statusText == "Bad Request"){
+        console.log(res);
+        //setError(true) 
+        console.log(setError(res.statusText) );
+        //throw new Error(res.statusText ) 
+      } */
+      
+    }).then(resJson => {
+          //setUser(resJson.user)
+          //setIsLoadingUser(false)
+          console.log(resJson , 'es la respuesta');
+          
+            if(typeof resJson == String){
+            console.log(typeof resJson);
+            setError(resJson)
+            throw new Error(resJson)
+          }  
           //unaVariable = 'chao'
           //console.log(unaVariable)
           setToken_role(resJson.accessToken, resJson.user.role )
           console.log(setToken_role(resJson.accessToken, resJson.user.role ), 'guardar token y rol')
-
+        //   if(resJson.user.role === undefined)
+        //   /* if(typeof resJson == String) */ {
+        //     console.log(typeof resJson);
+        //     throw new Error(resJson)
+          
+        // }
           if(resJson.user.role === 'admin'){
             console.log('es administrador');
-            navigate("/getUser"); // completa la ruta y la ejecuta
-            // switch (resJson.user.role) {
-            //   case 1 'coci':
-                
-            //     break;
-
-            // case 2 'mesero':
-                
-            //       break;
-              
-            // }
-          }else{
+            navigate("/getUser");
+          } else{
             console.log('no es administrador ');
 
           }
 
-
-        })
+        }) /* .catch((error )=> {console.log(error , 'ES EL CATCH')}) */
 
         
   }
@@ -108,8 +121,7 @@ function Login() {
            <button type="submit" className='buttonLogin'> Ingresar </button>
            </div>
          
-        {/* <p> es el email{email}</p>
-        <p> es la contraseña{password}</p> */}
+        
         </form>
         
       </div>
