@@ -30,11 +30,11 @@ function GetUser() {
       .then((response) => response.json())
       .then((data) => {
         setcurrentUsers(data);
-
-        // console.log(setcurrentUsers(data))
       });
-  }, []);
-  useEffect(() => console.log(currentUsers), [currentUsers]);
+  }, [/*currentUsers*/]);
+  
+  useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
+
 
   const editUserHadel= ()=>{
     
@@ -44,8 +44,12 @@ function GetUser() {
    console.log(event.target.value, 'EVENT TARGET')
    console.log(deleteItem( event.target.value, getToken()), 'se borro :)')
    deleteItem(event.target.value, getToken())
-   setcurrentUsers(currentUsers)
+   getUsers(getToken()).then(res => res.json()).then( users => {
+    console.log(users, 'cuando elimino se actualiza'); // lista actualizada
+    setcurrentUsers(users)
+    })
   }
+
 
   return (
     <div className="App">
@@ -56,14 +60,16 @@ function GetUser() {
           closeModal={closeModal}
           contenido=<CreateUsersView
           onSave={(response) => {
-            console.log("se cerro el modal ", currentUsers);
             setcurrentUsers(response);
+            console.log("se cerro el modal ", currentUsers);
+            
             }}
           />
         />
       </section>
       <div>
         {currentUsers.map((user, i) => {
+          //console.log(currentUsers, 'del map')
           return (
             <li key={i}>
               {user.id} {user.email} {user.role} 
@@ -81,7 +87,8 @@ function GetUser() {
               > Eliminar</button>
             </li>
           );
-        })}
+        })
+        }
       </div>
     </div>
   );
