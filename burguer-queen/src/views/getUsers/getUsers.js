@@ -35,14 +35,15 @@ function GetUser() {
   }, []);
   useEffect(() => console.log(currentUsers), [currentUsers]);
 
-  // const setcurrentUsersHandle=()=>{
-  //   setcurrentUsers(getUserHandle())
-  // }
+  const editUserHadel= ()=>{
+    
+  }
+  
 
   return (
     <div className="App">
       <section className="App-header">
-        <button onClick={openModal}>abrir modal</button>
+        <button onClick={openModal}>Agregar colaborador</button>
         <Modal
           isOpen={isOpenModal}
           closeModal={closeModal}
@@ -59,7 +60,7 @@ function GetUser() {
           return (
             <li key={i}>
               
-              {user.id}, {user.email}, {user.password}, {user.role}
+              {user.id} {user.email} {user.role} <button  onClick={openModal}> Editar</button> <button> Eliminar</button>
             </li>
           );
         })}
