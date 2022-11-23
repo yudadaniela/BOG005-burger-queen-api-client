@@ -4,7 +4,7 @@ import React from 'react';
 import Modal from '../../components/modal';
 import Login from '../login/login.js'
 
-const CreateUsersView = () => {
+const CreateUsersView = ({onSave}) => {
     const [newUserName, setNewUserName] = useState('')
     const [newUserEmail, setNewUserEmail] = useState('')
     const [newUserPassword, setNewUserPassword] = useState('')
@@ -29,11 +29,15 @@ const CreateUsersView = () => {
         getToken()
         getRole()
         createUsers(getToken(), newUserEmail, newUserPassword, newUserRole, newUserName).then(res => res.json()).then( rtaJson => {
-            console.log(rtaJson);
+            // console.log(rtaJson);
+            // onSave(rtaJson)
+            getUsers(getToken()).then(res => res.json()).then( users => {
+                console.log(rtaJson);
+                onSave(users)
+            })
+
         })
-        getUsers(getToken()).then(res => res.json()).then( rtaJson => {
-            console.log(rtaJson);
-        })
+
     }
 
     // const openModal =()=>{
