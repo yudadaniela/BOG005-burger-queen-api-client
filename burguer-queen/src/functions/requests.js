@@ -1,5 +1,3 @@
-
-
 export const postLogin = (email, password) => fetch('http://localhost:8080/login', {
   method: "POST",
   headers: { "Content-type": "application/json" },
@@ -23,8 +21,6 @@ export const setToken_role =(token, role)=>{
 
 }
 
-
-
 export const getToken =()=>localStorage.getItem('token');
 export const getRole =()=>localStorage.getItem('role');
 
@@ -42,5 +38,13 @@ export const createUsers = (tokenLogin , email, password, role, id) => fetch('ht
   })
 })
 
-
+export const deleteItem = (id, tokenLogin) =>{
+  fetch(`http://localhost:8080/users/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+      "authorization": "Bearer " + tokenLogin
+    },
+  })
+}
 

@@ -1,8 +1,9 @@
 import React from "react";
 import CreateUsersView from "../createUsers/createUsers";
-import { getToken, getRole, getUsers } from "../../functions/requests";
+import { getToken, getRole, getUsers, deleteItem } from "../../functions/requests";
 import { useState, useEffect } from "react";
 import Modal from "../../components/modal";
+
 //import { Example } from './views/login/login.js';
 
 function GetUser() {
@@ -39,6 +40,12 @@ function GetUser() {
     
   }
   
+  const deleteHandle = (event)=> {
+   console.log(event.target.value, 'EVENT TARGET')
+   console.log(deleteItem( event.target.value, getToken()), 'se borro :)')
+   deleteItem(event.target.value, getToken())
+   setcurrentUsers(currentUsers)
+  }
 
   return (
     <div className="App">
@@ -48,9 +55,9 @@ function GetUser() {
           isOpen={isOpenModal}
           closeModal={closeModal}
           contenido=<CreateUsersView
-            onSave={(response) => {
-              console.log("se cerro el modal ", currentUsers);
-              setcurrentUsers(response);
+          onSave={(response) => {
+            console.log("se cerro el modal ", currentUsers);
+            setcurrentUsers(response);
             }}
           />
         />
@@ -59,8 +66,16 @@ function GetUser() {
         {currentUsers.map((user, i) => {
           return (
             <li key={i}>
-              
-              {user.id} {user.email} {user.role} <button  onClick={openModal}> Editar</button> <button> Eliminar</button>
+              {user.id} {user.email} {user.role} 
+              <button
+                onClick={openModal}
+              >Editar</button> 
+
+              <button 
+                onClick={deleteHandle} 
+                value={user.id}
+               
+              > Eliminar</button>
             </li>
           );
         })}
