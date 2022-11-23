@@ -74,7 +74,10 @@ function GetUser() {
               <button 
                 onClick={deleteHandle} 
                 value={user.id}
-               
+                onSave={(user) => {
+                  console.log("nose", currentUsers);
+                  setcurrentUsers(user);
+                  }}
               > Eliminar</button>
             </li>
           );
