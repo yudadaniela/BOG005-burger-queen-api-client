@@ -9,6 +9,7 @@ import Modal from "../../components/modal";
 function GetUser() {
   const [isOpenModal, setisOpenModal] = useState(false);
   const [currentUsers, setcurrentUsers] = useState([]);
+  
 
   const openModal = () => {
     setisOpenModal(true);
@@ -43,8 +44,10 @@ function GetUser() {
   const deleteHandle = (event)=> {
    console.log(event.target.value, 'EVENT TARGET')
    console.log(deleteItem( event.target.value, getToken()), 'se borro :)')
-   deleteItem(event.target.value, getToken())
-   setcurrentUsers(currentUsers)
+  //  deleteItem(event.target.value, getToken())
+ deleteItem(event.target.value, getToken())
+
+
   }
 
   return (
@@ -71,11 +74,7 @@ function GetUser() {
                 onClick={openModal}
               >Editar</button> 
 
-              <button 
-                onClick={deleteHandle} 
-                value={user.id}
-               
-              > Eliminar</button>
+              <button  onClick={deleteHandle} value={user.id}> Eliminar</button>
             </li>
           );
         })}
