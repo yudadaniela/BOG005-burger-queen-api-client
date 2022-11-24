@@ -38,7 +38,17 @@ const Edit = ({onSave, idUser, listCurrent}) => {
         console.log( newUserPassword, 'es la contras definido');
         console.log(  newUserRole, 'es rol definido');
         console.log( getToken());
-        editItem((idUser, getToken(), newUserEmail, newUserPassword, newUserRole))/* .then(res => res.json()).then( rtaJson => {
+        const fd = (af)=> {
+            return af
+        }
+        console.log(fd(idUser), 'auch');
+        editItem(idUser, getToken(), newUserEmail, newUserPassword, newUserRole)
+        console.log(editItem(idUser, getToken(), newUserEmail, newUserPassword, newUserRole), 'ejec func');
+        getUsers(getToken()).then(res => res.json()).then( users => {
+            console.log(users);
+            //onSave(users)
+        })
+        /* .then(res => res.json()).then( rtaJson => {
             // console.log(rtaJson);
             // onSave(rtaJson)
             getUsers(getToken()).then(res => res.json()).then( users => {
