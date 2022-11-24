@@ -56,13 +56,15 @@ function GetUser() {
     setidUser(event.target.value) 
     console.log(event.target.value, 'EVENT TARGET de editar')
     //setidUser(event.target.value) 
-    console.log(idUser  , 'es idUSER');/// req  guardar objeto
+    console.log(idUser  , 'es idUSER');/// ESTÁ TOMANDO EL ANTEIROR
     setEditState(true)
     setagregarState(false)
     openModal()
     //editItem(( event.target.value, getToken(), email, password, role))
     //editItem(( event.target.value, getToken(), "email@email", "password", "role"))
   }
+
+ 
 
   const addHandle =() =>{
     setEditState(false)

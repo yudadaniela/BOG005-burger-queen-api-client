@@ -6,14 +6,13 @@ import Login from '../login/login.js'
 
 const Edit = ({onSave, idUser, listCurrent}) => {
     let obj= listCurrent.find((item)=>item.id == idUser)
-    console.log(obj, 'es lo q encontro');
-    //console.log(listCurrent[1], 'es el email', idUser,'es el item' );
-    //console.log(parseInt(idUser), 'es id');
+    console.log(obj, 'es el usuario encontrado');
+    //console.log(obj.id, 'es id por defecto');
+    //console.log(obj.email, 'es email por defecto');
     const [newUserName, setNewUserName] = useState(obj.id)
     const [newUserEmail, setNewUserEmail] = useState(obj.email)
     const [newUserPassword, setNewUserPassword] = useState(obj.password)
     const [newUserRole, setNewUserRole] = useState(obj.role)
-   // const [isOpenModal, setisOpenModal] = useState(false)
 
     const newUserNameHandle =(event)=>{
         setNewUserName(event.target.value) /// buscar****
@@ -28,12 +27,16 @@ const Edit = ({onSave, idUser, listCurrent}) => {
         setNewUserRole(event.target.value) /// buscar****
     }
 
+
     const editUsersHandle = (event) => {
         event.preventDefault()
         getToken()
+        
         console.log(listCurrent, 'son todos');
-        console.log(idUser, 'es el id de uno');
-        console.log( newUserEmail, newUserPassword, newUserRole);
+        console.log(idUser, 'es el id definido ');
+        console.log( newUserEmail, 'es el email definido');// definidos
+        console.log( newUserPassword, 'es la contras definido');
+        console.log(  newUserRole, 'es rol definido');
         console.log( getToken());
         editItem((idUser, getToken(), newUserEmail, newUserPassword, newUserRole))/* .then(res => res.json()).then( rtaJson => {
             // console.log(rtaJson);
@@ -47,12 +50,6 @@ const Edit = ({onSave, idUser, listCurrent}) => {
 
     }
 
-    // const openModal =()=>{
-    //     setisOpenModal(true)
-    // }
-    // const closeModal =()=>{
-    //     setisOpenModal(false)
-    // }
 
     return (
         <div>
