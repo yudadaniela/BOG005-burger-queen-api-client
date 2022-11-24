@@ -12,7 +12,7 @@ function GetUser() {
   const [currentUsers, setcurrentUsers] = useState([]);
   const [editState, setEditState] = useState(false);
   const [agregarState, setagregarState] = useState(true);
-  const [idUser, setidUser] = useState('');
+  const [idUser, setidUser] = useState('');/// AJUSTAR VALOR INIC
   
   const openModal = () => {
     setisOpenModal(true);
@@ -55,14 +55,15 @@ function GetUser() {
   const editHandle = (event) => {
     setidUser(event.target.value) 
     console.log(event.target.value, 'EVENT TARGET de editar')
+    //setidUser(event.target.value) 
+    console.log(idUser  , 'es idUSER');/// req  guardar objeto
     setEditState(true)
     setagregarState(false)
     openModal()
     //editItem(( event.target.value, getToken(), email, password, role))
-    
     //editItem(( event.target.value, getToken(), "email@email", "password", "role"))
-
   }
+
   const addHandle =() =>{
     setEditState(false)
     setagregarState(true)
@@ -87,7 +88,7 @@ function GetUser() {
         <Modal
           isOpen={isOpenModal}
           closeModal={closeModal}
-          contenido={ editState ? <Edit idUser={idUser}/>: <CreateUsersView
+          contenido={ editState ? <Edit idUser={idUser} listCurrent={currentUsers}/>: <CreateUsersView
             onSave={(response) => {
               setcurrentUsers(response);
               console.log("se cerro el modal ", currentUsers);

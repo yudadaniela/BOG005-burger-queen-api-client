@@ -4,11 +4,15 @@ import React from 'react';
 import Modal from '../../components/modal';
 import Login from '../login/login.js'
 
-const Edit = ({onSave, idUser}) => {
-    const [newUserName, setNewUserName] = useState('fs')
-    const [newUserEmail, setNewUserEmail] = useState('ds@sfrs')
-    const [newUserPassword, setNewUserPassword] = useState('fafsgs')
-    const [newUserRole, setNewUserRole] = useState('afa')
+const Edit = ({onSave, idUser, listCurrent}) => {
+    let obj= listCurrent.find((item)=>item.id == idUser)
+    console.log(obj, 'es lo q encontro');
+    //console.log(listCurrent[1], 'es el email', idUser,'es el item' );
+    //console.log(parseInt(idUser), 'es id');
+    const [newUserName, setNewUserName] = useState(obj.id)
+    const [newUserEmail, setNewUserEmail] = useState(obj.email)
+    const [newUserPassword, setNewUserPassword] = useState(obj.password)
+    const [newUserRole, setNewUserRole] = useState(obj.role)
    // const [isOpenModal, setisOpenModal] = useState(false)
 
     const newUserNameHandle =(event)=>{
@@ -27,7 +31,8 @@ const Edit = ({onSave, idUser}) => {
     const editUsersHandle = (event) => {
         event.preventDefault()
         getToken()
-        console.log(idUser);
+        console.log(listCurrent, 'son todos');
+        console.log(idUser, 'es el id de uno');
         console.log( newUserEmail, newUserPassword, newUserRole);
         console.log( getToken());
         editItem((idUser, getToken(), newUserEmail, newUserPassword, newUserRole))/* .then(res => res.json()).then( rtaJson => {
