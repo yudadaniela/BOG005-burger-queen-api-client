@@ -28,7 +28,9 @@ const Edit = ({onSave, idUser}) => {
         event.preventDefault()
         getToken()
         console.log(idUser);
-        editItem((idUser, getToken(), newUserEmail, newUserPassword, newUserRole)).then(res => res.json()).then( rtaJson => {
+        console.log( newUserEmail, newUserPassword, newUserRole);
+        console.log( getToken());
+        editItem((idUser, getToken(), newUserEmail, newUserPassword, newUserRole))/* .then(res => res.json()).then( rtaJson => {
             // console.log(rtaJson);
             // onSave(rtaJson)
             getUsers(getToken()).then(res => res.json()).then( users => {
@@ -36,7 +38,7 @@ const Edit = ({onSave, idUser}) => {
                 onSave(users)
             })
 
-        })
+        }) */
 
     }
 

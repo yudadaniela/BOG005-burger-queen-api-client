@@ -53,7 +53,7 @@ function GetUser() {
   // // id, tokenLogin, email, password, role, id
   // }
   const editHandle = (event) => {
-    let idUser = event.target.value
+    setidUser(event.target.value) 
     console.log(event.target.value, 'EVENT TARGET de editar')
     setEditState(true)
     setagregarState(false)
