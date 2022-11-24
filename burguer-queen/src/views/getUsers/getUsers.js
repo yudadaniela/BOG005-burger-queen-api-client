@@ -10,10 +10,10 @@ import Edit from "../EditUser/EditUser";
 function GetUser() {
   const [isOpenModal, setisOpenModal] = useState(false);
   const [currentUsers, setcurrentUsers] = useState([]);
-  const [editState, setEditState] = useState(false);
-  const [agregarState, setagregarState] = useState(true);
+  const [editState, setEditState] = useState(false);//EDICION
+  const [agregarState, setagregarState] = useState(true); ///AGREGAR
   const [idUser, setidUser] = useState('');/// AJUSTAR VALOR INIC
-  
+
   const openModal = () => {
     setisOpenModal(true);
   };
@@ -53,10 +53,10 @@ function GetUser() {
   // // id, tokenLogin, email, password, role, id
   // }
   const editHandle = (event) => {
-    setidUser(event.target.value) 
+    setidUser(event.target.value) //actualiza el id al id selecc
     console.log(event.target.value, 'EVENT TARGET de editar')
     //setidUser(event.target.value) 
-    console.log(idUser  , 'es idUSER');/// ESTÁ TOMANDO EL ANTEIROR
+    console.log(idUser, 'es idUSER');/// ESTÁ TOMANDO EL ANTEIROR
     setEditState(true)
     setagregarState(false)
     openModal()
@@ -64,9 +64,9 @@ function GetUser() {
     //editItem(( event.target.value, getToken(), "email@email", "password", "role"))
   }
 
- 
 
-  const addHandle =() =>{
+
+  const addHandle = () => {
     setEditState(false)
     setagregarState(true)
     openModal()
@@ -90,11 +90,11 @@ function GetUser() {
         <Modal
           isOpen={isOpenModal}
           closeModal={closeModal}
-          contenido={ editState ? <Edit onSave={(response) => {
+          contenido={editState ? <Edit onSave={(response) => {
             setcurrentUsers(response);
             console.log("se cerro el modal ", currentUsers);
 
-          }} idUser={idUser} listCurrent={currentUsers}/>: <CreateUsersView
+          }} idUser={idUser} listCurrent={currentUsers} /> : <CreateUsersView
             onSave={(response) => {
               setcurrentUsers(response);
               console.log("se cerro el modal ", currentUsers);
@@ -117,6 +117,11 @@ function GetUser() {
               <button
                 onClick={deleteHandle}
                 value={user.id}
+                /* onSave={(user) => {
+                  console.log("nose", currentUsers);
+                  setcurrentUsers(user);
+                  }} */
+
               > Eliminar</button>
             </li>
           );

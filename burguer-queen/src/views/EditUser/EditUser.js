@@ -15,16 +15,17 @@ const Edit = ({onSave, idUser, listCurrent}) => {
     const [newUserRole, setNewUserRole] = useState(obj.role)
 
     const newUserNameHandle =(event)=>{
-        setNewUserName(event.target.value) /// buscar****
+        setNewUserName(event.target.value) //actualiza estado segun lo que escriba
     }
     const newUserEmailHandle =(event)=>{
-        setNewUserEmail(event.target.value) /// buscar****
+        setNewUserEmail(event.target.value) //actualiza estado segun lo que escriba
+    
     }
     const newUserPasswordHandle =(event)=>{
-        setNewUserPassword(event.target.value) /// buscar****
+        setNewUserPassword(event.target.value) //actualiza estado segun lo que escriba
     }
     const newUserRoleHandle =(event)=>{
-        setNewUserRole(event.target.value) /// buscar****
+        setNewUserRole(event.target.value) //actualiza estado segun lo que escriba
     }
 
 
@@ -38,10 +39,6 @@ const Edit = ({onSave, idUser, listCurrent}) => {
         console.log( newUserPassword, 'es la contras definido');
         console.log(  newUserRole, 'es rol definido');
         console.log( getToken());
-        const fd = (af)=> {
-            return af
-        }
-        console.log(fd(idUser), 'auch');
         editItem(idUser, getToken(), newUserEmail, newUserPassword, newUserRole)
         console.log(editItem(idUser, getToken(), newUserEmail, newUserPassword, newUserRole), 'ejec func');
         getUsers(getToken()).then(res => res.json()).then( users => {
