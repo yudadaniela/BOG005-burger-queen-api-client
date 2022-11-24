@@ -36,8 +36,17 @@ function GetUser() {
   useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
 
 
-  const editUserHadel= ()=>{
-    
+  const editUserHadel= (event)=>{
+  
+    console.log(event.target.value, 'EVENT TARGET edit')
+    console.log(editItem( event.target.value, getToken(), email, password, role), 'se borro :)')
+    editItem(( event.target.value, getToken(), email, password, role))
+    getUsers(getToken()).then(res => res.json()).then( users => {
+     console.log(users, ' se actualiza'); // lista actualizada
+     setcurrentUsers(users)
+     })
+  
+  // id, tokenLogin, email, password, role, id
   }
   
   const deleteHandle = (event)=> {
