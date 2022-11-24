@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { createUsers, getToken, getRole, getUsers } from '../../functions/requests';
+import { createUsers, getToken, getRole, getUsers, editItem} from '../../functions/requests';
 import React from 'react';
 import Modal from '../../components/modal';
 import Login from '../login/login.js'
 
-const CreateUsersView = ({onSave}) => {
-    const [newUserName, setNewUserName] = useState('')
-    const [newUserEmail, setNewUserEmail] = useState('')
-    const [newUserPassword, setNewUserPassword] = useState('')
-    const [newUserRole, setNewUserRole] = useState('')
+const Edit = ({onSave, idUser}) => {
+    const [newUserName, setNewUserName] = useState('fs')
+    const [newUserEmail, setNewUserEmail] = useState('ds@sfrs')
+    const [newUserPassword, setNewUserPassword] = useState('fafsgs')
+    const [newUserRole, setNewUserRole] = useState('afa')
    // const [isOpenModal, setisOpenModal] = useState(false)
 
     const newUserNameHandle =(event)=>{
@@ -24,12 +24,11 @@ const CreateUsersView = ({onSave}) => {
         setNewUserRole(event.target.value) /// buscar****
     }
 
-    const createUsersHandle = (event) => {
+    const editUsersHandle = (event) => {
         event.preventDefault()
         getToken()
-        getRole()
-        console.log(event.target.value);
-        createUsers(getToken(), newUserEmail, newUserPassword, newUserRole, newUserName).then(res => res.json()).then( rtaJson => {
+        console.log(idUser);
+        editItem((idUser, getToken(), newUserEmail, newUserPassword, newUserRole)).then(res => res.json()).then( rtaJson => {
             // console.log(rtaJson);
             // onSave(rtaJson)
             getUsers(getToken()).then(res => res.json()).then( users => {
@@ -50,7 +49,7 @@ const CreateUsersView = ({onSave}) => {
 
     return (
         <div>
-            <form onSubmit={createUsersHandle}>
+            <form onSubmit={editUsersHandle}>
             <label>Nombre</label>
                 <input className="inputsCreateUsers"
                     type='text'
@@ -89,7 +88,7 @@ const CreateUsersView = ({onSave}) => {
                 <option value="cheff">Chef</option>    
                 <option value="waiter">Mesero</option>    
                 </select>
-                <button type="submit"> Ingresar </button>
+                <button type="submit"> Editar </button>
                 <p> es el email{newUserName}</p>
                 <p> es la contraseña{newUserEmail}</p>
                 <p> es la contraseña{newUserPassword}</p>
@@ -102,4 +101,4 @@ const CreateUsersView = ({onSave}) => {
     );
 }
 
-export default CreateUsersView;
+export default Edit;
