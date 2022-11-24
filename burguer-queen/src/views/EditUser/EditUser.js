@@ -46,7 +46,7 @@ const Edit = ({onSave, idUser, listCurrent}) => {
         console.log(editItem(idUser, getToken(), newUserEmail, newUserPassword, newUserRole), 'ejec func');
         getUsers(getToken()).then(res => res.json()).then( users => {
             console.log(users);
-            //onSave(users)
+            onSave(users)
         })
         /* .then(res => res.json()).then( rtaJson => {
             // console.log(rtaJson);
