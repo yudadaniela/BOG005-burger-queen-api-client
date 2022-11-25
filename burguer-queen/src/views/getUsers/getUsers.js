@@ -7,7 +7,7 @@ import Modal from "../../components/modal";
 import { AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 import { BiExit, BiPlus } from "react-icons/bi";
 import logo from '../../img/logo.png'
-
+import Edit from '../EditUser/EditUser';
 //import { Example } from './views/login/login.js';
 
 function GetUser() {
@@ -146,10 +146,10 @@ function GetUser() {
                 className="iconAccion"
                 onClick={deleteHandle} 
                 value={user.id}
-                /* onSave={(user) => {
+                 /* onSave={(user) => {
                   console.log("nose", currentUsers);
                   setcurrentUsers(user);
-                  }}
+                  }} */
               > <AiOutlineDelete/></button>
               </td>
             </tr>
