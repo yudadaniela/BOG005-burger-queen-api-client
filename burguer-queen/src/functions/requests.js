@@ -48,3 +48,18 @@ export const deleteItem = (id, tokenLogin) =>{
   })
 }
 
+export const editItem =(id, tokenLogin, email, password, role)=>{
+  fetch(`http://localhost:8080/users/${id}`,{
+    method: "PATCH",
+    headers: {
+      "Content-type": "application/json",
+      "authorization": "Bearer " + tokenLogin
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+      role: role,
+      id:id
+    })
+  })
+} 

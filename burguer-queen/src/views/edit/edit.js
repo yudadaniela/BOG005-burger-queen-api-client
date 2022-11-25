@@ -1,91 +1,107 @@
-import React from "react";
-import CreateUsersView from "../createUsers/createUsers";
-import { getToken, getRole, getUsers, deleteItem } from "../../functions/requests";
-import { useState, useEffect } from "react";
-import Modal from "../../components/modal";
+import { useState, useEffect } from 'react';
+import { createUsers, getToken, getRole, getUsers } from '../../functions/requests';
+import React from 'react';
+import Modal from '../../components/modal';
+import Login from '../login/login.js'
 
-//import { Example } from './views/login/login.js';
+const Edit = ({onSave}) => {
+    console.log('estoy en funcion editar');
+    const [newUserName, setNewUserName] = useState('')
+    const [newUserEmail, setNewUserEmail] = useState('')
+    const [newUserPassword, setNewUserPassword] = useState('')
+    const [newUserRole, setNewUserRole] = useState('')
+   // const [isOpenModal, setisOpenModal] = useState(false)
 
-function Edit() {
-  const [isOpenModal, setisOpenModal] = useState(false);
-  const [currentUsers, setcurrentUsers] = useState([]);
-  
+    const newUserNameHandle =(event)=>{
+        setNewUserName(event.target.value) /// buscar****
+    }
+    const newUserEmailHandle =(event)=>{
+        setNewUserEmail(event.target.value) /// buscar****
+    }
+    const newUserPasswordHandle =(event)=>{
+        setNewUserPassword(event.target.value) /// buscar****
+    }
+    const newUserRoleHandle =(event)=>{
+        setNewUserRole(event.target.value) /// buscar****
+    }
 
-  const openModal = () => {
-    setisOpenModal(true);
-  };
-  const closeModal = () => {
-    setisOpenModal(false);
-  };
+    const createUsersHandle = (event) => {
+        // event.preventDefault()
+        // getToken()
+        // getRole()
+        // createUsers(getToken(), newUserEmail, newUserPassword, newUserRole, newUserName).then(res => res.json()).then( rtaJson => {
+        //     // console.log(rtaJson);
+        //     // onSave(rtaJson)
+        //     getUsers(getToken()).then(res => res.json()).then( users => {
+        //         console.log(rtaJson);
+        //         onSave(users)
+        //     })
 
-  // const getUserHandle =() =>{
-  //   // getToken()
-  //   // getRole()
-  //   getUsers(getToken()).then(res => res.json()).then( rtaJson => {
-  //       console.log(rtaJson);
-  //   })
-  // }
-
-  useEffect(() => {
-    getUsers(getToken())
-      .then((response) => response.json())
-      .then((data) => {
-        setcurrentUsers(data);
-      });
-  }, [/*currentUsers*/]);
-  
-  useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
-
-
-  const editUserHadel= ()=>{
-    
-  }
-  
-  const deleteHandle = (event)=> {
-   console.log(event.target.value, 'EVENT TARGET')
-   console.log(deleteItem( event.target.value, getToken()), 'se borro :)')
-   deleteItem(event.target.value, getToken())
-   getUsers(getToken()).then(res => res.json()).then( users => {
-    console.log(users, 'cuando elimino se actualiza'); // lista actualizada
-    setcurrentUsers(users)
-    })
-  }
+        // })
 
 
-  return (
-    <div className="App">
-      <section className="App-header">
-        <button onClick={openModal}>Agregar colaborador</button>
-        <Modal
-          isOpen={isOpenModal}
-          closeModal={closeModal}
-          contenido=<CreateUsersView
-          onSave={(response) => {
-            setcurrentUsers(response);
-            console.log("se cerro el modal ", currentUsers);
+
+    }
+
+    // const openModal =()=>{
+    //     setisOpenModal(true)
+    // }
+    // const closeModal =()=>{
+    //     setisOpenModal(false)
+    // }
+
+    return (
+        <div>
+            <form onSubmit={createUsersHandle}>
+            <label>Nombre</label>
+                <input className="inputsCreateUsers"
+                    type='text'
+                    placeholder="Introduce Nombre "
+                    value={newUserName}
+                    onChange={newUserNameHandle}
+                >
+                </input>
+
+                <label>Correo</label>
+                <input className="inputsCreateUsers"
+                    type='email'
+                    placeholder="Introduce Email"
+                    value={newUserEmail}
+                    onChange={newUserEmailHandle}
+                >
+                </input>
+
+                <label>Contraseña</label>
+                <input
+                    className="inputsCreateUsers"
+                    type='password'
+                    placeholder="Introduce Contraseña"
+                    value={newUserPassword}
+                    onChange={newUserPasswordHandle}
+                >
+                </input>
+
+                <label>Rol</label>
+                <select
+                className="inputsCreateUsers"
+                value={newUserRole}
+                onChange={newUserRoleHandle}
+                >
+                <option value="admin">Administrador</option>    
+                <option value="cheff">Chef</option>    
+                <option value="waiter">Mesero</option>    
+                </select>
+                <button type="submit"> Editar </button>
+                <p> es el email{newUserName}</p>
+                <p> es la contraseña{newUserEmail}</p>
+                <p> es la contraseña{newUserPassword}</p>
+                <p> es la contraseña{newUserRole}</p>
+            </form>
             
-            }}
-          />
-        />
-      </section>
-      <div>
-        {currentUsers.map((user, i) => {
-          //console.log(currentUsers, 'del map')
-          return (
-            <li key={i}>
-              {user.id} {user.email} {user.role} 
-              <button
-                onClick={openModal}
-              >Editar</button> 
-
-              <button  onClick={deleteHandle} value={user.id}> Eliminar</button>
-            </li>
-          );
-        })
-        }
-      </div>
-    </div>
-  );
+           
+            
+        </div>
+    );
 }
 
 export default Edit;
