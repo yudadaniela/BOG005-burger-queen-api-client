@@ -27,9 +27,6 @@ html {
 p{
   font-family: var(--Inter);
 }
-/* .adminView{
-position: absolute;
-} */
 
 h1{
     color: var(--darkBrown);
@@ -71,7 +68,7 @@ table{
 
 .tableContainer{
     margin: auto 4rem;
- } 
+} 
 
 .headerTable{
     background-color: var(--orangeButton);
@@ -89,7 +86,34 @@ table{
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+td{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+.iconAccion{
+    background-color: var(--beige);
+    border: none;
+    font-size: 1rem;
+    color: var(--darkBrown);
+}
+
 .buttonAddUser{
+    background-color: var(--brown);
+    width:15rem ;
+    height: 2rem;
+    border-radius: 18px;
+    border: none;
+    color: var(--beige);
+    font-size: 1rem;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.buttonAddUser:hover{
     background-color: var(--darkBrown);
     width:15rem ;
     height: 2rem;
@@ -101,15 +125,8 @@ table{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    /* padding: 0px 9px; */
 }
 
-.iconAccion{
-    background-color: var(--beige);
-    border: none;
-    font-size: 1rem;
-    color: var(--darkBrown);
-}
 
 
 

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+
+:root{
+    --orangeButton: #FFAA69;
+    --orange: #F49750;
+    --actionButton: #E27F34;
+    --beige:#FFF5DA;
+    --white: #FFFFFF;
+    --brown: #431A10;
+    --darkBrown: #2C1612;
+    --Inter: 'Inter', 'sans-serif;'
+  
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+html {
+  font-size: 16px;
+}
+
+p{
+  font-family: var(--Inter);
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    height:18rem;
+}
+
+.inputsCreateUsers{
+    border-radius: 10px;
+    border:1px solid var(--brown);
+    height:2rem ;
+}
+
+.twoInputsContainers{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+label{
+    font-weight: bolder;
+    color: var(--brown);
+}
+
+.inputLabelContainer{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.addUserButton{
+    background-color: var(--orangeButton);
+    width: 50%;
+    height: 2.5rem;
+    border-radius: 18px;
+    border: none;
+    color: var(--darkBrown);
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.addUserButton:hover{
+    background-color:var(--orange);
+}
+
+.addUserButton:active{
+    background-color:var(--actionButton);
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+
+select{
+    color: var(--brown);
+    font-size: 1rem;
+    padding-left:1rem;
+}
