@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
 
 :root{
+    --orangeButton: #FFAA69;
     --orange: #F49750;
+    --actionButton: #E27F34;
     --beige:#FFF5DA;
     --white: #FFFFFF;
     --brown: #431A10;
     --darkBrown: #2C1612;
     --Inter: 'Inter', 'sans-serif;'
+  
   }
 
   * {
@@ -19,11 +22,10 @@
 
 html {
   font-size: 16px;
-}
-
-p{
   font-family: var(--Inter);
 }
+
+
 
   /* wallpaper */
 .login{
@@ -48,20 +50,26 @@ p{
 .formLogin{        
     /* max-width:900px; -porque no hace nada?*/
     min-width: 280px;
-    height: 30vh; 
+    height: 50vh; 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 }
 
+.logo{
+  width: 9rem;
+}
 .containerInputsLogin{
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .containerButtonLogin{
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .labelInputsLogin {
@@ -78,6 +86,11 @@ p{
   border: none;
 }
 
+.errorLogin{
+  color: var(--white);
+  font-weight: bolder;
+  font-size: 16px;
+}
 ::placeholder {
   color: var(--brown);
   font-size: 1rem;
@@ -86,7 +99,7 @@ p{
 
 /* login button */
 .buttonLogin{
-  background-color: var(--orange);
+  background-color: var(--orangeButton);
   width: 70%;
   height: 2.5rem;
   border-radius: 18px;
@@ -97,10 +110,10 @@ p{
 }
 
 .buttonLogin:hover{
-  background-color: #ffc090;
+  background-color:var(--orange);
   /* transition: 0.5s; */
 }
 
 .buttonLogin:active{
-  background-color: #e68134;
+  background-color:var(--actionButton);
 }
