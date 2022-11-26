@@ -1,33 +1,26 @@
-import React from "react";
+import React, { useDebugValue } from "react";
 import CreateUsersView from "../createUsers/createUsers";
 import { getToken, getRole, getUsers, deleteItem, editItem } from "../../functions/requests";
 import { useState, useEffect } from "react";
 import Modal from "../../components/modal";
 import Edit from "../EditUser/EditUser";
 
-//import { Example } from './views/login/login.js';
+
 
 function GetUser() {
-  const [isOpenModal, setisOpenModal] = useState(false);
-  const [currentUsers, setcurrentUsers] = useState([]);
-  const [editState, setEditState] = useState(false);//EDICION
-  const [agregarState, setagregarState] = useState(true); ///AGREGAR
-  const [idUser, setidUser] = useState('');/// AJUSTAR VALOR INIC
+  const [isOpenModal, setisOpenModal] = useState(false);// estado de apertura de modal
+  const [currentUsers, setcurrentUsers] = useState([]); // array de usuarios que muestra
+  const [editState, setEditState] = useState(false);//Estado de edición 
+  const [agregarState, setagregarState] = useState(true); // estado de creación de usuario
+  const [selectedUser, setSelectedUser] = useState({});// Usuario seleccionado
 
   const openModal = () => {
     setisOpenModal(true);
   };
   const closeModal = () => {
     setisOpenModal(false);
+    setSelectedUser({})// eliminar usurio  
   };
-
-  // const getUserHandle =() =>{
-  //   // getToken()
-  //   // getRole()
-  //   getUsers(getToken()).then(res => res.json()).then( rtaJson => {
-  //       console.log(rtaJson);
-  //   })
-  // }
 
   useEffect(() => {
     getUsers(getToken())
@@ -35,36 +28,18 @@ function GetUser() {
       .then((data) => {
         setcurrentUsers(data);
       });
-  }, [/*currentUsers*/]);
+  }, []);
 
   useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
 
-
-  // const editUserHadel= (event)=>{
-
-  //   console.log(event.target.value, 'EVENT TARGET edit')
-  //   console.log(editItem( event.target.value, getToken(), email, password, role), 'se borro :)')
-  //   editItem(( event.target.value, getToken(), email, password, role))
-  //   getUsers(getToken()).then(res => res.json()).then( users => {
-  //    console.log(users, ' se actualiza'); // lista actualizada
-  //    setcurrentUsers(users)
-  //    })
-
-  // // id, tokenLogin, email, password, role, id
-  // }
   const editHandle = (event) => {
-    setidUser(event.target.value) //actualiza el id al id selecc
-    console.log(event.target.value, 'EVENT TARGET de editar')
-    //setidUser(event.target.value) 
-    console.log(idUser, 'es idUSER');/// ESTÁ TOMANDO EL ANTEIROR
+    const user = currentUsers.filter(u => u.id == event.target.value)/// traer el usuario completo
+    setSelectedUser(user[0]) //actualiza el usuario seleccionado
+    //console.log(user[0], 'es el usuario seleccionado');
     setEditState(true)
     setagregarState(false)
-    openModal()
-    //editItem(( event.target.value, getToken(), email, password, role))
-    //editItem(( event.target.value, getToken(), "email@email", "password", "role"))
+    openModal() // tratar de poner el usuario opc
   }
-
-
 
   const addHandle = () => {
     setEditState(false)
@@ -82,6 +57,7 @@ function GetUser() {
     })
   }
 
+  useEffect(() => { }, [])
 
   return (
     <div className="App">
@@ -94,7 +70,7 @@ function GetUser() {
             setcurrentUsers(response);
             console.log("se cerro el modal ", currentUsers);
 
-          }} idUser={idUser} listCurrent={currentUsers} /> : <CreateUsersView
+          }} selectedUser={selectedUser} /> : <CreateUsersView
             onSave={(response) => {
               setcurrentUsers(response);
               console.log("se cerro el modal ", currentUsers);
@@ -117,10 +93,10 @@ function GetUser() {
               <button
                 onClick={deleteHandle}
                 value={user.id}
-                /* onSave={(user) => {
-                  console.log("nose", currentUsers);
-                  setcurrentUsers(user);
-                  }} */
+              /* onSave={(user) => {
+                console.log("nose", currentUsers);
+                setcurrentUsers(user);
+                }} */
 
               > Eliminar</button>
             </li>

@@ -51,7 +51,7 @@ const CreateUsersView = ({onSave}) => {
     return (
         <div>
             <form onSubmit={createUsersHandle}>
-            <label>Nombre</label>
+            <label>Id</label>
                 <input className="inputsCreateUsers"
                     type='text'
                     placeholder="Introduce Nombre "

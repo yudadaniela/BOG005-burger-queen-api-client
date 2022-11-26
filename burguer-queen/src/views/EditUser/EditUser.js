@@ -4,19 +4,18 @@ import React from 'react';
 import Modal from '../../components/modal';
 import Login from '../login/login.js'
 
-const Edit = ({onSave, idUser, listCurrent}) => {
-    let obj= listCurrent.find((item)=>item.id == idUser)
-    console.log(obj, 'es el usuario encontrado');
-    //console.log(obj.id, 'es id por defecto');
-    //console.log(obj.email, 'es email por defecto');
-    const [newUserName, setNewUserName] = useState(obj.id)
-    const [newUserEmail, setNewUserEmail] = useState(obj.email)
-    const [newUserPassword, setNewUserPassword] = useState(obj.password)
-    const [newUserRole, setNewUserRole] = useState(obj.role)
+const Edit = ({onSave, selectedUser}) => {
+    console.log(selectedUser, 'user');
+    console.log(selectedUser.id, 'id de user selecc en editar');
+    console.log(selectedUser.email, ' es el email');
+    //const [newUserName, setNewUserName] = useState(selectedUser.id)/// no se puede modificar
+    const [newUserEmail, setNewUserEmail] = useState(selectedUser.email)
+    const [newUserPassword, setNewUserPassword] = useState(selectedUser.password)
+    const [newUserRole, setNewUserRole] = useState(selectedUser.role)
 
-    const newUserNameHandle =(event)=>{
-        setNewUserName(event.target.value) //actualiza estado segun lo que escriba
-    }
+    // const newUserNameHandle =(event)=>{
+    //     setNewUserName(event.target.value) //actualiza estado segun lo que escriba
+    // }
     const newUserEmailHandle =(event)=>{
         setNewUserEmail(event.target.value) //actualiza estado segun lo que escriba
     
@@ -32,15 +31,12 @@ const Edit = ({onSave, idUser, listCurrent}) => {
     const editUsersHandle = (event) => {
         event.preventDefault()
         getToken()
-        
-        console.log(listCurrent, 'son todos');
-        console.log(idUser, 'es el id definido ');
-        console.log( newUserEmail, 'es el email definido');// definidos
+/*         console.log( newUserEmail, 'es el email definido');// definidos
         console.log( newUserPassword, 'es la contras definido');
         console.log(  newUserRole, 'es rol definido');
-        console.log( getToken());
-        editItem(idUser, getToken(), newUserEmail, newUserPassword, newUserRole)
-        console.log(editItem(idUser, getToken(), newUserEmail, newUserPassword, newUserRole), 'ejec func');
+        console.log( getToken()); */
+        editItem(selectedUser.id, getToken(), newUserEmail, newUserPassword, newUserRole)
+        console.log(editItem(selectedUser.id, getToken(), newUserEmail, newUserPassword, newUserRole), 'ejec func');
         getUsers(getToken()).then(res => res.json()).then( users => {
             console.log(users);
             onSave(users)
@@ -61,14 +57,13 @@ const Edit = ({onSave, idUser, listCurrent}) => {
     return (
         <div>
             <form onSubmit={editUsersHandle}>
-            <label>Nombre</label>
-                <input className="inputsCreateUsers"
+            <label>Id</label>
+                <p className="inputsCreateUsers"
                     type='text'
                     placeholder="Introduce Nombre "
-                    value={newUserName}
-                    onChange={newUserNameHandle}
                 >
-                </input>
+                    {selectedUser.id}
+                </p>
 
                 <label>Correo</label>
                 <input className="inputsCreateUsers"
@@ -100,10 +95,10 @@ const Edit = ({onSave, idUser, listCurrent}) => {
                 <option value="waiter">Mesero</option>    
                 </select>
                 <button type="submit"> Editar </button>
-                <p> es el email{newUserName}</p>
-                <p> es la contraseña{newUserEmail}</p>
+                <p> es el id{selectedUser.id}</p>
+                <p> es el email{newUserEmail}</p>
                 <p> es la contraseña{newUserPassword}</p>
-                <p> es la contraseña{newUserRole}</p>
+                <p> es el rol {newUserRole}</p>
             </form>
             
            
