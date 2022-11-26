@@ -19,7 +19,8 @@ function GetUser() {
   };
   const closeModal = () => {
     setisOpenModal(false);
-    setSelectedUser({})// eliminar usurio  
+    setSelectedUser({});// eliminar usuario 
+    console.log(selectedUser, 'datos en modal');
   };
 
   useEffect(() => {
@@ -30,10 +31,10 @@ function GetUser() {
       });
   }, []);
 
-  useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
+  //useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
 
   const editHandle = (event) => {
-    const user = currentUsers.filter(u => u.id == event.target.value)/// traer el usuario completo
+    const user = currentUsers.filter(u => u.id == event.target.value)/// traer el usuario completo en un array
     setSelectedUser(user[0]) //actualiza el usuario seleccionado
     //console.log(user[0], 'es el usuario seleccionado');
     setEditState(true)
@@ -48,8 +49,8 @@ function GetUser() {
   }
 
   const deleteHandle = (event) => {
-    console.log(event.target.value, 'EVENT TARGET')
-    console.log(deleteItem(event.target.value, getToken()), 'se borro :)')
+    // console.log(event.target.value, 'EVENT TARGET')
+    // console.log(deleteItem(event.target.value, getToken()), 'se borro :)')
     deleteItem(event.target.value, getToken())
     getUsers(getToken()).then(res => res.json()).then(users => {
       console.log(users, 'cuando elimino se actualiza'); // lista actualizada
@@ -57,7 +58,6 @@ function GetUser() {
     })
   }
 
-  useEffect(() => { }, [])
 
   return (
     <div className="App">
@@ -74,7 +74,6 @@ function GetUser() {
             onSave={(response) => {
               setcurrentUsers(response);
               console.log("se cerro el modal ", currentUsers);
-
             }}
           />}
         />
