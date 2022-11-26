@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { postLogin, setToken_role} from '../../functions/requests.js';
 import React from 'react';
+import logo from '../../img/logo.png'
 import './styleLogin.css'
 import { Link, useNavigate } from "react-router-dom";
 
@@ -26,16 +27,16 @@ function Login() {
 const errorHandle =(resJson)=>{
 
   if (resJson === 'Email and password are required')  {
-    setError('Correo y contraseña requeridos') // cambio de estado
+    setError('Correo y contraseña requeridos 😰') // cambio de estado
     throw new Error(resJson)
   }
-  else if (resJson === 'Incorrect password' || resJson === 'Password is too short' )  {
-    setError('Contraseña incorrecta')
+  else if (resJson === 'Incorrect password' || resJson === 'Password is too short ' )  {
+    setError('Contraseña incorrecta ❌')
     throw new Error(resJson)
   }
  
   else if (resJson === 'Cannot find user')  {
-    setError('El usuario no existe')
+    setError('El usuario no existe 😥')
     throw new Error(resJson)
   }
 }
@@ -58,9 +59,10 @@ const errorHandle =(resJson)=>{
 
   return (
     <section className="login">
-    
+  
       <div className='nodoLogin'>
         <form onSubmit={fetchHandle} className="formLogin">
+          <img className="logo" src={logo} />
           <div className='containerInputsLogin'> 
             <label className='labelInputsLogin'>Correo</label>
             <input className="inputsLogin"
@@ -85,11 +87,13 @@ const errorHandle =(resJson)=>{
             </input>
             
           </div>
+          <p className='errorLogin'>{error}</p>
+
           <div className='containerButtonLogin'> 
            <button type="submit" className='buttonLogin'> Ingresar </button>
            </div>
          
-        <span>{error}</span>
+      
         </form>
         
       </div>
@@ -98,65 +102,3 @@ const errorHandle =(resJson)=>{
 }
 
 export default Login;
-
-
-  // useEffect(() => {
-    // postLogin().then(res => res.json()).then(resJson => {
-    //   setUser(resJson.user)
-    //   setIsLoadingUser(false)
-      // unaVariable = 'chao'
-      // console.log(unaVariable)
-    // })
-  // }, [])
-
-  // useEffect(() => console.log(user), [user])
-
-
-
-// export function Example() {
-//   // Declaración de una variable de estado que llamaremos "count"
-//   const [count, setount] = useState(0);
-// /// let count = nombre //almacena valores en estado
-//   return (
-//     <div>
-//       <p>You clicked {count} times</p>
-//       <button onClick={() => setount(count + 1)}>
-//         Click me
-//       </button>
-//     </div>
-//   );
-// }
-
-
-// const Login= () => {
-
-//   let nombre = "caro"
-//   let nombre2 = "viki"
-//   let array =['cosa1', 'cosa2', 'cosa3']
-//   const [estado, setEstado] = useState(nombre) // declaro hook
-//   /// let estado = nombre //en estado se almacena valores de nombre
-//   const cambiarNombre = (nuevoNombre) =>{
-//     setEstado(nuevoNombre)
-//   }
-
-//   // antes  setEstado(estado) = caro   ///estado = nombre
-//   // despues setEstado(estado2) = viki /// estado = estado2
-// /// estado =  setEstado(estado2) // reasignar
-//   return (
-//     <div>
-//       <p> holanda</p>
-//       <p> holanda {estado}</p>
-//       <button onClick={e => cambiarNombre(nombre2)}>boton</button>
-//       <div>
-//       {/*         {array.map((n, i) => {
-//           return (<li key={i}> holanda {n}</li>)
-//         })} */}
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Login
-
-
-

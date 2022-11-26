@@ -3,6 +3,7 @@ import { createUsers, getToken, getRole, getUsers } from '../../functions/reques
 import React from 'react';
 import Modal from '../../components/modal';
 import Login from '../login/login.js'
+import './createUsers.css'
 
 const CreateUsersView = ({onSave}) => {
     const [newUserName, setNewUserName] = useState('')
@@ -50,11 +51,11 @@ const CreateUsersView = ({onSave}) => {
 
     return (
         <div>
-            <form onSubmit={createUsersHandle}>
-            <label>Id</label>
+            <form onSubmit={createUsersHandle} className="formContainer">
+            <label>Id Usuario</label>
                 <input className="inputsCreateUsers"
                     type='text'
-                    placeholder="Introduce Nombre "
+                    placeholder="Introduce Id "
                     value={newUserName}
                     onChange={newUserNameHandle}
                 >
@@ -68,7 +69,8 @@ const CreateUsersView = ({onSave}) => {
                     onChange={newUserEmailHandle}
                 >
                 </input>
-
+                <div className='twoInputsContainers'>
+                <div className='inputLabelContainer'>
                 <label>Contraseña</label>
                 <input
                     className="inputsCreateUsers"
@@ -78,22 +80,28 @@ const CreateUsersView = ({onSave}) => {
                     onChange={newUserPasswordHandle}
                 >
                 </input>
-
+                </div>
+                <div className='inputLabelContainer'>
                 <label>Rol</label>
                 <select
                 className="inputsCreateUsers"
                 value={newUserRole}
                 onChange={newUserRoleHandle}
                 >
+                <option value="">Selecciona Rol</option> 
                 <option value="admin">Administrador</option>    
                 <option value="cheff">Chef</option>    
                 <option value="waiter">Mesero</option>    
                 </select>
-                <button type="submit"> Ingresar </button>
-                <p> es el email{newUserName}</p>
+                </div>
+                </div>
+                <div className='buttonContainer'> 
+                <button type="submit" className='addUserButton'> Agregar </button>
+                </div>
+                {/* <p> es el email{newUserName}</p>
                 <p> es la contraseña{newUserEmail}</p>
                 <p> es la contraseña{newUserPassword}</p>
-                <p> es la contraseña{newUserRole}</p>
+                <p> es la contraseña{newUserRole}</p> */}
             </form>
             
            
