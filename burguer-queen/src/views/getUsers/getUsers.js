@@ -96,23 +96,24 @@ function GetUser() {
       
         <section className="tableContainer"> 
         <table className="headerTable"> 
-              <tr className="dataTable"> 
-                <th className="titleTable">Id de Usuario</th>
-                <th className="titleTable">Email</th>
-                <th className="titleTable">Role</th>
-                <th className="titleTable">  Editar/eliminar</th>
-              </tr>
+              <thead key={1}className="dataTable"> 
+                <tr key={1}className="titleTable">Id de Usuario</tr>
+                <tr key={2}className="titleTable">Email</tr>
+                <tr key={3} className="titleTable">Role</tr>
+                <tr key={4}className="titleTable">  Editar/eliminar</tr>
+              </thead>
         </table>
         <div>
         {currentUsers.map((user, i) => {
           //console.log(currentUsers, 'del map')
           return (
-            <table>
-            <tr className="dataTable"> 
-            <td key={i}> {user.id} </td>
-            <td> {user.email} </td>
-            <td> {user.role} </td>
-            <td> 
+            <table key={i}>
+            <tbody key={i}className="dataTable"> 
+            <tr key={i}> {user.id} </tr>
+            <tr> {user.email} </tr>
+            <tr> {user.role} </tr>
+            
+              <div>
             <button
             className="iconAccion"
                 onClick={editHandle}
@@ -127,8 +128,9 @@ function GetUser() {
                   setcurrentUsers(user);
                   }} */
               > <AiOutlineDelete/></button>
-              </td>
-            </tr>
+              </div>
+              
+            </tbody>
             </table>
           );
         })
