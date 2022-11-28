@@ -68,6 +68,8 @@ table{
 
 .tableContainer{
     margin: auto 4rem;
+    width: 80%;
+    min-width: 200px;
 } 
 
 .headerTable{
@@ -83,7 +85,8 @@ table{
     color: var(--darkBrown);
     text-align: center;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 }
 
 tr{
