@@ -45,8 +45,10 @@ const Edit = ({onSave, selectedUser}) => {
 
     return (
         <div>
-            <form onSubmit={editUsersHandle}>
-            <label>Id</label>
+            <form 
+            class="formContainer"
+            onSubmit={editUsersHandle}>
+            <label>Id usuario</label>
                 <p className="inputsCreateUsers"
                     type='text'
                     placeholder="Introduce Nombre "
@@ -62,7 +64,8 @@ const Edit = ({onSave, selectedUser}) => {
                     onChange={newUserEmailHandle}
                 >
                 </input>
-
+            <div className= "twoInputsContainers">
+                <div className= "inputLabelContainer">
                 <label>Contraseña</label>
                 <input
                     className="inputsCreateUsers"
@@ -72,7 +75,8 @@ const Edit = ({onSave, selectedUser}) => {
                     onChange={newUserPasswordHandle}
                 >
                 </input>
-
+                </div>
+                <div className= "inputLabelContainer">
                 <label>Rol</label>
                 <select
                 className="inputsCreateUsers"
@@ -83,11 +87,17 @@ const Edit = ({onSave, selectedUser}) => {
                 <option value="cheff">Chef</option>    
                 <option value="waiter">Mesero</option>    
                 </select>
-                <button type="submit"> Editar </button>
-                <p> es el id{selectedUser.id}</p>
+                </div>
+            </div>
+            <div className ="buttonContainer">
+                <button 
+                className="addUserButton"
+                type="submit"> Editar </button>
+            </div>
+      {/*           <p> es el id{selectedUser.id}</p>
                 <p> es el email{newUserEmail}</p>
                 <p> es la contraseña{newUserPassword}</p>
-                <p> es el rol {newUserRole}</p>
+                <p> es el rol {newUserRole}</p> */}
             </form>
             
            

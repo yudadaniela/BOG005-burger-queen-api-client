@@ -94,6 +94,7 @@ function GetUser() {
               console.log("se cerro el modal ", currentUsers);
             }}
           />}
+          task ={editState ? 'Editar Usuario' : 'Crear Usuario'}
         />
         </section>
       
