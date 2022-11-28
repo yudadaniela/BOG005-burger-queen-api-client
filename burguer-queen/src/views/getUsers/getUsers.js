@@ -18,7 +18,6 @@ function GetUser() {
   const [agregarState, setagregarState] = useState(true); // estado de creación de usuario
   const [selectedUser, setSelectedUser] = useState({});// Usuario seleccionado
   
-
   const openModal = () => {
     setisOpenModal(true);
   };
