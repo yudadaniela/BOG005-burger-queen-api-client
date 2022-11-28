@@ -4,7 +4,6 @@ import { getToken, getRole, getUsers, deleteItem, editItem } from "../../functio
 import { useState, useEffect } from "react";
 import './getUsers.css'
 import Modal from "../../components/modal";
-import Edit from "../edit/edit";
 import { AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 import { BiExit, BiPlus } from "react-icons/bi";
 import logo from '../../img/logo.png'
