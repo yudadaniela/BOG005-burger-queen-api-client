@@ -86,7 +86,7 @@ table{
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-td{
+tr{
     overflow:hidden;
     white-space:nowrap;
     text-overflow: ellipsis;

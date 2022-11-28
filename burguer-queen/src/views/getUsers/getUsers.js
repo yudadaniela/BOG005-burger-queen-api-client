@@ -45,12 +45,14 @@ function GetUser() {
     setEditState(true)
     setagregarState(false)
     openModal() // tratar de poner el usuario opc
+
   }
 
   const addHandle = () => {
     setEditState(false)
     setagregarState(true)
     openModal()
+   
   }
 
   const deleteHandle = (event) => {
@@ -89,11 +91,15 @@ function GetUser() {
             setcurrentUsers(response);
             console.log("se cerro el modal ", currentUsers);
 
-          }} selectedUser={selectedUser} /> : <CreateUsersView
+          }} selectedUser={selectedUser} 
+          closeModal={closeModal}
+          /> : <CreateUsersView
             onSave={(response) => {
               setcurrentUsers(response);
               console.log("se cerro el modal ", currentUsers);
+            
             }}
+            closeModal={closeModal}
           />}
           task ={editState ? 'Editar Usuario' : 'Crear Usuario'}
         />

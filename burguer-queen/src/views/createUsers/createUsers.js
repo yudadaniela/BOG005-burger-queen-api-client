@@ -5,7 +5,7 @@ import Modal from '../../components/modal';
 import Login from '../login/login.js'
 import './createUsers.css'
 
-const CreateUsersView = ({onSave}) => {
+const CreateUsersView = ({onSave,closeModal}) => {
     const [newUserName, setNewUserName] = useState('')
     const [newUserEmail, setNewUserEmail] = useState('')
     const [newUserPassword, setNewUserPassword] = useState('')
@@ -39,7 +39,7 @@ const CreateUsersView = ({onSave}) => {
             })
 
         })
-
+       closeModal()
     }
 
     // const openModal =()=>{

@@ -4,14 +4,14 @@ import React from 'react';
 import Modal from '../../components/modal';
 import Login from '../login/login.js'
 
-const Edit = ({onSave, selectedUser}) => {
+const Edit = ({onSave, selectedUser, closeModal}) => {
     // console.log(selectedUser, 'user');
     // console.log(selectedUser.id, 'id de user selecc en editar');
     // console.log(selectedUser.email, ' es el email');
     
-    const [newUserEmail, setNewUserEmail] = useState('')/// iniciar vacio
-    const [newUserPassword, setNewUserPassword] = useState('')
-    const [newUserRole, setNewUserRole] = useState('')
+    const [newUserEmail, setNewUserEmail] = useState(selectedUser.email)/// iniciar vacio
+    const [newUserPassword, setNewUserPassword] = useState(selectedUser.password)
+    const [newUserRole, setNewUserRole] = useState(selectedUser.role)
 
     //setNewUserEmail(selectedUser.email)
     // setNewUserPassword(selectedUser.password)
@@ -37,14 +37,16 @@ const Edit = ({onSave, selectedUser}) => {
         getUsers(getToken()).then(res => res.json()).then( users => {
             console.log(users);
             onSave(users)
-        })
 
+        })
+        closeModal()
+       
     }
 
     return (
         <div>
             <form 
-            class="formContainer"
+            className="formContainer"
             onSubmit={editUsersHandle}>
             <label>Id usuario</label>
                 <p className="inputsCreateUsers"
