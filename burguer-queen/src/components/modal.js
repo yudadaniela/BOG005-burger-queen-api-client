@@ -3,8 +3,7 @@ import './modal.css';
 import React from 'react';
 import { AiOutlineCloseCircle} from "react-icons/ai";
 
-
-function Modal({isOpen, closeModal, contenido}) { //preguntar porque esta en llaves
+function Modal({isOpen, closeModal, contenido, task}) { //preguntar porque esta en llaves
  const handleModalDialogClick = (e) => {
     e.stopPropagation();
     
@@ -22,7 +21,9 @@ function Modal({isOpen, closeModal, contenido}) { //preguntar porque esta en lla
       <section className="modal_dialog" onClick={handleModalDialogClick}>
       <div className='titleModalContainer'> 
       <div></div>
-      <h1> Crear Usuario</h1> 
+
+      <h1> {task}</h1> 
+
       <button onClick={closeModal} className="closeIcon"><AiOutlineCloseCircle/></button>
       </div>  
       <article>{contenido}</article>

@@ -65,12 +65,12 @@ export const deleteItem = (id, tokenLogin) =>{
 //   })
 // } 
 export const editItem =(id, tokenLogin, email, password, role)=>{
-  console.log(`http://localhost:8080/users/${id}`);
-  console.log( id, 'id en fetch');
-  console.log(tokenLogin, 'tok en fetch');
-  console.log(email, 'email en fetch');// indefinidos
-  console.log(password, 'pass en fetch');
-  console.log(role, 'role en fetch');   
+  // console.log(`http://localhost:8080/users/${id}`);
+  // console.log( id, 'id en fetch');
+  // console.log(tokenLogin, 'tok en fetch');
+  // console.log(email, 'email en fetch');// indefinidos
+  // console.log(password, 'pass en fetch');
+  // console.log(role, 'role en fetch');   
   fetch(`http://localhost:8080/users/${id}` ,{
     method: "PATCH",
     headers: {
