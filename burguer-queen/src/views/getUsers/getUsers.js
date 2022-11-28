@@ -9,8 +9,6 @@ import { BiExit, BiPlus } from "react-icons/bi";
 import logo from '../../img/logo.png'
 import Edit from "../EditUser/EditUser";
 
-
-
 function GetUser() {
   const [isOpenModal, setisOpenModal] = useState(false);// estado de apertura de modal
   const [currentUsers, setcurrentUsers] = useState([]); // array de usuarios que muestra
@@ -106,6 +104,7 @@ console.log('datos de usuario en modal', selectedUser);/// verificación de dato
       
         <section className="tableContainer"> 
         <table className="headerTable"> 
+
               <thead key={1}className="dataTable"> 
                 <tr key={1}className="titleTable">Id de Usuario</tr>
                 <tr key={2}className="titleTable">Email</tr>
@@ -136,13 +135,16 @@ console.log('datos de usuario en modal', selectedUser);/// verificación de dato
                 //value={user.id}
                 data-user ={user.id}
                 /* onSave={(user) => {
+
                   console.log("nose", currentUsers);
                   setcurrentUsers(user);
                   }} */
               > <AiOutlineDelete/></button>
+
               </div>
               
             </tbody>
+
             </table>
           );
         })
