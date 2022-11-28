@@ -38,11 +38,9 @@ function GetUser() {
   //useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
 
   const editHandle = (event) => {
-    debugger
-    const user = currentUsers.filter(u => u.id == event.target.value)/// traer el usuario completo en un array
-   
+    const user = currentUsers.filter(u => u.id == event.currentTarget.dataset.user)/// traer el usuario completo en un array
     setSelectedUser(user[0]) //actualiza el usuario seleccionado
-    //console.log(user[0], 'es el usuario seleccionado');
+    console.log(user[0], 'es el usuario seleccionado');
     setEditState(true)
     setagregarState(false)
     openModal() // tratar de poner el usuario opc
@@ -57,8 +55,10 @@ function GetUser() {
   const deleteHandle = (event) => {
      //console.log(event.target.value, 'EVENT TARGET de eliminar')
     // console.log(deleteItem(event.target.value, getToken()), 'se borro :)')
-    console.log(event.target/* .dataset.user */, 'target nuevo');
-    deleteItem(event.target.dataset.user, getToken())
+    //console.log(event.currentTarget.dataset.user/* .dataset.user */, 'target CURRENT nuevo');
+    //console.log(event.currentTarget/* .dataset.user */, 'padre nuevo');
+    //console.log(event.target/* .dataset.user */, 'target  nuevo');
+    deleteItem(event.currentTarget.dataset.user, getToken())
     getUsers(getToken()).then(res => res.json()).then(users => {
       console.log(users, 'cuando elimino se actualiza'); // lista actualizada
       setcurrentUsers(users)
@@ -117,12 +117,13 @@ function GetUser() {
             <tr> {user.role} </tr>
             
               <div>
-            <div
+            <button
             className="iconAccion"
                 onClick={editHandle}
-              ><AiOutlineEdit /></div> 
+                data-user ={user.id}
+              ><AiOutlineEdit /></button> 
               
-              <div
+              <button
                 className="iconAccion"
                 onClick={deleteHandle} 
                 //value={user.id}
@@ -131,7 +132,7 @@ function GetUser() {
                   console.log("nose", currentUsers);
                   setcurrentUsers(user);
                   }} */
-              > <AiOutlineDelete/></div>
+              > <AiOutlineDelete/></button>
               </div>
               
             </tbody>
