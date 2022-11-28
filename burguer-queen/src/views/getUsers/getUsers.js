@@ -17,15 +17,28 @@ function GetUser() {
   const [editState, setEditState] = useState(false);//Estado de edición 
   const [agregarState, setagregarState] = useState(true); // estado de creación de usuario
   const [selectedUser, setSelectedUser] = useState({});// Usuario seleccionado
+  
 
   const openModal = () => {
     setisOpenModal(true);
   };
   const closeModal = () => {
     setisOpenModal(false);
-    setSelectedUser({});// eliminar usuario 
-    console.log(selectedUser, 'datos en modal');
+    setSelectedUser({});// eliminar usuario NO ESTÁ FUNCIONANDOOOOOOO
+    console.log(selectedUser, 'datos en modal al cerrar');
   };
+
+  useEffect(()=>{
+    if(isOpenModal === false){ ///si modal está cerrado
+      setSelectedUser({}) //resetea
+      console.log('resetea', selectedUser, 'modal', isOpenModal);
+    }
+    else{
+      console.log('se cargan datos', selectedUser, 'modal', isOpenModal);
+    }
+},[isOpenModal])
+
+console.log('datos de usuario en modal', selectedUser);
 
   useEffect(() => {
     getUsers(getToken())

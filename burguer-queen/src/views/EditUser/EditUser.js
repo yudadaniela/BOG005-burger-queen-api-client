@@ -5,17 +5,20 @@ import Modal from '../../components/modal';
 import Login from '../login/login.js'
 
 const Edit = ({onSave, selectedUser, closeModal}) => {
-    // console.log(selectedUser, 'user');
+     console.log(selectedUser, 'user que llega a edit');
     // console.log(selectedUser.id, 'id de user selecc en editar');
     // console.log(selectedUser.email, ' es el email');
     
-    const [newUserEmail, setNewUserEmail] = useState(selectedUser.email)/// iniciar vacio
-    const [newUserPassword, setNewUserPassword] = useState(selectedUser.password)
-    const [newUserRole, setNewUserRole] = useState(selectedUser.role)
+    const [newUserEmail, setNewUserEmail] = useState('')/// iniciar vacio
+    const [newUserPassword, setNewUserPassword] = useState('')
+    const [newUserRole, setNewUserRole] = useState('')
 
-    //setNewUserEmail(selectedUser.email)
-    // setNewUserPassword(selectedUser.password)
-    // setNewUserRole(selectedUser.role)
+    useEffect(()=>{
+        setNewUserEmail(selectedUser.email)   
+        setNewUserPassword(selectedUser.password)
+        setNewUserRole(selectedUser.role)
+        console.log(selectedUser, 'ue en edit');
+    },[selectedUser])
 
     const newUserEmailHandle =(event)=>{
         setNewUserEmail(event.target.value) //actualiza estado segun lo que escriba
