@@ -38,7 +38,9 @@ function GetUser() {
   //useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
 
   const editHandle = (event) => {
+    debugger
     const user = currentUsers.filter(u => u.id == event.target.value)/// traer el usuario completo en un array
+   
     setSelectedUser(user[0]) //actualiza el usuario seleccionado
     //console.log(user[0], 'es el usuario seleccionado');
     setEditState(true)
@@ -53,9 +55,10 @@ function GetUser() {
   }
 
   const deleteHandle = (event) => {
-    // console.log(event.target.value, 'EVENT TARGET')
+     //console.log(event.target.value, 'EVENT TARGET de eliminar')
     // console.log(deleteItem(event.target.value, getToken()), 'se borro :)')
-    deleteItem(event.target.value, getToken())
+    console.log(event.target/* .dataset.user */, 'target nuevo');
+    deleteItem(event.target.dataset.user, getToken())
     getUsers(getToken()).then(res => res.json()).then(users => {
       console.log(users, 'cuando elimino se actualiza'); // lista actualizada
       setcurrentUsers(users)
@@ -114,20 +117,21 @@ function GetUser() {
             <tr> {user.role} </tr>
             
               <div>
-            <button
+            <div
             className="iconAccion"
                 onClick={editHandle}
-              ><AiOutlineEdit /></button> 
+              ><AiOutlineEdit /></div> 
               
-              <button 
+              <div
                 className="iconAccion"
                 onClick={deleteHandle} 
-                value={user.id}
+                //value={user.id}
+                data-user ={user.id}
                 /* onSave={(user) => {
                   console.log("nose", currentUsers);
                   setcurrentUsers(user);
                   }} */
-              > <AiOutlineDelete/></button>
+              > <AiOutlineDelete/></div>
               </div>
               
             </tbody>
