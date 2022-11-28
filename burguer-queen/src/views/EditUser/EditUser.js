@@ -18,7 +18,7 @@ const Edit = ({onSave, selectedUser, closeModal}) => {
         setNewUserPassword(selectedUser.password)
         setNewUserRole(selectedUser.role)
         console.log(selectedUser, 'ue en edit');
-    },[selectedUser])
+    },[selectedUser]) /// cada vez que cambia usuario seleccionado se actualiza el hook
 
     const newUserEmailHandle =(event)=>{
         setNewUserEmail(event.target.value) //actualiza estado segun lo que escriba

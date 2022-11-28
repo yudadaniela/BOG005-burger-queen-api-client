@@ -24,21 +24,11 @@ function GetUser() {
   };
   const closeModal = () => {
     setisOpenModal(false);
-    setSelectedUser({});// eliminar usuario NO ESTÁ FUNCIONANDOOOOOOO
-    console.log(selectedUser, 'datos en modal al cerrar');
+    setSelectedUser({});// si el useEffect de editusers no funciona
   };
 
-  useEffect(()=>{
-    if(isOpenModal === false){ ///si modal está cerrado
-      setSelectedUser({}) //resetea
-      console.log('resetea', selectedUser, 'modal', isOpenModal);
-    }
-    else{
-      console.log('se cargan datos', selectedUser, 'modal', isOpenModal);
-    }
-},[isOpenModal])
 
-console.log('datos de usuario en modal', selectedUser);
+console.log('datos de usuario en modal', selectedUser);/// verificación de datos cargados en el modal
 
   useEffect(() => {
     getUsers(getToken())
