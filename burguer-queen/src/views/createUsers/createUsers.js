@@ -29,6 +29,7 @@ const CreateUsersView = ({onSave}) => {
         event.preventDefault()
         getToken()
         getRole()
+        console.log(event.target.value);
         createUsers(getToken(), newUserEmail, newUserPassword, newUserRole, newUserName).then(res => res.json()).then( rtaJson => {
             // console.log(rtaJson);
             // onSave(rtaJson)

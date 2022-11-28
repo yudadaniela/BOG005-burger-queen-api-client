@@ -7,14 +7,16 @@ import Modal from "../../components/modal";
 import { AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 import { BiExit, BiPlus } from "react-icons/bi";
 import logo from '../../img/logo.png'
+import Edit from "../EditUser/EditUser";
 
-//import { Example } from './views/login/login.js';
+
 
 function GetUser() {
-  const [isOpenModal, setisOpenModal] = useState(false);
-  const [currentUsers, setcurrentUsers] = useState([]);
-  const [editUsers, seteditUsers] = useState(false);
-  
+  const [isOpenModal, setisOpenModal] = useState(false);// estado de apertura de modal
+  const [currentUsers, setcurrentUsers] = useState([]); // array de usuarios que muestra
+  const [editState, setEditState] = useState(false);//Estado de edición 
+  const [agregarState, setagregarState] = useState(true); // estado de creación de usuario
+  const [selectedUser, setSelectedUser] = useState({});// Usuario seleccionado
 
   const openModal = () => {
     setisOpenModal(true);
@@ -22,15 +24,9 @@ function GetUser() {
   };
   const closeModal = () => {
     setisOpenModal(false);
+    setSelectedUser({});// eliminar usuario 
+    console.log(selectedUser, 'datos en modal');
   };
-
-  // const getUserHandle =() =>{
-  //   // getToken()
-  //   // getRole()
-  //   getUsers(getToken()).then(res => res.json()).then( rtaJson => {
-  //       console.log(rtaJson);
-  //   })
-  // }
 
   useEffect(() => {
     getUsers(getToken())
@@ -38,33 +34,35 @@ function GetUser() {
       .then((data) => {
         setcurrentUsers(data);
       });
-  }, [/*currentUsers*/]);
-  
-  useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
+  }, []);
 
+  //useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
 
-//  const editUserHadel= (event)=>{
-  
-//     console.log(event.target.value, 'EVENT TARGET edit')
-//     console.log(editItem( event.target.value, getToken(), email, password, role), 'se borro :)')
-//     editItem(( event.target.value, getToken(), email, password, role))
-//     getUsers(getToken()).then(res => res.json()).then( users => {
-//      console.log(users, ' se actualiza'); // lista actualizada
-//      setcurrentUsers(users)
-//      })
+  const editHandle = (event) => {
+    const user = currentUsers.filter(u => u.id == event.currentTarget.dataset.user)/// traer el usuario completo en un array
+    setSelectedUser(user[0]) //actualiza el usuario seleccionado
+    console.log(user[0], 'es el usuario seleccionado');
+    setEditState(true)
+    setagregarState(false)
+    openModal() // tratar de poner el usuario opc
+  }
 
-const editUserHadel= (event)=>{
-  seteditUsers(true);
+  const addHandle = () => {
+    setEditState(false)
+    setagregarState(true)
+    openModal()
+  }
 
-}
-
-   const deleteHandle = (event)=> {
-   console.log(event.target.value, 'EVENT TARGET')
-   console.log(deleteItem( event.target.value, getToken()), 'se borro :)')
-   deleteItem(event.target.value, getToken())
-   getUsers(getToken()).then(res => res.json()).then( users => {
-    console.log(users, 'cuando elimino se actualiza'); // lista actualizada
-    setcurrentUsers(users)
+  const deleteHandle = (event) => {
+     //console.log(event.target.value, 'EVENT TARGET de eliminar')
+    // console.log(deleteItem(event.target.value, getToken()), 'se borro :)')
+    //console.log(event.currentTarget.dataset.user/* .dataset.user */, 'target CURRENT nuevo');
+    //console.log(event.currentTarget/* .dataset.user */, 'padre nuevo');
+    //console.log(event.target/* .dataset.user */, 'target  nuevo');
+    deleteItem(event.currentTarget.dataset.user, getToken())
+    getUsers(getToken()).then(res => res.json()).then(users => {
+      console.log(users, 'cuando elimino se actualiza'); // lista actualizada
+      setcurrentUsers(users)
     })
   }
 
@@ -83,56 +81,63 @@ const editUserHadel= (event)=>{
         
         <section className="subHeader"> 
         <h1 className="titulos"> Colaboradores </h1>
-        <button className="buttonAddUser" onClick={openModal}>  Agregar colaborador <BiPlus/></button>
+        <button className="buttonAddUser" onClick={addHandle}>  Agregar colaborador <BiPlus/></button>
         <Modal
           isOpen={isOpenModal}
           closeModal={closeModal}
-
-        contenido=<CreateUsersView
-          onSave={(response) => {
+          contenido={editState ? <Edit onSave={(response) => {
             setcurrentUsers(response);
-            
-  
+            console.log("se cerro el modal ", currentUsers);
+
+          }} selectedUser={selectedUser} /> : <CreateUsersView
+            onSave={(response) => {
+              setcurrentUsers(response);
+              console.log("se cerro el modal ", currentUsers);
             }}
-          />
+          />}
+          task ={editState ? 'Editar Usuario' : 'Crear Usuario'}
         />
         </section>
       
         <section className="tableContainer"> 
         <table className="headerTable"> 
-              <tr className="dataTable"> 
-                <th className="titleTable">Id de Usuario</th>
-                <th className="titleTable">Email</th>
-                <th className="titleTable">Role</th>
-                <th className="titleTable">  Editar/eliminar</th>
-              </tr>
+              <thead key={1}className="dataTable"> 
+                <tr key={1}className="titleTable">Id de Usuario</tr>
+                <tr key={2}className="titleTable">Email</tr>
+                <tr key={3} className="titleTable">Role</tr>
+                <tr key={4}className="titleTable">  Editar/eliminar</tr>
+              </thead>
         </table>
         <div>
         {currentUsers.map((user, i) => {
           //console.log(currentUsers, 'del map')
           return (
-            <table>
-            <tr className="dataTable"> 
-            <td key={i}> {user.id} </td>
-            <td> {user.email} </td>
-            <td> {user.role} </td>
-            <td> 
+            <table key={i}>
+            <tbody key={i}className="dataTable"> 
+            <tr key={i}> {user.id} </tr>
+            <tr> {user.email} </tr>
+            <tr> {user.role} </tr>
+            
+              <div>
             <button
             className="iconAccion"
-                onClick={openModal}
+                onClick={editHandle}
+                data-user ={user.id}
               ><AiOutlineEdit /></button> 
               
-              <button 
+              <button
                 className="iconAccion"
                 onClick={deleteHandle} 
-                value={user.id}
-                onSave={(user) => {
+                //value={user.id}
+                data-user ={user.id}
+                /* onSave={(user) => {
                   console.log("nose", currentUsers);
                   setcurrentUsers(user);
-                  }}
+                  }} */
               > <AiOutlineDelete/></button>
-              </td>
-            </tr>
+              </div>
+              
+            </tbody>
             </table>
           );
         })
