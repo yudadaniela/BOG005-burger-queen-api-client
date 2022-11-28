@@ -87,8 +87,11 @@ function GetUser() {
           contenido={editState ? <Edit onSave={(response) => {
             setcurrentUsers(response);
             console.log("se cerro el modal ", currentUsers);
-
-          }} selectedUser={selectedUser} /> : <CreateUsersView
+            }} 
+            selectedUser={selectedUser}
+            closeModal={closeModal}
+          /> : <CreateUsersView
+            closeModal={closeModal}
             onSave={(response) => {
               setcurrentUsers(response);
               console.log("se cerro el modal ", currentUsers);
