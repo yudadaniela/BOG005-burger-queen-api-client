@@ -27,7 +27,6 @@ const Edit = ({onSave, selectedUser}) => {
         setNewUserRole(event.target.value) //actualiza estado segun lo que escriba
     }
 
-
     const editUsersHandle = (event) => {
         event.preventDefault()
         getToken()
@@ -41,7 +40,6 @@ const Edit = ({onSave, selectedUser}) => {
         })
 
     }
-
 
     return (
         <div>
