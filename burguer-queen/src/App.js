@@ -18,14 +18,36 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Login/>}/>
-        <Route exact path="/admin" element={<Admin/>}/> 
+        <Route index element={<Login />} />
+        <Route exact path="/" element={<Login />} />
+        <Route path="/admin" element={<Admin />}>
+          <Route index element={<GetUser />} />
+          <Route exact path="/admin/getUser" element={<GetUser />} />
+          <Route exact path="/admin/getProducts" element={<GetProducts />} />
+        </Route>
+        <Route path="*" element={'pagina no existe'} />
       </Routes>
     </BrowserRouter>
-  
+
+
+
+
+
+
   );
 }
 export default App;
 
 /* <Route exact path="/getUser" element={<GetUser/>}/>
         <Route exact path="/getProducts" element={<GetProducts/>}/> */
+/* 
+        <Routes>
+        <Route index element={<Login />} />
+        <Route exact path="/" element={<Login />} />
+        <Route path="/admin" element={<Admin />}>
+          <Route index element={<Admin />} />
+          <Route exact path="/admin" element={<Admin />} />
+          <Route exact path="/getUser" element={<GetUser />} />
+          <Route exact path="/getProducts" element={<GetProducts />} />
+        </Route>
+      </Routes> */

@@ -5,19 +5,24 @@ import GetUser from '../getUsers/getUsers';
 import { useState, useEffect } from 'react';
 
 const Admin = () => {
-const [stateGetUsers, setstateGetUsers] = useState(true)
+/* const [stateGetUsers, setstateGetUsers] = useState(true)
 const [stateGetProducts, setstateGetProducts] = useState(false)
 
 const pagesAdmin = ()=> {
-    setstateGetUsers(true)
+    setstateGetUsers(false)
+    setstateGetProducts(true)
 }
-
+ */
   return (
     <div>
-        <Header state={stateGetUsers} />
-        {stateGetProducts ? <GetProducts/>: <GetUser/>}
+        <Header  />
+        
+        
+        
     </div>
 
   )
 }
 export default Admin
+
+/* {stateGetProducts ? <GetProducts/>: <GetUser/>} */
