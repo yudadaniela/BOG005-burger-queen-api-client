@@ -9,14 +9,6 @@ function Modal({isOpen, closeModal, contenido, task}) { //preguntar porque esta 
     
 }
   return (
-
-    // <div className={`modal ${isOpen && 'modal-open'}`} onClick={closeModal}> 
-    // {console.log('ejemplo',` modal ${isOpen && 'modal-open'}`)}
-    //   <section className="modal_dialog" onClick={handleModalDialogClick}>
-    //   hola modal
-    //   <button onClick={closeModal}>close</button>
-    //   </section>
-    // </div>
      <div className={isOpen?'modal modal-open':'modal'} onClick={closeModal}> 
       <section className="modal_dialog" onClick={handleModalDialogClick}>
       <div className='titleModalContainer'> 
@@ -29,7 +21,6 @@ function Modal({isOpen, closeModal, contenido, task}) { //preguntar porque esta 
       <article>{contenido}</article>
       </section>
     </div>
-
   );
 }
 

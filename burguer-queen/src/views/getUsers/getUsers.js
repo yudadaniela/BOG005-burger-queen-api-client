@@ -1,15 +1,12 @@
 import React from "react";
 import CreateUsersView from "../createUsers/createUsers";
-import { getToken, getRole, getUsers, deleteItem, editItem } from "../../functions/requests";
+import { getToken, getUsers, deleteItem } from "../../functions/requests";
 import { useState, useEffect } from "react";
 import './getUsers.css'
 import Modal from "../../components/modal";
 import { AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
-import { BiExit, BiPlus } from "react-icons/bi";
-import logo from '../../img/logo.png'
+import { BiPlus } from "react-icons/bi";
 import Edit from "../EditUser/EditUser";
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
-import Header from "../../components/Header";
 
 function GetUser() {
   const [isOpenModal, setisOpenModal] = useState(false);// estado de apertura de modal
