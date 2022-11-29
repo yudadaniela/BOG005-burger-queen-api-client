@@ -84,6 +84,7 @@ html {
   height: 2.5rem;
   border-radius: 18px;
   border: none;
+  text-indent:10px;
 }
 
 .errorLogin{
@@ -94,7 +95,7 @@ html {
 ::placeholder {
   color: var(--brown);
   font-size: 1rem;
-  padding-left:1rem;
+  padding-left: 0.5rem;
 }
 
 /* login button */

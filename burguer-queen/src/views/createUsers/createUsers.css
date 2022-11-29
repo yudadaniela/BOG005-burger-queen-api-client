@@ -40,6 +40,7 @@ p{
     border-radius: 10px;
     border:1px solid var(--brown);
     height:2rem ;
+    text-indent:10px;
 }
 
 .twoInputsContainers{

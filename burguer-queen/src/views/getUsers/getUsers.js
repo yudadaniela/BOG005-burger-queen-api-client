@@ -8,8 +8,8 @@ import { AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 import { BiExit, BiPlus } from "react-icons/bi";
 import logo from '../../img/logo.png'
 import Edit from "../EditUser/EditUser";
-
-
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
+import Header from "../../components/Header";
 
 function GetUser() {
   const [isOpenModal, setisOpenModal] = useState(false);// estado de apertura de modal
@@ -17,16 +17,18 @@ function GetUser() {
   const [editState, setEditState] = useState(false);//Estado de edición 
   const [agregarState, setagregarState] = useState(true); // estado de creación de usuario
   const [selectedUser, setSelectedUser] = useState({});// Usuario seleccionado
-
+  
   const openModal = () => {
     setisOpenModal(true);
       
   };
   const closeModal = () => {
     setisOpenModal(false);
-    setSelectedUser({});// eliminar usuario 
-    console.log(selectedUser, 'datos en modal');
+    setSelectedUser({});// si el useEffect de editusers no funciona
   };
+
+
+console.log('datos de usuario en modal', selectedUser);/// verificación de datos cargados en el modal
 
   useEffect(() => {
     getUsers(getToken())
@@ -66,21 +68,12 @@ function GetUser() {
       console.log(users, 'cuando elimino se actualiza'); // lista actualizada
       setcurrentUsers(users)
     })
+    alert ('¿Deseas eliminar el usuario?')
   }
 
 
   return (
     <div className="adminView">
- 
-        <header> 
-          <nav className="navHeader"> 
-            <img className="logo" src={logo} />
-            <p> Crear Productos</p>
-            <p> Crear Usuarios</p>
-            <p><BiExit className="exitIcon"/></p>
-          </nav>
-        </header>
-        
         <section className="subHeader"> 
         <h1 className="titulos"> Colaboradores </h1>
         <button className="buttonAddUser" onClick={addHandle}>  Agregar colaborador <BiPlus/></button>
@@ -90,10 +83,11 @@ function GetUser() {
           contenido={editState ? <Edit onSave={(response) => {
             setcurrentUsers(response);
             console.log("se cerro el modal ", currentUsers);
-
-          }} selectedUser={selectedUser} 
-          closeModal={closeModal}
+            }} 
+            selectedUser={selectedUser}
+            closeModal={closeModal}
           /> : <CreateUsersView
+            closeModal={closeModal}
             onSave={(response) => {
               setcurrentUsers(response);
               console.log("se cerro el modal ", currentUsers);
@@ -107,6 +101,7 @@ function GetUser() {
       
         <section className="tableContainer"> 
         <table className="headerTable"> 
+
               <thead key={1}className="dataTable"> 
                 <tr key={1}className="titleTable">Id de Usuario</tr>
                 <tr key={2}className="titleTable">Email</tr>
@@ -137,13 +132,16 @@ function GetUser() {
                 //value={user.id}
                 data-user ={user.id}
                 /* onSave={(user) => {
+
                   console.log("nose", currentUsers);
                   setcurrentUsers(user);
                   }} */
               > <AiOutlineDelete/></button>
+
               </div>
               
             </tbody>
+
             </table>
           );
         })
