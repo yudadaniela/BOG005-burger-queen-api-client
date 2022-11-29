@@ -50,7 +50,7 @@ const errorHandle =(resJson)=>{
       
           if(resJson.user.role === 'admin'){
             console.log('es administrador');
-            navigate("/getUser");
+            navigate("/admin");
           }
         }).catch((error )=> {console.log(error)}) 
  

@@ -8,6 +8,8 @@ import { AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 import { BiExit, BiPlus } from "react-icons/bi";
 import logo from '../../img/logo.png'
 import Edit from "../EditUser/EditUser";
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
+import Header from "../../components/Header";
 
 function GetUser() {
   const [isOpenModal, setisOpenModal] = useState(false);// estado de apertura de modal
@@ -16,7 +18,6 @@ function GetUser() {
   const [agregarState, setagregarState] = useState(true); // estado de creación de usuario
   const [selectedUser, setSelectedUser] = useState({});// Usuario seleccionado
   
-
   const openModal = () => {
     setisOpenModal(true);
   };
@@ -64,21 +65,12 @@ console.log('datos de usuario en modal', selectedUser);/// verificación de dato
       console.log(users, 'cuando elimino se actualiza'); // lista actualizada
       setcurrentUsers(users)
     })
+    alert ('¿Deseas eliminar el usuario?')
   }
 
 
   return (
     <div className="adminView">
- 
-        <header> 
-          <nav className="navHeader"> 
-            <img className="logo" src={logo} />
-            <p> Crear Productos</p>
-            <p> Crear Usuarios</p>
-            <p><BiExit className="exitIcon"/></p>
-          </nav>
-        </header>
-        
         <section className="subHeader"> 
         <h1 className="titulos"> Colaboradores </h1>
         <button className="buttonAddUser" onClick={addHandle}>  Agregar colaborador <BiPlus/></button>
