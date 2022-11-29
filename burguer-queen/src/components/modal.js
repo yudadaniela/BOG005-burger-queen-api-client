@@ -4,6 +4,7 @@ import React from 'react';
 import { AiOutlineCloseCircle} from "react-icons/ai";
 
 
+
 function Modal({isOpen, closeModal, contenido, task}) { //preguntar porque esta en llaves
  const handleModalDialogClick = (e) => {
     e.stopPropagation();
