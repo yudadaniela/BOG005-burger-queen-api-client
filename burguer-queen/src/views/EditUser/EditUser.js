@@ -4,8 +4,8 @@ import React from 'react';
 import Modal from '../../components/modal';
 import Login from '../login/login.js'
 
-const Edit = ({onSave, selectedUser}) => {
-    // console.log(selectedUser, 'user');
+const Edit = ({onSave, selectedUser, closeModal}) => {
+     console.log(selectedUser, 'user que llega a edit');
     // console.log(selectedUser.id, 'id de user selecc en editar');
     // console.log(selectedUser.email, ' es el email');
     
@@ -13,9 +13,12 @@ const Edit = ({onSave, selectedUser}) => {
     const [newUserPassword, setNewUserPassword] = useState('')
     const [newUserRole, setNewUserRole] = useState('')
 
-    //setNewUserEmail(selectedUser.email)
-    // setNewUserPassword(selectedUser.password)
-    // setNewUserRole(selectedUser.role)
+    useEffect(()=>{
+        setNewUserEmail(selectedUser.email)   
+        setNewUserPassword(selectedUser.password)
+        setNewUserRole(selectedUser.role)
+        console.log(selectedUser, 'ue en edit');
+    },[selectedUser]) /// cada vez que cambia usuario seleccionado se actualiza el hook
 
     const newUserEmailHandle =(event)=>{
         setNewUserEmail(event.target.value) //actualiza estado segun lo que escriba
@@ -38,13 +41,13 @@ const Edit = ({onSave, selectedUser}) => {
             console.log(users);
             onSave(users)
         })
-
+        closeModal()
     }
 
     return (
         <div>
             <form 
-            class="formContainer"
+            className="formContainer"
             onSubmit={editUsersHandle}>
             <label>Id usuario</label>
                 <p className="inputsCreateUsers"
@@ -81,6 +84,7 @@ const Edit = ({onSave, selectedUser}) => {
                 value={newUserRole}
                 onChange={newUserRoleHandle}
                 >
+                <option value="">Selecciona Rol</option> 
                 <option value="admin">Administrador</option>    
                 <option value="cheff">Chef</option>    
                 <option value="waiter">Mesero</option>    

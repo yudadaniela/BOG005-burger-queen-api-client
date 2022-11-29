@@ -17,15 +17,17 @@ function GetUser() {
   const [editState, setEditState] = useState(false);//Estado de edición 
   const [agregarState, setagregarState] = useState(true); // estado de creación de usuario
   const [selectedUser, setSelectedUser] = useState({});// Usuario seleccionado
-
+  
   const openModal = () => {
     setisOpenModal(true);
   };
   const closeModal = () => {
     setisOpenModal(false);
-    setSelectedUser({});// eliminar usuario 
-    console.log(selectedUser, 'datos en modal');
+    setSelectedUser({});// si el useEffect de editusers no funciona
   };
+
+
+console.log('datos de usuario en modal', selectedUser);/// verificación de datos cargados en el modal
 
   useEffect(() => {
     getUsers(getToken())
@@ -87,8 +89,11 @@ function GetUser() {
           contenido={editState ? <Edit onSave={(response) => {
             setcurrentUsers(response);
             console.log("se cerro el modal ", currentUsers);
-
-          }} selectedUser={selectedUser} /> : <CreateUsersView
+            }} 
+            selectedUser={selectedUser}
+            closeModal={closeModal}
+          /> : <CreateUsersView
+            closeModal={closeModal}
             onSave={(response) => {
               setcurrentUsers(response);
               console.log("se cerro el modal ", currentUsers);
