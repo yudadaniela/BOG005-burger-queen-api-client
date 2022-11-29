@@ -11,8 +11,8 @@ const Header = () => {
          <header> 
           <nav className="navHeader"> 
             <img className="logo" src={logo} />
-            <Link to="/getUser">Crear</Link>
-            <Link to="/crearProductos">Crear Productos</Link>
+            <Link to="/getUser">Crear Usuario</Link>
+            <Link to="/getProducts">Crear Productos</Link>
             <p><BiExit className="exitIcon"/></p>
           </nav>
         </header>

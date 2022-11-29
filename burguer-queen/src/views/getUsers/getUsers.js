@@ -71,9 +71,6 @@ console.log('datos de usuario en modal', selectedUser);/// verificación de dato
 
   return (
     <div className="adminView">
-        <Header/>
-
-        
         <section className="subHeader"> 
         <h1 className="titulos"> Colaboradores </h1>
         <button className="buttonAddUser" onClick={addHandle}>  Agregar colaborador <BiPlus/></button>
