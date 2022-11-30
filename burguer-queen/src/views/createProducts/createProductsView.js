@@ -8,6 +8,7 @@ const CreateProductsView = ({onSave, closeModal}) => {
     const [newProductId, setNewProductId] = useState('')
     const [newProductType, setNewProductType] = useState('')
     const [newProductPrice, setNewProductPrice] = useState('')
+    const [newProductUrl, setNewProductUrl ]= useState('')
    // const [isOpenModal, setisOpenModal] = useState(false)
 
     const newProductNameHandle =(event)=>{
@@ -22,13 +23,16 @@ const CreateProductsView = ({onSave, closeModal}) => {
     const newProductPriceHandle =(event)=>{
         setNewProductPrice(event.target.value) /// buscar****
     }
+    const newProductUrlHandle =(event)=>{
+        setNewProductUrl(event.target.value) /// buscar****
+    }
 
     const createProductsHandle = (event) => {
         event.preventDefault()
         getToken()
         getRole()
         console.log(event.target.value);
-        createProducts(getToken(), newProductId, newProductName, newProductType, newProductPrice).then(res => res.json()).then( rtaJson => {
+        createProducts(getToken(), newProductId, newProductName, newProductType, newProductPrice, newProductUrl).then(res => res.json()).then( rtaJson => {
             getProducts(getToken()).then(res => res.json()).then( products => {
                 console.log(rtaJson);
                 onSave(products)
@@ -47,6 +51,7 @@ const CreateProductsView = ({onSave, closeModal}) => {
                     placeholder="Introduce Id "
                     value={newProductId}
                     onChange={newProductIdHandle}
+                    required
                 >
                 </input>
 
@@ -56,6 +61,16 @@ const CreateProductsView = ({onSave, closeModal}) => {
                     placeholder="Introduce Nombre"
                     value={newProductName}
                     onChange={newProductNameHandle}
+                    required
+                >
+                </input>
+                <label>Url Imagen</label>
+                <input className="inputsCreateUsers"
+                    type='text'
+                    placeholder="Introduce Url"
+                    value={newProductUrl}
+                    onChange={newProductUrlHandle}
+                    required
                 >
                 </input>
                 <div className='twoInputsContainers'>
@@ -67,6 +82,7 @@ const CreateProductsView = ({onSave, closeModal}) => {
                     placeholder="Introduce precio"
                     value={newProductPrice}
                     onChange={newProductPriceHandle}
+                    required
                 >
                 </input>
                 </div>

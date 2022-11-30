@@ -23,7 +23,7 @@ export const getProducts = (tokenLogin) => fetch('http://localhost:8080/products
   },
 })
 
-export const createProducts= (tokenLogin , id, name, type, price) => fetch('http://localhost:8080/products', {
+export const createProducts= (tokenLogin , id, name, type, price, url) => fetch('http://localhost:8080/products', {
   method: "POST",
   headers: {
     "Content-type": "application/json",
@@ -33,7 +33,9 @@ export const createProducts= (tokenLogin , id, name, type, price) => fetch('http
     id: id,
     name: name,
     price: price,
-    type:type
+    image:url,
+    type:type,
+   
   })
 })
 
@@ -89,7 +91,7 @@ export const editItem =(id, tokenLogin, email, password, role)=>{
   })
 } 
 
-export const editProduct =(id, tokenLogin, name, type, price)=>{
+export const editProduct =(id, tokenLogin, name, type, price, url)=>{
    
   return fetch(`http://localhost:8080/products/${id}` ,{
     method: "PATCH",
@@ -101,7 +103,9 @@ export const editProduct =(id, tokenLogin, name, type, price)=>{
       id: id,
       name: name,
       price: price,
+      image:url,
       type:type
+     
     })
   })
 } 
