@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { postLogin, setToken_role} from '../../functions/requests.js';
+import { postLogin, setToken_role, setCurrenId} from '../../functions/requests.js';
 import React from 'react';
 import logo from '../../img/logo.png'
 import './styleLogin.css'
 import { Link, useNavigate } from "react-router-dom";
+
 
 
 
@@ -47,7 +48,11 @@ const errorHandle =(resJson)=>{
     ).then(resJson => {
       errorHandle(resJson) /// manejador de error
       setToken_role(resJson.accessToken, resJson.user.role )// carga token y rol
-      
+      //console.log( setToken_role(resJson.accessToken, resJson.user.role ),'tokenrole');
+
+       setCurrenId(resJson.user.id)
+       //console.log(setCurrenId(resJson.user.id),'id setcurrent');
+       //console.log(resJson.user.id, 'este es el id')
           if(resJson.user.role === 'admin'){
             console.log('es administrador');
             navigate("/admin");

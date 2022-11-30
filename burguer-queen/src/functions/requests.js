@@ -40,11 +40,14 @@ export const createProducts= (tokenLogin , id, name, type, price) => fetch('http
 export const setToken_role =(token, role)=>{
   localStorage.setItem('token',token); //sube datos a localstorage para acceder 
   localStorage.setItem('role', role);
-
+}
+export const setCurrenId =(id)=>{
+  localStorage.setItem('id', id); 
 }
 
 export const getToken =()=>localStorage.getItem('token');
 export const getRole =()=>localStorage.getItem('role');
+export const getIdCurrent =()=>localStorage.getItem('id');
 
 export const createUsers = (tokenLogin , email, password, role, id) => fetch('http://localhost:8080/users', {
   method: "POST",
