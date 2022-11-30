@@ -93,7 +93,7 @@ console.log('datos de usuario en modal', selectedUser);/// verificación de dato
               console.log("se cerro el modal ", currentUsers);
             
             }}
-            closeModal={closeModal}
+           
           />}
           task ={editState ? 'Editar Usuario' : 'Crear Usuario'}
         />
