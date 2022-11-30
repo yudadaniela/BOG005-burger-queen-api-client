@@ -32,7 +32,7 @@ console.log('datos de usuario en modal', selectedUser);/// verificación de dato
       .then((response) => response.json())
       .then((data) => {
         setcurrentUsers(data);
-      });
+      }).catch((error )=> {console.log(error)}) 
   }, []);
 
   //useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
@@ -55,14 +55,8 @@ console.log('datos de usuario en modal', selectedUser);/// verificación de dato
   }
 
   const deleteHandle = (event) => {
-     //console.log(event.target.value, 'EVENT TARGET de eliminar')
-    // console.log(deleteItem(event.target.value, getToken()), 'se borro :)')
-    //console.log(event.currentTarget.dataset.user/* .dataset.user */, 'target CURRENT nuevo');
-    //console.log(event.currentTarget/* .dataset.user */, 'padre nuevo');
-    //console.log(event.target/* .dataset.user */, 'target  nuevo');
-    // event.preventDefault()
+  
     /* eslint-disable  no-restricted-globals */
-   
     const confirmMssg = confirm('¿Deseas eliminar el usuario?')
     if(confirmMssg){
       deleteItem(event.currentTarget.dataset.user, getToken(),'users')

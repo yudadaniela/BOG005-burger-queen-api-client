@@ -28,7 +28,7 @@ const GetProducts = () => {
       .then((data) => {
         console.log('productos get',data)
         setcurrentProducts(data);
-      });
+      }).catch((error )=> {console.log(error)}) 
   }, []);
 
   

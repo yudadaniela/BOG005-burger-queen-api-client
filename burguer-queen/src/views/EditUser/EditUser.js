@@ -35,12 +35,14 @@ const Edit = ({onSave, selectedUser, closeModal}) => {
         getToken()
     //     console.log( newUserEmail, 'es el email definido');// definidos
     //     console.log( getToken());
-        editItem(selectedUser.id, getToken(), newUserEmail, newUserPassword, newUserRole)
-        console.log(editItem(selectedUser.id, getToken(), newUserEmail, newUserPassword, newUserRole), 'ejec func');
+        editItem(selectedUser.id, getToken(), newUserEmail, newUserPassword, newUserRole).then(()=>{
+            console.log(editItem(selectedUser.id, getToken(), newUserEmail, newUserPassword, newUserRole), 'ejec func');
         getUsers(getToken()).then(res => res.json()).then( users => {
             console.log(users);
             onSave(users)
-        })
+        }).catch((error )=> {console.log(error)}) 
+
+     }).catch((error )=> {console.log(error)}) 
         closeModal()
     }
 
@@ -83,6 +85,7 @@ const Edit = ({onSave, selectedUser, closeModal}) => {
                 className="inputsCreateUsers"
                 value={newUserRole}
                 onChange={newUserRoleHandle}
+                required
                 >
                 <option value="">Selecciona Rol</option> 
                 <option value="admin">Administrador</option>    

@@ -34,9 +34,9 @@ const CreateUsersView = ({onSave, closeModal}) => {
             getUsers(getToken()).then(res => res.json()).then( users => {
                 console.log(rtaJson);
                 onSave(users)
-            })
+            }).catch((error )=> {console.log(error)}) 
 
-        })
+        }).catch((error )=> {console.log(error)}) 
         closeModal()
     }
 
@@ -78,6 +78,7 @@ const CreateUsersView = ({onSave, closeModal}) => {
                 className="inputsCreateUsers"
                 value={newUserRole}
                 onChange={newUserRoleHandle}
+                required
                 >
                 <option value="">Selecciona Rol</option> 
                 <option value="admin">Administrador</option>    
