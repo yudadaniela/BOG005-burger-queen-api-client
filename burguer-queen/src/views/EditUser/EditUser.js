@@ -83,6 +83,7 @@ const Edit = ({onSave, selectedUser, closeModal}) => {
                 className="inputsCreateUsers"
                 value={newUserRole}
                 onChange={newUserRoleHandle}
+                required
                 >
                 <option value="">Selecciona Rol</option> 
                 <option value="admin">Administrador</option>    

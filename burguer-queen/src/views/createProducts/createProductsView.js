@@ -78,6 +78,7 @@ const CreateProductsView = ({onSave, closeModal}) => {
                 className="inputsCreateUsers"
                 value={newProductType}
                 onChange={newProductTypeHandle}
+                required
                 >
                 <option value="">Selecciona categoría </option> 
                 <option value="Desayuno">Desayuno</option>    
