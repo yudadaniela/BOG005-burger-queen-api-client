@@ -4,7 +4,7 @@ import { BiExit } from "react-icons/bi";
 import logo from '../img/logo.png'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 
-const Header = () => {
+const Header = ({path1, title1, path2, title2}) => {
  const navigate = useNavigate();
 
  const loginOutHandle =()=>{
@@ -15,8 +15,8 @@ const Header = () => {
          <header> 
           <nav className="navHeader"> 
             <img className="logo" src={logo} />
-            <Link to="/admin/getUser">Crear Usuario</Link>
-            <Link to="/admin/getProducts" >Crear Productos</Link>
+            <Link to= {path1} > {title1} </Link>
+            <Link to= {path2} >{title2}</Link>
             <div >
               <p ><BiExit className="exitIcon" onClick={loginOutHandle}/></p> 
             </div>

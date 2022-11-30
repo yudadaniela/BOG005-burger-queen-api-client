@@ -75,7 +75,12 @@ const GetProducts = () => {
   return (
 
     <div className="adminView">
-      <Header/>
+      <Header
+       path1 ={"/admin/getUser"}
+       title1 ={'Crear Usuario'}
+       path2 ={"/admin/getProducts"}
+       title2 ={'Crear Productos'}
+      />
     <section className="subHeader"> 
     <h1 className="titulos"> Productos </h1>
     <button className="buttonAddUser" onClick={addHandle}>  Agregar producto <BiPlus/></button>
