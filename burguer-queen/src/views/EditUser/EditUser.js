@@ -65,6 +65,7 @@ const Edit = ({onSave, selectedUser, closeModal}) => {
                     placeholder="Introduce Email"
                     value={newUserEmail}
                     onChange={newUserEmailHandle}
+                    required
                 >
                 </input>
             <div className= "twoInputsContainers">
@@ -76,6 +77,7 @@ const Edit = ({onSave, selectedUser, closeModal}) => {
                     placeholder="Introduce Contraseña"
                     value={newUserPassword}
                     onChange={newUserPasswordHandle}
+                    required
                 >
                 </input>
                 </div>

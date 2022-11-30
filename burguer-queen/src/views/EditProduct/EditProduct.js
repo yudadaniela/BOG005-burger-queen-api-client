@@ -11,14 +11,13 @@ const EditProduct = ({onSave, selectedProduct, closeModal}) => {
     const [newProductName, setNewProductName] = useState('')
     const [newProductType, setNewProductType] = useState('')
     const [newProductPrice, setNewProductPrice] = useState('')
+    const [newProductUrl, setNewProductUrl ]= useState('')
 
     useEffect(()=>{
-     
         setNewProductName(selectedProduct.name) 
         setNewProductPrice(selectedProduct.price)  
         setNewProductType(selectedProduct.type)
-      
-      
+        setNewProductUrl(selectedProduct.image)
     },[selectedProduct]) /// cada vez que cambia usuario seleccionado se actualiza el hook
 
     const newProductNameHandle =(event)=>{
@@ -31,10 +30,13 @@ const EditProduct = ({onSave, selectedProduct, closeModal}) => {
         setNewProductType(event.target.value) //actualiza estado segun lo que escriba
     }
 
+    const newProductUrlHandle =(event)=>{
+        setNewProductUrl(event.target.value) //actualiza estado segun lo que escriba
+    }
     const editProductsHandle = (event) => {
         event.preventDefault()
         getToken()
-        editProduct(selectedProduct.id, getToken(), newProductName, newProductType, newProductPrice).then(()=>{
+        editProduct(selectedProduct.id, getToken(), newProductName, newProductType, newProductPrice, newProductUrl).then(()=>{
             getProducts(getToken()).then(res => res.json()).then( products => {
                 console.log(products);
                 onSave(products)
@@ -64,6 +66,16 @@ const EditProduct = ({onSave, selectedProduct, closeModal}) => {
                     placeholder="Introduce Nombre"
                     value={newProductName}
                     onChange={newProductNameHandle}
+                    required
+                >
+                </input>
+                <label>Url Imagen</label>
+                <input className="inputsCreateUsers"
+                    type='text'
+                    placeholder="Introduce Url"
+                    value={newProductUrl}
+                    onChange={newProductUrlHandle}
+                    required
                 >
                 </input>
             <div className= "twoInputsContainers">
@@ -75,6 +87,7 @@ const EditProduct = ({onSave, selectedProduct, closeModal}) => {
                     placeholder="Introduce Precio"
                     value={newProductPrice}
                     onChange={newProductPriceHandle}
+                    required
                 >
                 </input>
                 </div>
