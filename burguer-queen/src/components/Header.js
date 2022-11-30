@@ -13,7 +13,7 @@ const Header = () => {
             <img className="logo" src={logo} />
             <Link to="/admin/getUser">Crear Usuario</Link>
             <Link to="/admin/getProducts" >Crear Productos</Link>
-            <p><BiExit className="exitIcon"/></p>
+            <p ><BiExit className="exitIcon"/></p>
           </nav>
           <Outlet/>
         </header>
