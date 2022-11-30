@@ -16,9 +16,6 @@ const pagesAdmin = ()=> {
   return (
     <div>
         <Header  />
-        
-        
-        
     </div>
 
   )

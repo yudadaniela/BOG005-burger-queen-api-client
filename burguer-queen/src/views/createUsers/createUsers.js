@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { createUsers, getToken, getRole, getUsers } from '../../functions/requests';
 import React from 'react';
-import Modal from '../../components/modal';
-import Login from '../login/login.js'
 import './createUsers.css'
 
 const CreateUsersView = ({onSave, closeModal}) => {
@@ -40,15 +38,7 @@ const CreateUsersView = ({onSave, closeModal}) => {
 
         })
         closeModal()
-
     }
-
-    // const openModal =()=>{
-    //     setisOpenModal(true)
-    // }
-    // const closeModal =()=>{
-    //     setisOpenModal(false)
-    // }
 
     return (
         <div>
@@ -99,10 +89,6 @@ const CreateUsersView = ({onSave, closeModal}) => {
                 <div className='buttonContainer'> 
                 <button type="submit" className='addUserButton'> Agregar </button>
                 </div>
-                {/* <p> es el email{newUserName}</p>
-                <p> es la contraseña{newUserEmail}</p>
-                <p> es la contraseña{newUserPassword}</p>
-                <p> es la contraseña{newUserRole}</p> */}
             </form>
             
            

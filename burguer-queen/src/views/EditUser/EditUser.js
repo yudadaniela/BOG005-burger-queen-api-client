@@ -96,10 +96,6 @@ const Edit = ({onSave, selectedUser, closeModal}) => {
                 className="addUserButton"
                 type="submit"> Editar </button>
             </div>
-      {/*           <p> es el id{selectedUser.id}</p>
-                <p> es el email{newUserEmail}</p>
-                <p> es la contraseña{newUserPassword}</p>
-                <p> es el rol {newUserRole}</p> */}
             </form>
             
            

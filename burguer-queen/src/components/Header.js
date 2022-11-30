@@ -17,7 +17,6 @@ const Header = () => {
           </nav>
           <Outlet/>
         </header>
-
   )
 }
 export default Header

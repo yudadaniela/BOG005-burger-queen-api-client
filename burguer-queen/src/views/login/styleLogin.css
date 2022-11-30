@@ -78,7 +78,9 @@ html {
   color: var(--beige);
 }
 
+
 .inputsLogin{
+  text-indent:10px;
   background-color: var(--beige);
   width: 100%;
   height: 2.5rem;

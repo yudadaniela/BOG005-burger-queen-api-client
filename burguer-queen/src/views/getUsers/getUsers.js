@@ -1,15 +1,12 @@
 import React from "react";
 import CreateUsersView from "../createUsers/createUsers";
-import { getToken, getRole, getUsers, deleteItem, editItem } from "../../functions/requests";
+import { getToken, getUsers, deleteItem } from "../../functions/requests";
 import { useState, useEffect } from "react";
 import './getUsers.css'
 import Modal from "../../components/modal";
 import { AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
-import { BiExit, BiPlus } from "react-icons/bi";
-import logo from '../../img/logo.png'
+import { BiPlus } from "react-icons/bi";
 import Edit from "../EditUser/EditUser";
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
-import Header from "../../components/Header";
 
 function GetUser() {
   const [isOpenModal, setisOpenModal] = useState(false);// estado de apertura de modal
@@ -63,12 +60,27 @@ console.log('datos de usuario en modal', selectedUser);/// verificación de dato
     //console.log(event.currentTarget.dataset.user/* .dataset.user */, 'target CURRENT nuevo');
     //console.log(event.currentTarget/* .dataset.user */, 'padre nuevo');
     //console.log(event.target/* .dataset.user */, 'target  nuevo');
-    deleteItem(event.currentTarget.dataset.user, getToken())
-    getUsers(getToken()).then(res => res.json()).then(users => {
-      console.log(users, 'cuando elimino se actualiza'); // lista actualizada
-      setcurrentUsers(users)
-    })
-    alert ('¿Deseas eliminar el usuario?')
+    // event.preventDefault()
+    /* eslint-disable  no-restricted-globals */
+   
+    const confirmMssg = confirm('¿Deseas eliminar el usuario?')
+    if(confirmMssg){
+      deleteItem(event.currentTarget.dataset.user, getToken(),'users')
+      .then(()=>{
+        getUsers(getToken()).then(res => res.json())
+        .then(users => {
+          console.log(users, 'cuando elimino se actualiza'); // lista actualizada
+          setcurrentUsers(users)
+        })
+        .catch(()=>{
+          alert('No se pudieron obtener los usuarios')
+        })
+      }).catch(()=>{
+        alert('No se pudo eliminar el usuario')
+      })
+    }else{
+      alert('Vale, no lo borro :)')
+    }
   }
 
 
