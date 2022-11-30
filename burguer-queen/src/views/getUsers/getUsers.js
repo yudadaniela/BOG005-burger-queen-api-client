@@ -57,12 +57,27 @@ console.log('datos de usuario en modal', selectedUser);/// verificación de dato
     //console.log(event.currentTarget.dataset.user/* .dataset.user */, 'target CURRENT nuevo');
     //console.log(event.currentTarget/* .dataset.user */, 'padre nuevo');
     //console.log(event.target/* .dataset.user */, 'target  nuevo');
-    deleteItem(event.currentTarget.dataset.user, getToken())
-    getUsers(getToken()).then(res => res.json()).then(users => {
-      console.log(users, 'cuando elimino se actualiza'); // lista actualizada
-      setcurrentUsers(users)
-    })
-    alert ('¿Deseas eliminar el usuario?')
+    // event.preventDefault()
+    /* eslint-disable  no-restricted-globals */
+   
+    const confirmMssg = confirm('¿Deseas eliminar el usuario?')
+    if(confirmMssg){
+      deleteItem(event.currentTarget.dataset.user, getToken(),'users')
+      .then(()=>{
+        getUsers(getToken()).then(res => res.json())
+        .then(users => {
+          console.log(users, 'cuando elimino se actualiza'); // lista actualizada
+          setcurrentUsers(users)
+        })
+        .catch(()=>{
+          alert('No se pudieron obtener los usuarios')
+        })
+      }).catch(()=>{
+        alert('No se pudo eliminar el usuario')
+      })
+    }else{
+      alert('Vale, no lo borro :)')
+    }
   }
 
 
