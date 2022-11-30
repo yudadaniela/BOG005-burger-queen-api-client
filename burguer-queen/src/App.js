@@ -12,19 +12,22 @@ import React from "react";
 import request from './functions/requests'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import GetProducts from './views/getProducts/getProducts';
-import Admin from './views/administrador/administrador';
-//import { Example } from './views/login/login.js';
+import GetOrder from './views/mesero/getOrdersView';
+import OrderState from './views/mesero/orderState';
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route index element={<Login />} />
         <Route exact path="/" element={<Login />} />
-        <Route path="/admin" element={<Admin />}>
-          <Route index element={<GetUser />} />
-          <Route exact path="/admin/getUser" element={<GetUser />} />
-          <Route exact path="/admin/getProducts" element={<GetProducts />} />
-        </Route>
+        
+        <Route exact path="/admin/getUser" element={<GetUser />} />
+        <Route exact path="/admin/getProducts" element={<GetProducts />} />
+      
+        <Route path="/waiter/getOrder" element={<GetOrder />}/>
+        <Route path="/waiter/orderState" element={<OrderState />}/>
+
         <Route path="*" element={'pagina no existe'} />
       </Routes>
     </BrowserRouter>

@@ -13,6 +13,7 @@ import Modal from "../../components/modal";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { BiPlus } from "react-icons/bi";
 import Edit from "../EditUser/EditUser";
+import Header from "../../components/Header";
 
 function GetUser() {
   const [isOpenModal, setisOpenModal] = useState(false); // estado de apertura de modal
@@ -93,6 +94,7 @@ function GetUser() {
 
   return (
     <div className="adminView">
+      <Header/>
       <section className="subHeader">
         <h1 className="titulos"> Colaboradores </h1>
         <button className="buttonAddUser" onClick={addHandle}>

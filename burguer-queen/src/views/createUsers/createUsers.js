@@ -82,7 +82,7 @@ const CreateUsersView = ({onSave, closeModal}) => {
                 >
                 <option value="">Selecciona Rol</option> 
                 <option value="admin">Administrador</option>    
-                <option value="cheff">Chef</option>    
+                <option value="chef">Chef</option>    
                 <option value="waiter">Mesero</option>    
                 </select>
                 </div>

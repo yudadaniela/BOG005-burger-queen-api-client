@@ -7,6 +7,7 @@ import { AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
 // import Edit from '../EditUser/EditUser';
 import CreateProductsView from '../createProducts/createProductsView.js';
 import EditProduct from '../EditProduct/EditProduct';
+import Header from '../../components/Header';
 const GetProducts = () => {
   const [isOpenModal, setisOpenModal] = useState(false);// estado de apertura de modal
   const [currentProducts, setcurrentProducts] = useState([]); // array de usuarios que muestra
@@ -74,6 +75,7 @@ const GetProducts = () => {
   return (
 
     <div className="adminView">
+      <Header/>
     <section className="subHeader"> 
     <h1 className="titulos"> Productos </h1>
     <button className="buttonAddUser" onClick={addHandle}>  Agregar producto <BiPlus/></button>

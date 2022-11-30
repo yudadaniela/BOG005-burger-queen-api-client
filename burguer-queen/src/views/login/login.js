@@ -55,8 +55,14 @@ const errorHandle =(resJson)=>{
        //console.log(resJson.user.id, 'este es el id')
           if(resJson.user.role === 'admin'){
             console.log('es administrador');
-            navigate("/admin");
+            navigate("/admin/getUser");
           }
+          else if(resJson.user.role === 'waiter'){
+            console.log('es mesero');
+            navigate("/waiter/getOrder");////pte
+          }
+
+
         }).catch((error )=> {console.log(error)}) 
  
 }
