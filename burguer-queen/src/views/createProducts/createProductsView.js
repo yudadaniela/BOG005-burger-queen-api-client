@@ -29,14 +29,12 @@ const CreateProductsView = ({onSave, closeModal}) => {
         getRole()
         console.log(event.target.value);
         createProducts(getToken(), newProductId, newProductName, newProductType, newProductPrice).then(res => res.json()).then( rtaJson => {
-            // console.log(rtaJson);
-            // onSave(rtaJson)
             getProducts(getToken()).then(res => res.json()).then( products => {
                 console.log(rtaJson);
                 onSave(products)
-            })
+            }).catch((error )=> {console.log(error)}) 
 
-        })
+        }).catch((error )=> {console.log(error)}) 
         closeModal()
     }
 

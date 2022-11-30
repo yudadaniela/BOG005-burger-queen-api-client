@@ -34,9 +34,9 @@ const CreateUsersView = ({onSave, closeModal}) => {
             getUsers(getToken()).then(res => res.json()).then( users => {
                 console.log(rtaJson);
                 onSave(users)
-            })
+            }).catch((error )=> {console.log(error)}) 
 
-        })
+        }).catch((error )=> {console.log(error)}) 
         closeModal()
     }
 

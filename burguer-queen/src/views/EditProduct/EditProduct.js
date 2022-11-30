@@ -34,12 +34,14 @@ const EditProduct = ({onSave, selectedProduct, closeModal}) => {
     const editProductsHandle = (event) => {
         event.preventDefault()
         getToken()
-        editProduct(selectedProduct.id, getToken(), newProductName, newProductType, newProductPrice)
-        // console.log(editItem(selectedProduct.id, getToken(), newUserEmail, newUserType, newUserRole), 'ejec func');
-        getProducts(getToken()).then(res => res.json()).then( products => {
-            console.log(products);
-            onSave(products)
-        })
+        editProduct(selectedProduct.id, getToken(), newProductName, newProductType, newProductPrice).then(()=>{
+            getProducts(getToken()).then(res => res.json()).then( products => {
+                console.log(products);
+                onSave(products)
+            }).catch((error )=> {console.log(error)})    
+        }).catch((error )=> {console.log(error)}) 
+       
+       
         closeModal()
     }
 
