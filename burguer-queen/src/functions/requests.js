@@ -110,7 +110,7 @@ export const editProduct =(id, tokenLogin, name, type, price, url)=>{
   })
 } 
 
-export const createOrder =(tokenLogin, name, statusOrder )=>{
+export const createOrder =(tokenLogin, name, statusOrder, productsList )=>{
   return fetch('http://localhost:8080/orders',{
     method: "POST",
     headers: {
@@ -119,19 +119,7 @@ export const createOrder =(tokenLogin, name, statusOrder )=>{
     },
     body: JSON.stringify({
       client: name,
-      products: [
-          {
-              qty: 0,
-              product: {
-              id: 1,
-              name: "Sandwich de jamón y queso",
-              price: 1000,
-              image: "https://github.com/Laboratoria/bootcamp/tree/main/projects/04-burger-queen-api/resources/images/sandwich.jpg",
-              type: "Desayuno",
-              dateEntry: "2022-03-05 15:14:10"
-              }
-          },
-      ],
+      products:productsList,
       status: statusOrder,
       dataEntry: "2022-03-05 15:00"
     })

@@ -6,7 +6,10 @@ import { createOrder } from '../../functions/requests'
 import CardOrder from './cardOrder'
 
 const MenuView = () => {
+  let arrayProducts = [];
   const [currentProducts, setcurrentProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState({});
+
   useEffect(() => {
     getProducts(getToken())
       .then((response) => response.json())
@@ -16,9 +19,23 @@ const MenuView = () => {
       }).catch((error )=> {console.log(error)}) 
   }, []);
 
+  useEffect(()=>{
+    console.log(selectedProduct, 'selectedProduct de useEffect');
+    //setSelectedProduct
+    ////algo
+},[selectedProduct]) 
+
   const addProduct =(event)=>{
     console.log(event.currentTarget.dataset.product,'id?')
-    alert('añadiste el producto' + event.currentTarget.dataset.product)
+    // alert('añadiste el producto' + event.currentTarget.dataset.product)
+    //arrayProducts.push()//
+    const product = currentProducts.filter(
+      (p) => p.id == event.currentTarget.dataset.product
+    ); 
+    console.log(product, 'es el obj del producto selecc del filter');
+    setSelectedProduct(product[0])
+    console.log(selectedProduct, 'selected p');
+    //pushea en  arraLIST
   }
 
   return (
