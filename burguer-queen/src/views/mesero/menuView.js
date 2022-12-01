@@ -6,9 +6,10 @@ import { createOrder } from '../../functions/requests'
 import CardOrder from './cardOrder'
 
 const MenuView = () => {
-  let arrayProducts = [];
+  //let arrayProducts = [];
   const [currentProducts, setcurrentProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState({});
+  const [productsListOrder, setproductsListOrder] = useState([]); // array de productos de orden
 
   useEffect(() => {
     getProducts(getToken())
@@ -21,20 +22,19 @@ const MenuView = () => {
 
   useEffect(()=>{
     console.log(selectedProduct, 'selectedProduct de useEffect');
-    //setSelectedProduct
-    ////algo
+    
 },[selectedProduct]) 
 
   const addProduct =(event)=>{
-    console.log(event.currentTarget.dataset.product,'id?')
-    // alert('añadiste el producto' + event.currentTarget.dataset.product)
-    //arrayProducts.push()//
+    //console.log(event.currentTarget.dataset.product,'id?')
     const product = currentProducts.filter(
       (p) => p.id == event.currentTarget.dataset.product
     ); 
     console.log(product, 'es el obj del producto selecc del filter');
     setSelectedProduct(product[0])
     console.log(selectedProduct, 'selected p');
+    productsListOrder.push(selectedProduct)
+    console.log(productsListOrder, 'hook de productos para la orden');
     //pushea en  arraLIST
   }
 
@@ -60,7 +60,7 @@ const MenuView = () => {
       </div>)
      })}
      </div>
-     <CardOrder/>
+     <CardOrder productsListOrder={productsListOrder}/>
     </div>
   )
 }

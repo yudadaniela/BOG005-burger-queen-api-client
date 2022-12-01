@@ -10,16 +10,6 @@ describe ('Test de Login', ()=>{
     beforeEach(()=>{
         render(<Login />, {wrapper: BrowserRouter})
       })
-  
-  
-    it('should be a function', () => {
-    expect(typeof postLogin).toBe('function')
-    });
-
-    it('should render button', () => {
-        const buttonSubmitGet = screen.getByTestId('buttonLogin');
-        expect(buttonSubmitGet).toBeInTheDocument();
-        });
 
     it ('ingreso de usuario', async ()=>{
         
@@ -35,12 +25,6 @@ describe ('Test de Login', ()=>{
             "email": "grace.hopper@systers.xyz",
             "password": "123456",
           }
-
-        // postLogin.mockResolvedValueOnce(()=>{
-        //     return((/* email, password */)=>{
-        //         return  Promise.resolve(resJson);
-        //     })
-        // })
 
          postLogin.mockImplementation(()=>{ resJson })//opc 2 :(
 
@@ -59,7 +43,24 @@ describe ('Test de Login', ()=>{
        });
     })
 
+      
+  
+    it('should be a function', () => {
+        expect(typeof postLogin).toBe('function')
+        });
+    
+     it('should render button', () => {
+            const buttonSubmitGet = screen.getByTestId('buttonLogin');
+            expect(buttonSubmitGet).toBeInTheDocument();
+            });
+    
+
 })
 
 
 
+        // postLogin.mockResolvedValueOnce(()=>{
+        //     return((/* email, password */)=>{
+        //         return  Promise.resolve(resJson);
+        //     })
+        // })

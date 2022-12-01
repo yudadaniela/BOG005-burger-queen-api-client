@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createOrder, getToken } from '../../functions/requests'
-const CardOrder = () => {
 
+const CardOrder = ({productsListOrder}) => {
   const [nameClient, setNameClient] = useState('') 
 
   const nameClientHandle =(e)=>{
@@ -10,7 +10,7 @@ const CardOrder = () => {
 
   const createOrderHandle =(e)=>{
     e.preventDefault()
-    createOrder(getToken(), nameClient, 'pending').then((res)=> console.log(res))
+    createOrder(getToken(), nameClient, 'pending', productsListOrder).then((res)=> console.log(res))
   }
   return (
     <div>
