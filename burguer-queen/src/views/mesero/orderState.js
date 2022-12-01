@@ -5,7 +5,7 @@ const OrderState = () => {
   return (
     <div>
         <Header
-        path1 ={"/waiter/getOrder"}
+        path1 ={"/waiter/MenuView"}
         title1 ={'Crear Pedido'}
         path2 ={"/waiter/orderState"}
         title2 ={'Estado de Pedidos'}

@@ -12,7 +12,7 @@ import React from "react";
 import request from './functions/requests'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import GetProducts from './views/getProducts/getProducts';
-import GetOrder from './views/mesero/getOrdersView';
+import MenuView from './views/mesero/menuView';
 import OrderState from './views/mesero/orderState';
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
         <Route exact path="/admin/getUser" element={<GetUser />} />
         <Route exact path="/admin/getProducts" element={<GetProducts />} />
       
-        <Route path="/waiter/getOrder" element={<GetOrder />}/>
+        <Route path="/waiter/MenuView" element={<MenuView />}/>
         <Route path="/waiter/orderState" element={<OrderState />}/>
 
         <Route path="*" element={'pagina no existe'} />

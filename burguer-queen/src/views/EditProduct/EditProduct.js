@@ -119,3 +119,4 @@ const EditProduct = ({onSave, selectedProduct, closeModal}) => {
 }
 
 export default EditProduct;
+

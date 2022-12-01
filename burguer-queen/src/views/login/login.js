@@ -60,7 +60,7 @@ const errorHandle =(resJson)=>{
           }
           else if(resJson.user.role === 'waiter'){
             console.log('es mesero');
-            navigate("/waiter/getOrder");////pte
+            navigate("/waiter/MenuView");////pte
           }
 
 
