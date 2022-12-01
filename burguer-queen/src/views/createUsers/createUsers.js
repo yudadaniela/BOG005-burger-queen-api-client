@@ -49,6 +49,7 @@ const CreateUsersView = ({onSave, closeModal}) => {
                     placeholder="Introduce Id "
                     value={newUserName}
                     onChange={newUserNameHandle}
+                    data-testid  = 'idUser'
                 >
                 </input>
 
@@ -58,6 +59,7 @@ const CreateUsersView = ({onSave, closeModal}) => {
                     placeholder="Introduce Email"
                     value={newUserEmail}
                     onChange={newUserEmailHandle}
+                    data-testid  = 'emailUser'
                 >
                 </input>
                 <div className='twoInputsContainers'>
@@ -69,6 +71,7 @@ const CreateUsersView = ({onSave, closeModal}) => {
                     placeholder="Introduce Contraseña"
                     value={newUserPassword}
                     onChange={newUserPasswordHandle}
+                    data-testid = 'passwordUser'
                 >
                 </input>
                 </div>
@@ -79,6 +82,7 @@ const CreateUsersView = ({onSave, closeModal}) => {
                 value={newUserRole}
                 onChange={newUserRoleHandle}
                 required
+                data-testid  = 'roleUser'
                 >
                 <option value="">Selecciona Rol</option> 
                 <option value="admin">Administrador</option>    
@@ -88,7 +92,9 @@ const CreateUsersView = ({onSave, closeModal}) => {
                 </div>
                 </div>
                 <div className='buttonContainer'> 
-                <button type="submit" className='addUserButton'> Agregar </button>
+                <button type="submit" className='addUserButton'
+                 data-testid  = 'buttonCreate'
+                > Agregar </button>
                 </div>
             </form>
             

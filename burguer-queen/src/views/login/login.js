@@ -46,6 +46,7 @@ const errorHandle =(resJson)=>{
     event.preventDefault()
     postLogin(email, password).then(res => res.json()// no deja colocar{} ni otra cosa
     ).then(resJson => {
+      console.log(resJson, 'log para test');
       errorHandle(resJson) /// manejador de error
       setToken_role(resJson.accessToken, resJson.user.role )// carga token y rol
       //console.log( setToken_role(resJson.accessToken, resJson.user.role ),'tokenrole');
@@ -82,6 +83,7 @@ const errorHandle =(resJson)=>{
               name="email"
               value={email}
               onChange={emailHandle}
+              data-testid  = 'emailUserLogin'
             >
             </input>
           </div>
@@ -94,6 +96,7 @@ const errorHandle =(resJson)=>{
               name="password"
               value={password}
               onChange={passwordHandle} 
+              data-testid  = 'passwordUserLogin'
             >
             </input>
             
@@ -101,7 +104,11 @@ const errorHandle =(resJson)=>{
           <p className='errorLogin'>{error}</p>
 
           <div className='containerButtonLogin'> 
-           <button type="submit" className='buttonLogin'> Ingresar </button>
+           <button 
+           type="submit" 
+           className='buttonLogin'
+           data-testid  = 'buttonLogin'
+           > Ingresar </button>
            </div>
          
       
