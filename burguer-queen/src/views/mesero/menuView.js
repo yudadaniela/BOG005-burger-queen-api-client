@@ -36,9 +36,8 @@ const MenuView = () => {
       qty: 1,
       product: product[0]
     }
-    productsListOrder.push(productToOrder)  
-    console.log(productsListOrder, 'hook de productos para la orden');
-   
+    setproductsListOrder([...productsListOrder, productToOrder])// EN VEZ DE PUSH
+   /// console.log(productsListOrder, 'hook de productos para la orden');/// NO SE ACTUALIZA
   }
 
   return (
