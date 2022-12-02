@@ -6,12 +6,14 @@ import { createOrder } from '../../functions/requests'
 import CardOrder from './cardOrder'
 import './mesero.css'
 import { BiPlus } from "react-icons/bi";
+import HeaderSmall from '../../components/HeaderSmall'
 
 const MenuView = () => {
   const [currentProducts, setcurrentProducts] = useState([]);
   //const [selectedProduct, setSelectedProduct] = useState({});  // por ahora se omite el uso del hook
   const [productsListOrder, setproductsListOrder] = useState([]); // array de productos de orden
-
+  const [typeMenu, setTypeMenu] = useState(true);
+ 
 
   useEffect(() => {
     getProducts(getToken())
@@ -22,23 +24,25 @@ const MenuView = () => {
       }).catch((error )=> {console.log(error)}) 
   }, []);
 
-/*   useEffect(()=>{
-    console.log(selectedProduct, 'selectedProduct de useEffect');
-},[selectedProduct])  */
 
   const addProduct =(event)=>{
-    //console.log(event.currentTarget.dataset.product,'id?')
     const product = currentProducts.filter(
       (p) => p.id == event.currentTarget.dataset.product
     ); 
-    //setSelectedProduct(product[0])
     let productToOrder ={
       qty: 1,
       product: product[0],
     }
     setproductsListOrder([...productsListOrder, productToOrder])// EN VEZ DE PUSH
-   /// console.log(productsListOrder, 'hook de productos para la orden');/// NO SE ACTUALIZA
   }
+
+  const typeMenuHandel = () =>{
+
+  }
+ 
+
+//filter -> const breakfast = currentProducts.filter(i=> i.type = "Desayuno")
+//filter -> const lunch = currentProducts.filter(i=> i.type = "Almuerzo")
 
   return (
     <div>
@@ -57,12 +61,9 @@ const MenuView = () => {
       </section>
 
      <div className='cardContainer'> 
-    
-
      <div className='cardContainerMenu'>
      <div className='containerNav'> 
-        <p> Desayuno </p>
-        <p> Almuerzo y Cena </p>
+     <HeaderSmall/>
       </div>
       <div  className='cardMenu'> 
      {currentProducts.map((product,i)=>{
@@ -80,7 +81,9 @@ const MenuView = () => {
          > Añadir </button>
       </div>)
      })}
+
      </div>
+
      </div>
      <div className='cardOrder'>
      <CardOrder productsListOrder={productsListOrder} />

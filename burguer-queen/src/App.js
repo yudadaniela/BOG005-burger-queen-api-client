@@ -28,6 +28,8 @@ function App() {
         <Route path="/waiter/MenuView" element={<MenuView />}/>
         <Route path="/waiter/orderState" element={<OrderState />}/>
 
+     
+
         <Route path="*" element={'pagina no existe'} />
       </Routes>
     </BrowserRouter>
