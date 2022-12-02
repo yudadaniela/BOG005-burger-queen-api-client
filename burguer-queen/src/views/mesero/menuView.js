@@ -34,7 +34,7 @@ const MenuView = () => {
     //setSelectedProduct(product[0])
     let productToOrder ={
       qty: 1,
-      product: product[0]
+      product: product[0],
     }
     setproductsListOrder([...productsListOrder, productToOrder])// EN VEZ DE PUSH
    /// console.log(productsListOrder, 'hook de productos para la orden');/// NO SE ACTUALIZA
@@ -83,7 +83,7 @@ const MenuView = () => {
      </div>
      </div>
      <div className='cardOrder'>
-     <CardOrder productsListOrder={productsListOrder}/>
+     <CardOrder productsListOrder={productsListOrder} />
      </div>
      </div>
     

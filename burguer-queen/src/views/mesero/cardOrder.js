@@ -25,9 +25,20 @@ const CardOrder = ({ productsListOrder }) => {
     setNameClient(e.target.value)
   }
 
+  const getTotal = ()=>{
+    let totalCount = productsListOrder.reduce((acum, i)=>acum + (i.qty * i.product.price) ,
+    0);
+    console.log(totalCount, 'total');
+   // console.log(new Date(), 'fecha');
+    return totalCount
+  }
+
+  const getDate = ()=> new Date()
+ 
+
   const createOrderHandle = (e) => {
     e.preventDefault()
-    createOrder(getToken(), nameClient, 'pending', productsListOrder).then((res) => console.log(res))// pte arreglar productsListOrder armar acá?
+    createOrder(getToken(), nameClient, 'pending', productsListOrder, getTotal(), getDate() ).then((res) => console.log(res))// pte arreglar productsListOrder armar acá?
   }
 
   const deleteProduct = (event)=>{
@@ -35,19 +46,14 @@ const CardOrder = ({ productsListOrder }) => {
     console.log(event.currentTarget.dataset.p, 'id con current');
   ////PTE
   }
-///productsListOrder /// array
-////recorra i seleccionando i.qty de cada uno
-//i.qty*i.product.price
-//sume
-let totalCount = productsListOrder.reduce((acum, i)=>acum + (i.qty * i.product.price) ,
-0);
-console.log(totalCount, 'total');
+
+
 
 
   return (
     <div>
       <form onSubmit={createOrderHandle}>
-        <p> Pedido #</p>
+        <p> Pedido # </p>
         <input
           type='text'
           placeholder=" Escribe Nombre del CLiente"
@@ -55,6 +61,7 @@ console.log(totalCount, 'total');
           value={nameClient}
           onChange={nameClientHandle}
           data-testid='nameClient'
+          required
         >
         </input>
         <p>Nombre FINAL del cliente:{nameClient} </p>
@@ -81,7 +88,7 @@ console.log(totalCount, 'total');
           })}
         </div>
 
-        <p>el total es: {totalCount} </p>
+        <p>el total es: {getTotal()} </p>
 
         <button
           type="submit"

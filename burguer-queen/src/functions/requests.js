@@ -110,7 +110,7 @@ export const editProduct =(id, tokenLogin, name, type, price, url)=>{
   })
 } 
 
-export const createOrder =(tokenLogin, name, statusOrder, productsList )=>{
+export const createOrder =(tokenLogin, name, statusOrder, productsList, total, date )=>{
   return fetch('http://localhost:8080/orders',{
     method: "POST",
     headers: {
@@ -121,11 +121,22 @@ export const createOrder =(tokenLogin, name, statusOrder, productsList )=>{
       client: name,
       products:productsList,
       status: statusOrder,
-      dataEntry: "2022-03-05 15:00"
+      dataEntry: date,
+      total : total
     })
 
 })
 }
 
+
+
+
+export const getOrders = (tokenLogin) => fetch('http://localhost:8080/orders', {
+  method: "GET",
+  headers: {
+    "Content-type": "application/json",
+    "authorization": "Bearer " + tokenLogin
+  },
+})
 
 
