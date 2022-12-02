@@ -45,6 +45,37 @@ padding-top: 10px;
     align-items: center;
     justify-content: space-around;
 }
+.navHeaderSwitch{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:50%;
+    height: 3rem;
+    border-radius: 25px;
+    color: var(--brown);
+    background-color:var(--beige);
+}
+.linkSelected{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color:var(--brown);
+    color: var(--beige);
+    height: 3rem;
+    width:50%;
+    border-radius: 25px;
+}
+
+.NoLinkSelected{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color:var(--beige);
+    color: var(--brown);
+    height: 3rem;
+    width:50%;
+    border-radius: 25px;
+}
 .subHeader{
     padding: 1rem 8rem;
     display: flex;

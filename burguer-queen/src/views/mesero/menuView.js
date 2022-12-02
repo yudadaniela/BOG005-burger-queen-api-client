@@ -4,6 +4,8 @@ import { getProducts, getToken } from '../../functions/requests'
 import { useState, useEffect } from 'react'
 import { createOrder } from '../../functions/requests'
 import CardOrder from './cardOrder'
+import './mesero.css'
+import { BiPlus } from "react-icons/bi";
 
 const MenuView = () => {
   //let arrayProducts = [];
@@ -46,21 +48,45 @@ const MenuView = () => {
         path2 ={"/waiter/orderState"}
         title2 ={'Estado de Pedidos'}
      />
-     <div>
+     
+     <section className="subHeader">
+        <h1 className="titulos"> Menú y tomar pedido</h1>
+        <button className="buttonAddUser">
+          Añadir Pedido <BiPlus />
+        </button>
+      </section>
+
+     <div className='cardContainer'> 
+    
+
+     <div className='cardContainerMenu'>
+     <div className='containerNav'> 
+        <p> Desayuno </p>
+        <p> Almuerzo y Cena </p>
+      </div>
+      <div  className='cardMenu'> 
      {currentProducts.map((product,i)=>{
       return( 
       <div className='card' key={i}>
-         <img src={product.image}/>
-         {product.name}
-         {product.price}
+         <img className='imgMenu' src={product.image}/>
+         <div className='descriptionProduct'>
+         <p className='textProduct'>{product.name}</p>
+         <p className='textPrice'>{product.price}</p>
+         </div>
          <button 
          onClick={addProduct}
          data-product ={product.id}
+         className="buttonAddProduct"
          > Añadir </button>
       </div>)
      })}
      </div>
+     </div>
+     <div className='cardOrder'>
      <CardOrder productsListOrder={productsListOrder}/>
+     </div>
+     </div>
+    
     </div>
   )
 }
