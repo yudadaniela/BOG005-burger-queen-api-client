@@ -3,17 +3,22 @@ import { createOrder, getToken } from '../../functions/requests'
 
 const CardOrder = ({ productsListOrder }) => {
   //console.log(productsListOrder,'es lo que entra');
-  const [qtyroduct, setQtyroduct] = useState(0);
+  const [qtyroduct, setQtyroduct] = useState(1);
   const [nameClient, setNameClient] = useState('')
   const [selectedProduct, setselectedProduct] = useState('')
 
   const qtyroductHandle = (event)=>{
     
     //setselectedProduct(event.currentTarget.dataset.p)///1
-    console.log(event.currentTarget.value, 'es el event...');
-    let select = productsListOrder[event.currentTarget.dataset.product];
-    //console.log(select);
+    //let select = productsListOrder[event.currentTarget.dataset.product];
+    //console.log(select, 'es el seleccionado');
+    //console.log(event.currentTarget.dataset.p, 'acá');
+    const productSelected = productsListOrder.filter(
+      (p) => p.product.id == event.currentTarget.dataset.p
+    ); 
+    console.log(productSelected, 'es lo que filtró');
     setQtyroduct(qtyroduct + 1)
+
   }
 
   const nameClientHandle = (e) => {
@@ -25,9 +30,19 @@ const CardOrder = ({ productsListOrder }) => {
     createOrder(getToken(), nameClient, 'pending', productsListOrder).then((res) => console.log(res))// pte arreglar productsListOrder armar acá?
   }
 
-  const deleteProduct = ()=>{
-
+  const deleteProduct = (event)=>{
+    //console.log(event.target.value, 'es el event delete..');
+    console.log(event.currentTarget.dataset.p, 'id con current');
+  ////PTE
   }
+///productsListOrder /// array
+////recorra i seleccionando i.qty de cada uno
+//i.qty*i.product.price
+//sume
+let totalCount = productsListOrder.reduce((acum, i)=>acum + (i.qty * i.product.price) ,
+0);
+console.log(totalCount, 'total');
+
 
   return (
     <div>
@@ -42,10 +57,7 @@ const CardOrder = ({ productsListOrder }) => {
           data-testid='nameClient'
         >
         </input>
-        <p>Icono del editar</p>
-        <p>Nombre del cliente:{nameClient}</p>
-        <p> Array de productos</p>
-
+        <p>Nombre FINAL del cliente:{nameClient} </p>
         <div>
           {productsListOrder.map((p, i) => {
             return (
@@ -54,25 +66,28 @@ const CardOrder = ({ productsListOrder }) => {
                 producto: {p.product.name}
                 <br/>
                 cantidad: {qtyroduct}
-                <button
+                <div
                   onClick={qtyroductHandle}
-                  value={p.id}
-                > sumar </button>
+                  data-p={p.product.id}
+                > sumar </div>
                 <br/>
                 precio: {p.product.price}
                 <div
                   onClick={deleteProduct}
-                  data-p={p.id}
+                  data-p={p.product.id}
                 > eliminar </div>
                 <hr/>
               </div>)
           })}
         </div>
 
+        <p>el total es: {totalCount} </p>
+
         <button
           type="submit"
           className='addUserButton'
           data-testid='buttonCreateOrder'
+          data-p= 'cocina'
         > Enviar a Cocina </button>
 
       </form>
