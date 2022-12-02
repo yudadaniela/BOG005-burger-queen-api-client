@@ -82,7 +82,7 @@ const GetProducts = () => {
        title2 ={'Crear Productos'}
       />
     <section className="subHeader"> 
-    <h1 className="titulos"> Productos </h1>
+    <h1> Productos </h1>
     <button className="buttonAddUser" onClick={addHandle}>  Agregar producto <BiPlus/></button>
     <Modal
       isOpen={isOpenModal}
@@ -103,7 +103,7 @@ const GetProducts = () => {
       task ={editState ? 'Editar Producto' : 'Crear Producto'}
     />
     </section>
-  
+  <div className="tableContainerMain"> 
     <section className="tableContainer"> 
     <table className="headerTable"> 
 
@@ -155,6 +155,7 @@ const GetProducts = () => {
     }
   </div>
   </section>
+</div>
 </div>
   )
 }

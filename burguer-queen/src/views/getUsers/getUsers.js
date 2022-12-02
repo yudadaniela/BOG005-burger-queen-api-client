@@ -93,16 +93,15 @@ function GetUser() {
   };
 
   return (
-    <div className="adminView">
-      
+    <section className="adminView">
       <Header
-      path1 ={"/admin/getUser"}
-      title1 ={'Crear Usuario'}
-      path2 ={"/admin/getProducts"}
-      title2 ={'Crear Productos'}
-       />
+        path1={"/admin/getUser"}
+        title1={"Crear Usuario"}
+        path2={"/admin/getProducts"}
+        title2={"Crear Productos"}
+      />
       <section className="subHeader">
-        <h1 className="titulos"> Colaboradores </h1>
+        <h1> Colaboradores </h1>
         <button className="buttonAddUser" onClick={addHandle}>
           {" "}
           Agregar colaborador <BiPlus />
@@ -133,7 +132,7 @@ function GetUser() {
           task={editState ? "Editar Usuario" : "Crear Usuario"}
         />
       </section>
-
+    <div className="tableContainerMain"> 
       <section className="tableContainer">
         <table className="headerTable">
           <thead key={1} className="dataTable">
@@ -152,9 +151,8 @@ function GetUser() {
             </tr>
           </thead>
         </table>
-        <div>
+      <div>
           {currentUsers.map((user, i) => {
-            //console.log(currentUsers, 'del map')
             return (
               <table key={i}>
                 <tbody key={i} className="dataTable">
@@ -162,7 +160,7 @@ function GetUser() {
                   <tr> {user.email} </tr>
                   <tr> {user.role} </tr>
 
-                  <div>
+                  <div className="divButtons">
                     <button
                       className="iconAccion"
                       onClick={editHandle}
@@ -170,17 +168,10 @@ function GetUser() {
                     >
                       <AiOutlineEdit />
                     </button>
-
                     <button
                       className="iconAccion"
                       onClick={deleteHandle}
-                      //value={user.id}
                       data-user={user.id}
-                      /* onSave={(user) => {
-
-                  console.log("nose", currentUsers);
-                  setcurrentUsers(user);
-                  }} */
                     >
                       {" "}
                       <AiOutlineDelete />
@@ -193,6 +184,7 @@ function GetUser() {
         </div>
       </section>
     </div>
+    </section>
   );
 }
 
