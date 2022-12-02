@@ -12,7 +12,7 @@ const MenuView = () => {
   const [currentProducts, setcurrentProducts] = useState([]);
   //const [selectedProduct, setSelectedProduct] = useState({});  // por ahora se omite el uso del hook
   const [productsListOrder, setproductsListOrder] = useState([]); // array de productos de orden
-  const [typeMenu, setTypeMenu] = useState(true);
+  const [typeMenu, setTypeMenu] = useState([]);
  
 
   useEffect(() => {
@@ -36,13 +36,30 @@ const MenuView = () => {
     setproductsListOrder([...productsListOrder, productToOrder])// EN VEZ DE PUSH
   }
 
-  const typeMenuHandel = () =>{
+  const typeMenuHandel = (event) =>{
+    //console.log(event.currentTarget.dataset.menu, 'CLICKEADO');
+   
+    const breakfast = currentProducts.filter(i=> i.type === "Desayuno")
+    const lunch = currentProducts.filter(i=> i.type === "Almuerzo")
 
+    // console.log(currentProducts, 'productos');
+    // console.log(breakfast, 'lista desayuno');
+    // console.log(lunch , 'Almuerzo');
+    //setTypeMenu()
+
+    if(event.currentTarget.dataset.menu = "Almuerzo"){
+      setTypeMenu(lunch)
+      console.log('click almuerzo' );
+      console.log(typeMenu, 'deberia renderizar');
+    }
+    else if(event.currentTarget.dataset.menu = "Desayuno"){
+      console.log('click desayuno' );
+      setTypeMenu(breakfast)
+      console.log(typeMenu, 'deberia renderizar');
+    }
+      
   }
- 
 
-//filter -> const breakfast = currentProducts.filter(i=> i.type = "Desayuno")
-//filter -> const lunch = currentProducts.filter(i=> i.type = "Almuerzo")
 
   return (
     <div>
@@ -63,10 +80,11 @@ const MenuView = () => {
      <div className='cardContainer'> 
      <div className='cardContainerMenu'>
      <div className='containerNav'> 
-     <HeaderSmall/>
+      <p data-menu = 'Desayuno' onClick={typeMenuHandel}> Desayuno </p>
+        <p data-menu = 'Almuerzo' onClick={typeMenuHandel}> Almuerzo y Cena </p>
       </div>
       <div  className='cardMenu'> 
-     {currentProducts.map((product,i)=>{
+     {typeMenu.map((product,i)=>{
       return( 
       <div className='card' key={i}>
          <img className='imgMenu' src={product.image}/>
