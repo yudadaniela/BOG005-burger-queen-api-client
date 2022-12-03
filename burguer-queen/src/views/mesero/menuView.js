@@ -21,8 +21,12 @@ const MenuView = () => {
       .then((data) => {
         console.log('productos get',data)
         setcurrentProducts(data);
+        const breakfast = currentProducts.filter(i=> i.type === "Desayuno")
+        setTypeMenu(breakfast)
+        console.log(typeMenu, 'es el menu');
       }).catch((error )=> {console.log(error)}) 
   }, []);
+
 
 
   const addProduct =(event)=>{
@@ -42,23 +46,20 @@ const MenuView = () => {
     const breakfast = currentProducts.filter(i=> i.type === "Desayuno")
     const lunch = currentProducts.filter(i=> i.type === "Almuerzo")
 
-    // console.log(currentProducts, 'productos');
-    // console.log(breakfast, 'lista desayuno');
-    // console.log(lunch , 'Almuerzo');
-    //setTypeMenu()
-
-    if(event.currentTarget.dataset.menu = "Almuerzo"){
+     if(event.currentTarget.dataset.menu === "Almuerzo"){
       setTypeMenu(lunch)
       console.log('click almuerzo' );
       console.log(typeMenu, 'deberia renderizar');
+      
     }
-    else if(event.currentTarget.dataset.menu = "Desayuno"){
+    else if(event.currentTarget.dataset.menu === "Desayuno"){
       console.log('click desayuno' );
       setTypeMenu(breakfast)
       console.log(typeMenu, 'deberia renderizar');
-    }
+    } 
       
   }
+
 
 
   return (
