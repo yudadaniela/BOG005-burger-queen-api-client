@@ -33,7 +33,7 @@ const CardOrder = ({ productsListOrder }) => {
     return totalCount
   }
 
-  const getDate = ()=> new Date()
+  const getDate = ()=> new Date().toString()
  
 
   const createOrderHandle = (e) => {
