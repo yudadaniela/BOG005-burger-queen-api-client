@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createOrder, getToken } from '../../functions/requests'
+import { AiOutlineDelete } from "react-icons/ai";
 
 const CardOrder = ({ productsListOrder }) => {
   //console.log(productsListOrder,'es lo que entra');
   const [qtyroduct, setQtyroduct] = useState(1);
   const [nameClient, setNameClient] = useState('')
   const [selectedProduct, setselectedProduct] = useState('')
+ 
 
   const qtyroductHandle = (event)=>{
     
@@ -42,12 +44,19 @@ const CardOrder = ({ productsListOrder }) => {
   }
 
   const deleteProduct = (event)=>{
-    //console.log(event.target.value, 'es el event delete..');
+   
+    productsListOrder.splice(event.currentTarget.dataset.p, 1);
+    console.log(productsListOrder);
     console.log(event.currentTarget.dataset.p, 'id con current');
-  ////PTE
+    setselectedProduct(productsListOrder)
   }
 
+// useEffect(()=>{
 
+
+
+
+// },[productsListOrder])
 
 
   return (
@@ -81,8 +90,9 @@ const CardOrder = ({ productsListOrder }) => {
                 precio: {p.product.price}
                 <div
                   onClick={deleteProduct}
-                  data-p={p.product.id}
-                > eliminar </div>
+                  data-p={i}
+                  
+                >  <AiOutlineDelete/> </div>
                 <hr/>
               </div>)
           })}
