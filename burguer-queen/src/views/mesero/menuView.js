@@ -121,7 +121,8 @@ const MenuView = () => {
           </div>
         </div>
         <div className="cardOrder">
-          <CardOrder productsListOrder={productsListOrder} />
+          <CardOrder productsListOrder={productsListOrder} 
+          />
         </div>
       </div>
     </div>
