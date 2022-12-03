@@ -13,7 +13,7 @@ const MenuView = () => {
   //const [selectedProduct, setSelectedProduct] = useState({});  // por ahora se omite el uso del hook
   const [productsListOrder, setproductsListOrder] = useState([]); // array de productos de orden
   const [typeMenu, setTypeMenu] = useState([]);
- 
+
 
   useEffect(() => {
     getProducts(getToken())
@@ -47,12 +47,12 @@ const MenuView = () => {
     // console.log(lunch , 'Almuerzo');
     //setTypeMenu()
 
-    if(event.currentTarget.dataset.menu = "Almuerzo"){
+    if(event.currentTarget.dataset.menu === "Almuerzo"){
       setTypeMenu(lunch)
       console.log('click almuerzo' );
       console.log(typeMenu, 'deberia renderizar');
     }
-    else if(event.currentTarget.dataset.menu = "Desayuno"){
+    else if(event.currentTarget.dataset.menu === "Desayuno"){
       console.log('click desayuno' );
       setTypeMenu(breakfast)
       console.log(typeMenu, 'deberia renderizar');
