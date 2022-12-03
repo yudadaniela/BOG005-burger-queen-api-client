@@ -6,7 +6,7 @@ import { createOrder } from "../../functions/requests";
 import CardOrder from "./cardOrder";
 import "./mesero.css";
 import { BiPlus } from "react-icons/bi";
-import HeaderSmall from "../../components/HeaderSmall";
+
 
 const MenuView = () => {
   const [currentProducts, setcurrentProducts] = useState([]);
