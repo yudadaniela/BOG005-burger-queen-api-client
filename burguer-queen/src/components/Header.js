@@ -13,6 +13,7 @@ const Header = ({ path1, title1, path2, title2 }) => {
 
   const [linkSelected,setLinkSelected] = useState(true)
   const [linkNoSelected,setLinkNoSelected] = useState(false)
+  
 
   const isSelected =()=>{
     setLinkSelected(true)
