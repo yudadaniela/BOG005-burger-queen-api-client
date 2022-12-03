@@ -46,13 +46,15 @@ const CardOrder = ({ productsListOrder }) => {
   const deleteProduct = (event)=>{
    
     productsListOrder.splice(event.currentTarget.dataset.p, 1);
+    
     console.log(productsListOrder);
     console.log(event.currentTarget.dataset.p, 'id con current');
+
     setselectedProduct(productsListOrder)
   }
 
 // useEffect(()=>{
-
+  
 
 
 
