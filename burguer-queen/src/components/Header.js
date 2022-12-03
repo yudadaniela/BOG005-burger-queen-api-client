@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../views/getUsers/getUsers.css";
 import { BiExit } from "react-icons/bi";
 import logo from "../img/logo.png";
@@ -10,6 +10,8 @@ const Header = ({ path1, title1, path2, title2 }) => {
   const loginOutHandle = () => {
     navigate("/");
   };
+
+  useEffect(()=>{},[])
 
   const [linkSelected,setLinkSelected] = useState(true)
   const [linkNoSelected,setLinkNoSelected] = useState(false)

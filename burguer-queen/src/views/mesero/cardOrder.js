@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { createOrder, getToken } from '../../functions/requests'
 import { AiOutlineDelete } from "react-icons/ai";
 
@@ -7,7 +7,6 @@ const CardOrder = ({ productsListOrder }) => {
   const [qtyroduct, setQtyroduct] = useState(1);
   const [nameClient, setNameClient] = useState('')
   const [selectedProduct, setselectedProduct] = useState('')
- 
 
   const qtyroductHandle = (event)=>{
     
@@ -53,12 +52,7 @@ const CardOrder = ({ productsListOrder }) => {
     setselectedProduct(productsListOrder)
   }
 
-// useEffect(()=>{
-  
 
-
-
-// },[productsListOrder])
 
 
   return (
@@ -93,8 +87,7 @@ const CardOrder = ({ productsListOrder }) => {
                 <div
                   onClick={deleteProduct}
                   data-p={i}
-                  
-                >  <AiOutlineDelete/> </div>
+                > <AiOutlineDelete/> </div>
                 <hr/>
               </div>)
           })}
