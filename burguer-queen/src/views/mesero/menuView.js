@@ -44,7 +44,7 @@ const MenuView = () => {
 
     console.log('PRODUCT:::', product);
 
-    const existsProduct = productsListOrder.some((element) => element.product.id === product.id);
+    const existsProduct = productsListOrder.some((element) => element.product.id === product.id); /// si alguno existe?
 
     console.log('existsProduct', existsProduct);
 
@@ -57,7 +57,14 @@ const MenuView = () => {
       setproductsListOrder([...productsListOrder, productToOrder]); // EN VEZ DE PUSH
     }
     else{
-      //product.id
+      
+      console.log(product, 'elem');// array
+      const productFined = productsListOrder.find((element) => element.product.id === product.id)
+      productFined.qty += 1
+      productFined.price = parseInt(product.price) + parseInt(productFined.price)
+      console.log(productFined, 'encontrado');
+      console.log(productsListOrder, 'lo pedido hasta ahora');// array
+
       //acceda al id
       // cambie el atributo qty
     }

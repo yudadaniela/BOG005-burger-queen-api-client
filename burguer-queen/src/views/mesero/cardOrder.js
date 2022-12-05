@@ -64,7 +64,7 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
 
   useEffect(()=>{
     //setselectedProduct(productsListOrder)
-    console.log('muestra');
+    console.log(' useEffect');
   },[productsListOrder])
 
 
@@ -91,13 +91,13 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
                 <hr/>
                 producto: {p.product.name}
                 <br/>
-                cantidad: {qtyroduct}
+                cantidad: {p.qty}
                 <div
                   onClick={qtyroductHandle}
                   data-p={p.product.id}
                 > sumar </div>
                 <br/>
-                precio: {p.product.price}
+                precio: {p.price}
                 <div
                   onClick={deleteProduct}
                   data-p={i}
