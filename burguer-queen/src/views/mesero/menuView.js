@@ -20,8 +20,7 @@ const MenuView = () => {
       .then((data) => {
         console.log("productos get", data);
         setcurrentProducts(data);
-        // typeMenu
-        // setTypeMenu(data.filter((i) => i.type === "Desayuno"));
+
       })
       .catch((error) => {
         console.log(error);
@@ -42,12 +41,8 @@ const MenuView = () => {
 
   const addProduct = (product) => {
 
-    console.log('PRODUCT:::', product);
-
     const existsProduct = productsListOrder.some((element) => element.product.id === product.id); /// si alguno existe?
-
-    console.log('existsProduct', existsProduct);
-
+   
     if (!existsProduct) {
       const productToOrder = {
         qty: 1,
@@ -57,30 +52,25 @@ const MenuView = () => {
       setproductsListOrder([...productsListOrder, productToOrder]); // EN VEZ DE PUSH
     }
     else{
-      
       console.log(product, 'elem');// array
       const productFined = productsListOrder.find((element) => element.product.id === product.id)
       productFined.qty += 1
       productFined.price = parseInt(product.price) + parseInt(productFined.price)
       console.log(productFined, 'encontrado');
       console.log(productsListOrder, 'lo pedido hasta ahora');// array
-
-      //acceda al id
-      // cambie el atributo qty
+      setproductsListOrder(productsListOrder)
     }
-
   };
 
+  useEffect(()=>{
+  setproductsListOrder(productsListOrder)
+  console.log('se actualiza productsListOrder');
+  },[productsListOrder, setproductsListOrder])
+  
   const typeMenuHandle = (event) => {
-    //console.log(event.currentTarget.dataset.menu, 'CLICKEADO');
 
     const breakfast = currentProducts.filter((i) => i.type === "Desayuno");
     const lunch = currentProducts.filter((i) => i.type === "Almuerzo");
-
-    // console.log(currentProducts, 'productos');
-    // console.log(breakfast, 'lista desayuno');
-    // console.log(lunch , 'Almuerzo');
-    //setTypeMenu()
 
     if (event.currentTarget.dataset.menu === "Almuerzo") {
       setTypeMenu(lunch);
