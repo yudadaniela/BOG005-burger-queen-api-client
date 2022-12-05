@@ -44,8 +44,13 @@ const errorHandle =(resJson)=>{
 
   const fetchHandle = (event)=>{  
     event.preventDefault()
-    postLogin(email, password).then(res => res.json()// no deja colocar{} ni otra cosa
-    ).then(resJson => {
+    postLogin(email, password)
+    .then(res => {
+      console.log('RES:::', res);
+      return res.json()
+    } // no deja colocar{} ni otra cosa
+    )
+    .then(resJson => {
       console.log(resJson, 'log para test');
       errorHandle(resJson) /// manejador de error
       setToken_role(resJson.accessToken, resJson.user.role )// carga token y rol

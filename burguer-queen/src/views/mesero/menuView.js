@@ -37,15 +37,31 @@ const MenuView = () => {
       console.log("soy un array vacio");
     }
   }, [currentProducts, setTypeMenu]);
-  const addProduct = (event) => {
-    const product = currentProducts.filter(
-      (p) => p.id == event.currentTarget.dataset.product
-    );
-    let productToOrder = {
-      qty: 1,
-      product: product[0],
-    };
-    setproductsListOrder([...productsListOrder, productToOrder]); // EN VEZ DE PUSH
+
+
+
+  const addProduct = (product) => {
+
+    console.log('PRODUCT:::', product);
+
+    const existsProduct = productsListOrder.some((element) => element.product.id === product.id);
+
+    console.log('existsProduct', existsProduct);
+
+    if (!existsProduct) {
+      const productToOrder = {
+        qty: 1,
+        price:product.price,
+        product: product,
+      };
+      setproductsListOrder([...productsListOrder, productToOrder]); // EN VEZ DE PUSH
+    }
+    else{
+      //product.id
+      //acceda al id
+      // cambie el atributo qty
+    }
+
   };
 
   const typeMenuHandle = (event) => {
@@ -69,6 +85,9 @@ const MenuView = () => {
       console.log(typeMenu, "deberia renderizar");
     }
   };
+
+
+
 
   return (
     <div>
@@ -108,7 +127,7 @@ const MenuView = () => {
                     <p className="textPrice">{product.price}</p>
                   </div>
                   <button
-                    onClick={addProduct}
+                    onClick={() => addProduct(product)}
                     data-product={product.id}
                     className="buttonAddProduct"
                   >
@@ -121,7 +140,8 @@ const MenuView = () => {
           </div>
         </div>
         <div className="cardOrder">
-          <CardOrder productsListOrder={productsListOrder} 
+          <CardOrder productsListOrder={productsListOrder}
+            setproductsListOrder={setproductsListOrder}
           />
         </div>
       </div>

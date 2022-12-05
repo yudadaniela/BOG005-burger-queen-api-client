@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createOrder, getToken } from '../../functions/requests'
 import { AiOutlineDelete } from "react-icons/ai";
 
-const CardOrder = ({ productsListOrder }) => {
+const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
   //console.log(productsListOrder,'es lo que entra');
   const [qtyroduct, setQtyroduct] = useState(1);
   const [nameClient, setNameClient] = useState('')
-  const [selectedProduct, setselectedProduct] = useState('')
+  const [selectedProduct, setselectedProduct] = useState([])
 
   const qtyroductHandle = (event)=>{
     
@@ -44,14 +44,28 @@ const CardOrder = ({ productsListOrder }) => {
 
   const deleteProduct = (event)=>{
    
-    productsListOrder.splice(event.currentTarget.dataset.p, 1);
+    //productsListOrder.splice(event.currentTarget.dataset.p, 1);
     
-    console.log(productsListOrder);
-    console.log(event.currentTarget.dataset.p, 'id con current');
+    //console.log(productsListOrder, 'se actualiza');
+    //console.log(event.currentTarget.dataset.p, 'id con current');
 
-    setselectedProduct(productsListOrder)
+    const deleteOrder = productsListOrder.splice(event.currentTarget.dataset.p, 1)// retorna lo que borramos
+    //setproductsListOrder(deleteOrder)
+    //console.log(deleteOrder, 'lo borrado');
+    //console.log(productsListOrder, 'productsListOrder');
+    //setselectedProduct(productsListOrder)
+    //setproductsListOrder(productsListOrder)
+    //console.log(productsListOrder, 'se actualiza');
+    setproductsListOrder(productsListOrder)
+    console.log([...productsListOrder, productsListOrder.splice(event.currentTarget.dataset.p, 1)], 'lo dentro ');
+    console.log(productsListOrder, 'se actualiza');
+    
   }
 
+  useEffect(()=>{
+    //setselectedProduct(productsListOrder)
+    console.log('muestra');
+  },[productsListOrder])
 
 
 
