@@ -6,7 +6,7 @@ const resJson = {
       id: 2
   }
 }
-export const postLogin = (/* email, password */) => jest.fn(() => { return Promise.resolve(resJson) });
+export const postLogin = jest.fn((email, password) => { return Promise.resolve(Promise.resolve({delete:'delete'})) });
 
 // export const getUsers = (tokenLogin/* , email, password */) => {}
 

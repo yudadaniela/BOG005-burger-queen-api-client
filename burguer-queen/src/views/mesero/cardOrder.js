@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { createOrder, getToken } from "../../functions/requests";
 import { AiOutlineDelete } from "react-icons/ai";
 
-const CardOrder = ({ productsListOrder }) => {
+const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
   //console.log(productsListOrder,'es lo que entra');
   const [qtyroduct, setQtyroduct] = useState(1);
-  const [nameClient, setNameClient] = useState("");
-  // const [selectedProduct, setselectedProduct] = useState('')
+  const [nameClient, setNameClient] = useState('')
+  const [selectedProduct, setselectedProduct] = useState([])
 
   const qtyroductHandle = (event) => {
     //setselectedProduct(event.currentTarget.dataset.p)///1
@@ -48,15 +48,32 @@ const CardOrder = ({ productsListOrder }) => {
     ).then((res) => console.log(res)); // pte arreglar productsListOrder armar acá?
   };
 
-  const deleteProduct = (event) => {
-    productsListOrder.splice(event.currentTarget.dataset.p, 1);
-    console.log(productsListOrder);
-    console.log(event.currentTarget.dataset.p, "id con current");
-  };
+  const deleteProduct = (event)=>{
+   
+    //productsListOrder.splice(event.currentTarget.dataset.p, 1);
+    
+    //console.log(productsListOrder, 'se actualiza');
+    //console.log(event.currentTarget.dataset.p, 'id con current');
+
+    const deleteOrder = productsListOrder.splice(event.currentTarget.dataset.p, 1)// retorna lo que borramos
+    //setproductsListOrder(deleteOrder)
+    //console.log(deleteOrder, 'lo borrado');
+    //console.log(productsListOrder, 'productsListOrder');
+    //setselectedProduct(productsListOrder)
+    //setproductsListOrder(productsListOrder)
+    //console.log(productsListOrder, 'se actualiza');
+    setproductsListOrder(productsListOrder)
+    console.log([...productsListOrder, productsListOrder.splice(event.currentTarget.dataset.p, 1)], 'lo dentro ');
+    console.log(productsListOrder, 'se actualiza');
+    
+  }
 
   useEffect(()=>{
-
+    //setselectedProduct(productsListOrder)
+    console.log(' useEffect');
   },[productsListOrder])
+
+
 
   return (
     <div>
@@ -78,21 +95,20 @@ const CardOrder = ({ productsListOrder }) => {
               <div className="pedido" key={i}>
                 <hr />
                 producto: {p.product.name}
-                <br />
-                cantidad: {qtyroduct}
-                <div onClick={qtyroductHandle} data-p={p.product.id}>
-                  {" "}
-                  sumar{" "}
-                </div>
-                <br />
-                precio: {p.product.price}
-                <div onClick={deleteProduct} data-p={i}>
-                  {" "}
-                  <AiOutlineDelete />{" "}
-                </div>
-                <hr />
-              </div>
-            );
+                <br/>
+                cantidad: {p.qty}
+                <div
+                  onClick={qtyroductHandle}
+                  data-p={p.product.id}
+                > sumar </div>
+                <br/>
+                precio: {p.price}
+                <div
+                  onClick={deleteProduct}
+                  data-p={i}
+                > <AiOutlineDelete/> </div>
+                <hr/>
+              </div>)
           })}
         </div>
 
