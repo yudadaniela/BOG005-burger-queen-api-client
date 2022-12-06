@@ -67,6 +67,10 @@ const errorHandle =(resJson)=>{
             console.log('es mesero');
             navigate("/waiter/MenuView");////pte
           }
+          else if(resJson.user.role === 'chef'){
+            console.log('es cocinero');
+            navigate("/chef/OrdersView");////pte
+          }
 
 
         }).catch((error )=> {console.log(error)}) 
