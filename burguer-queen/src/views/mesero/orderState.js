@@ -1,10 +1,9 @@
-import React from 'react'
-import Header from '../../components/Header'
-import { getOrders, getToken } from '../../functions/requests'
+import React from "react";
+import Header from "../../components/Header";
+import { getOrders, getToken } from "../../functions/requests";
 import { useState, useEffect } from "react";
 
 const OrderState = () => {
-
   const [currentOrders, setcurrentOrders] = useState([]);
 
   useEffect(() => {
@@ -22,14 +21,12 @@ const OrderState = () => {
     <div>
       <Header
         path1={"/waiter/MenuView"}
-        title1={'Crear Pedido'}
+        title1={"Crear Pedido"}
         path2={"/waiter/orderState"}
-        title2={'Estado de Pedidos'}
+        title2={"Estado de Pedidos"}
       />
       compotente OrderState
-
       <div>
-
         <table className="headerTable">
           <thead key={1} className="dataTable">
             <tr key={1} className="titleTable">
@@ -64,12 +61,8 @@ const OrderState = () => {
           );
         })}
       </div>
-
-
-
-
     </div>
-  )
-}
+  );
+};
 
-export default OrderState
+export default OrderState;

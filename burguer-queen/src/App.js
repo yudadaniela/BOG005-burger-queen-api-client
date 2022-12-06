@@ -43,17 +43,3 @@ function App() {
   );
 }
 export default App;
-
-/* <Route exact path="/getUser" element={<GetUser/>}/>
-        <Route exact path="/getProducts" element={<GetProducts/>}/> */
-/* 
-        <Routes>
-        <Route index element={<Login />} />
-        <Route exact path="/" element={<Login />} />
-        <Route path="/admin" element={<Admin />}>
-          <Route index element={<Admin />} />
-          <Route exact path="/admin" element={<Admin />} />
-          <Route exact path="/getUser" element={<GetUser />} />
-          <Route exact path="/getProducts" element={<GetProducts />} />
-        </Route>
-      </Routes> */
