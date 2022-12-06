@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { BiExit } from "react-icons/bi";
 import logo from "../../img/logo.png";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-
+import './cookOrders.css'
 
 const GetOrders = () => {
   const [currentOrders, setcurrentOrders] = useState([]); // ordenes actuales
@@ -41,24 +41,27 @@ const GetOrders = () => {
           </p>
         </div>
       </nav>
-      compotente OrderState
-
-      <div>
-
+      <div className='prueba'>
         {currentOrders.map((order, i) => {
           return (
-            <div key={i}>
-              el id es: {order.id}
-              {order.client}
+            <div key={i} className="containerCardCook">
+              <div className='containerHeaderCard'> 
+              <h3 className="titleCook"> Pedido #{order.id} </h3>
+              <p className="textClient"> Cliente: {order.client}</p>
               {order.products.map((p, j) => {
                 return (
-                  <div key={j}>
-                    {p.product.name}
-                    es la cantidad{p.qty}
+                  <div key={j} className="ContainerProductsCook">
+                    <p className="textProduct">{p.product.name}</p>
+                    <p className="textQty">{p.qty}</p>
                   </div>
                 );
               })}
-              <div> Para entregar</div>
+              </div>
+              <div> 
+                <button className="buttonCook"> 
+                Para entregar
+                </button>
+              </div>
 
             </div>
           );

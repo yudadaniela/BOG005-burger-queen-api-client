@@ -55,16 +55,16 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
     //console.log(productsListOrder, 'se actualiza');
     //console.log(event.currentTarget.dataset.p, 'id con current');
 
-    const deleteOrder = productsListOrder.splice(event.currentTarget.dataset.p, 1)// retorna lo que borramos
+   productsListOrder.splice(event.currentTarget.dataset.p, 1)// retorna lo que borramos
     //setproductsListOrder(deleteOrder)
     //console.log(deleteOrder, 'lo borrado');
     //console.log(productsListOrder, 'productsListOrder');
     //setselectedProduct(productsListOrder)
     //setproductsListOrder(productsListOrder)
     //console.log(productsListOrder, 'se actualiza');
-    setproductsListOrder(productsListOrder)
-    console.log([...productsListOrder, productsListOrder.splice(event.currentTarget.dataset.p, 1)], 'lo dentro ');
-    console.log(productsListOrder, 'se actualiza');
+    setproductsListOrder([...productsListOrder])
+    // console.log([...productsListOrder, productsListOrder.splice(event.currentTarget.dataset.p, 1)], 'lo dentro ');
+    // console.log(productsListOrder, 'se actualiza');
     
   }
 

@@ -10,7 +10,7 @@ import { BiPlus } from "react-icons/bi";
 
 const MenuView = () => {
   const [currentProducts, setcurrentProducts] = useState([]);
-  //const [selectedProduct, setSelectedProduct] = useState({});  // por ahora se omite el uso del hook
+  const [selectedProduct, setSelectedProduct] = useState(false);  // por ahora se omite el uso del hook
   const [productsListOrder, setproductsListOrder] = useState([]); // array de productos de orden
   const [typeMenu, setTypeMenu] = useState([]);
 
@@ -50,6 +50,7 @@ const MenuView = () => {
         product: product,
       };
       setproductsListOrder([...productsListOrder, productToOrder]); // EN VEZ DE PUSH
+      setSelectedProduct(false)
     }
     else{
       console.log(product, 'elem');// array
@@ -58,14 +59,15 @@ const MenuView = () => {
       productFined.price = parseInt(product.price) + parseInt(productFined.price)
       console.log(productFined, 'encontrado');
       console.log(productsListOrder, 'lo pedido hasta ahora');// array
-      setproductsListOrder(productsListOrder)
+      setproductsListOrder([...productsListOrder])
+      setSelectedProduct(true)
     }
   };
 
-  useEffect(()=>{
-  setproductsListOrder(productsListOrder)
-  console.log('se actualiza productsListOrder');
-  },[productsListOrder, setproductsListOrder])
+  // useEffect(()=>{
+  // setproductsListOrder(productsListOrder)
+  // console.log('se actualiza productsListOrder');
+  // },[productsListOrder, setproductsListOrder])
   
   const typeMenuHandle = (event) => {
 
