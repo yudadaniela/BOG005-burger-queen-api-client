@@ -16,6 +16,26 @@ const GetOrders = () => {
   };
 
   ///setTimeout(()=>{},1000)
+  // const timeProcessed = (currentOrders) => {
+  //   let string = []
+
+  //   currentOrders.map((order, i  ) => {
+  //     const hour = order.dateEntry.slice( -8, order.dateEntry.length).split(":")
+  //   console.log(hour,'esta es la hora de pedido');
+
+  //   })
+    
+    // const hourProcessed = new Date().toLocaleTimeString('es-ES').split(":")
+    // console.log(hourProcessed, 'esta es la hora actual ');
+    // for(let i = 0; i < hour.length; i++){
+    //     string.push( Math.abs(parseInt(hourProcessed[i]) - parseInt(hour[i]))  )
+    // }
+    // const timeAll = string.toString().replaceAll(',', ':')
+    // return timeAll
+// }
+  
+
+  
 
   useEffect(() => {
     getOrders(getToken())
@@ -43,8 +63,8 @@ const GetOrders = () => {
       </nav>
       compotente OrderState
 
-      <div>
 
+      <div>
         {currentOrders.map((order, i) => {
           return (
             <div key={i}>
