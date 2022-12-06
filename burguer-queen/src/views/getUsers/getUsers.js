@@ -5,7 +5,6 @@ import {
   getUsers,
   deleteItem,
   getIdCurrent,
-  setCurrenId,
 } from "../../functions/requests";
 import { useState, useEffect } from "react";
 import "./getUsers.css";
@@ -42,8 +41,6 @@ function GetUser() {
         console.log(error);
       });
   }, []);
-
-  //useEffect(() => console.log(currentUsers, 'lista actualizada'), [currentUsers]); // lista actualizada
 
   const editHandle = (event) => {
     const user = currentUsers.filter(
@@ -132,61 +129,60 @@ function GetUser() {
           task={editState ? "Editar Usuario" : "Crear Usuario"}
         />
       </section>
-    <div className="tableContainerMain"> 
-      <section className="tableContainer">
-        <table className="headerTable">
-          <thead key={1} className="dataTable">
-            <tr key={1} className="titleTable">
-              Id de Usuario
-            </tr>
-            <tr key={2} className="titleTable">
-              Email
-            </tr>
-            <tr key={3} className="titleTable">
-              Role
-            </tr>
-            <tr key={4} className="titleTable">
-              {" "}
-              Editar/eliminar
-            </tr>
-          </thead>
-        </table>
-      <div>
-          {currentUsers.map((user, i) => {
-            return (
-              <table key={i}>
-                <tbody key={i} className="dataTable">
-                  <tr key={i}> {user.id} </tr>
-                  <tr> {user.email} </tr>
-                  <tr> {user.role} </tr>
+      <div className="tableContainerMain">
+        <section className="tableContainer">
+          <table className="headerTable">
+            <thead key={1} className="dataTable">
+              <tr key={1} className="titleTable">
+                Id de Usuario
+              </tr>
+              <tr key={2} className="titleTable">
+                Email
+              </tr>
+              <tr key={3} className="titleTable">
+                Role
+              </tr>
+              <tr key={4} className="titleTable">
+                {" "}
+                Editar/eliminar
+              </tr>
+            </thead>
+          </table>
+          <div>
+            {currentUsers.map((user, i) => {
+              return (
+                <table key={i}>
+                  <tbody key={i} className="dataTable">
+                    <tr key={i}> {user.id} </tr>
+                    <tr> {user.email} </tr>
+                    <tr> {user.role} </tr>
 
-                  <div className="divButtons">
-                    <button
-                      className="iconAccion"
-                      onClick={editHandle}
-                      data-user={user.id}
-                    >
-                      <AiOutlineEdit />
-                    </button>
-                    <button
-                      className="iconAccion"
-                      onClick={deleteHandle}
-                      data-user={user.id}
-                    >
-                      {" "}
-                      <AiOutlineDelete />
-                    </button>
-                  </div>
-                </tbody>
-              </table>
-            );
-          })}
-        </div>
-      </section>
-    </div>
+                    <div className="divButtons">
+                      <button
+                        className="iconAccion"
+                        onClick={editHandle}
+                        data-user={user.id}
+                      >
+                        <AiOutlineEdit />
+                      </button>
+                      <button
+                        className="iconAccion"
+                        onClick={deleteHandle}
+                        data-user={user.id}
+                      >
+                        {" "}
+                        <AiOutlineDelete />
+                      </button>
+                    </div>
+                  </tbody>
+                </table>
+              );
+            })}
+          </div>
+        </section>
+      </div>
     </section>
   );
 }
 
 export default GetUser;
-

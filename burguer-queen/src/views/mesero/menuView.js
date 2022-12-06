@@ -2,15 +2,13 @@ import React from "react";
 import Header from "../../components/Header";
 import { getProducts, getToken } from "../../functions/requests";
 import { useState, useEffect } from "react";
-import { createOrder } from "../../functions/requests";
 import CardOrder from "./cardOrder";
 import "./mesero.css";
 import { BiPlus } from "react-icons/bi";
 
-
 const MenuView = () => {
   const [currentProducts, setcurrentProducts] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(false);  // por ahora se omite el uso del hook
+  const [selectedProduct, setSelectedProduct] = useState(false); // por ahora se omite el uso del hook
   const [productsListOrder, setproductsListOrder] = useState([]); // array de productos de orden
   const [typeMenu, setTypeMenu] = useState([]);
 
@@ -20,7 +18,6 @@ const MenuView = () => {
       .then((data) => {
         console.log("productos get", data);
         setcurrentProducts(data);
-
       })
       .catch((error) => {
         console.log(error);
@@ -37,40 +34,35 @@ const MenuView = () => {
     }
   }, [currentProducts, setTypeMenu]);
 
-
-
   const addProduct = (product) => {
+    const existsProduct = productsListOrder.some(
+      (element) => element.product.id === product.id
+    ); /// si alguno existe?
 
-    const existsProduct = productsListOrder.some((element) => element.product.id === product.id); /// si alguno existe?
-   
     if (!existsProduct) {
       const productToOrder = {
         qty: 1,
-        price:product.price,
+        price: product.price,
         product: product,
       };
       setproductsListOrder([...productsListOrder, productToOrder]); // EN VEZ DE PUSH
-      setSelectedProduct(false)
-    }
-    else{
-      console.log(product, 'elem');// array
-      const productFined = productsListOrder.find((element) => element.product.id === product.id)
-      productFined.qty += 1
-      productFined.price = parseInt(product.price) + parseInt(productFined.price)
-      console.log(productFined, 'encontrado');
-      console.log(productsListOrder, 'lo pedido hasta ahora');// array
-      setproductsListOrder([...productsListOrder])
-      setSelectedProduct(true)
+      setSelectedProduct(false);
+    } else {
+      console.log(product, "elem"); // array
+      const productFined = productsListOrder.find(
+        (element) => element.product.id === product.id
+      );
+      productFined.qty += 1;
+      productFined.price =
+        parseInt(product.price) + parseInt(productFined.price);
+      console.log(productFined, "encontrado");
+      console.log(productsListOrder, "lo pedido hasta ahora"); // array
+      setproductsListOrder([...productsListOrder]);
+      setSelectedProduct(true);
     }
   };
 
-  // useEffect(()=>{
-  // setproductsListOrder(productsListOrder)
-  // console.log('se actualiza productsListOrder');
-  // },[productsListOrder, setproductsListOrder])
-  
   const typeMenuHandle = (event) => {
-
     const breakfast = currentProducts.filter((i) => i.type === "Desayuno");
     const lunch = currentProducts.filter((i) => i.type === "Almuerzo");
 
@@ -82,18 +74,12 @@ const MenuView = () => {
       console.log("click desayuno");
       setTypeMenu(breakfast);
       console.log(typeMenu, "deberia renderizar");
+    } else if (event.currentTarget.dataset.menu === "Desayuno") {
+      console.log("click desayuno");
+      setTypeMenu(breakfast);
+      console.log(typeMenu, "deberia renderizar");
     }
-    else if(event.currentTarget.dataset.menu === "Desayuno"){
-      console.log('click desayuno' );
-      setTypeMenu(breakfast)
-      console.log(typeMenu, 'deberia renderizar');
-    }
-      
-  }
-
-
-
-
+  };
 
   return (
     <div>
@@ -146,7 +132,8 @@ const MenuView = () => {
           </div>
         </div>
         <div className="cardOrder">
-          <CardOrder productsListOrder={productsListOrder}
+          <CardOrder
+            productsListOrder={productsListOrder}
             setproductsListOrder={setproductsListOrder}
           />
         </div>

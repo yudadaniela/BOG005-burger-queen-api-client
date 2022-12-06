@@ -9,7 +9,6 @@ const CreateProductsView = ({onSave, closeModal}) => {
     const [newProductType, setNewProductType] = useState('')
     const [newProductPrice, setNewProductPrice] = useState('')
     const [newProductUrl, setNewProductUrl ]= useState('')
-   // const [isOpenModal, setisOpenModal] = useState(false)
 
     const newProductNameHandle =(event)=>{
         setNewProductName(event.target.value) /// buscar****

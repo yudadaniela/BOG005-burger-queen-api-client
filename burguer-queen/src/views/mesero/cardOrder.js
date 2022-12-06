@@ -3,16 +3,10 @@ import { createOrder, getToken } from "../../functions/requests";
 import { AiOutlineDelete } from "react-icons/ai";
 
 const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
-  //console.log(productsListOrder,'es lo que entra');
   const [qtyroduct, setQtyroduct] = useState(1);
-  const [nameClient, setNameClient] = useState('')
-  const [selectedProduct, setselectedProduct] = useState([])
+  const [nameClient, setNameClient] = useState("");
 
   const qtyroductHandle = (event) => {
-    //setselectedProduct(event.currentTarget.dataset.p)///1
-    //let select = productsListOrder[event.currentTarget.dataset.product];
-    //console.log(select, 'es el seleccionado');
-    //console.log(event.currentTarget.dataset.p, 'acá');
     const productSelected = productsListOrder.filter(
       (p) => p.product.id == event.currentTarget.dataset.p
     );
@@ -30,7 +24,7 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
       0
     );
     console.log(totalCount, "total");
-    // console.log(new Date(), 'fecha');
+
     return totalCount;
   };
 
@@ -48,33 +42,11 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
     ).then((res) => console.log(res)); // pte arreglar productsListOrder armar acá?
   };
 
-  const deleteProduct = (event)=>{
-   
-    //productsListOrder.splice(event.currentTarget.dataset.p, 1);
-    
-    //console.log(productsListOrder, 'se actualiza');
-    //console.log(event.currentTarget.dataset.p, 'id con current');
+  const deleteProduct = (event) => {
+    productsListOrder.splice(event.currentTarget.dataset.p, 1); // retorna lo que borramos
 
-   productsListOrder.splice(event.currentTarget.dataset.p, 1)// retorna lo que borramos
-    //setproductsListOrder(deleteOrder)
-    //console.log(deleteOrder, 'lo borrado');
-    //console.log(productsListOrder, 'productsListOrder');
-    //setselectedProduct(productsListOrder)
-    //setproductsListOrder(productsListOrder)
-    //console.log(productsListOrder, 'se actualiza');
-    setproductsListOrder([...productsListOrder])
-    // console.log([...productsListOrder, productsListOrder.splice(event.currentTarget.dataset.p, 1)], 'lo dentro ');
-    // console.log(productsListOrder, 'se actualiza');
-    
-  }
-
-
-  useEffect(()=>{
-    //setselectedProduct(productsListOrder)
-    console.log(' useEffect');
-  },[productsListOrder])
-
-
+    setproductsListOrder([...productsListOrder]);
+  };
 
   return (
     <div>
@@ -96,20 +68,21 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
               <div className="pedido" key={i}>
                 <hr />
                 producto: {p.product.name}
-                <br/>
+                <br />
                 cantidad: {p.qty}
-                <div
-                  onClick={qtyroductHandle}
-                  data-p={p.product.id}
-                > sumar </div>
-                <br/>
+                <div onClick={qtyroductHandle} data-p={p.product.id}>
+                  {" "}
+                  sumar{" "}
+                </div>
+                <br />
                 precio: {p.price}
-                <div
-                  onClick={deleteProduct}
-                  data-p={i}
-                > <AiOutlineDelete/> </div>
-                <hr/>
-              </div>)
+                <div onClick={deleteProduct} data-p={i}>
+                  {" "}
+                  <AiOutlineDelete />{" "}
+                </div>
+                <hr />
+              </div>
+            );
           })}
         </div>
 
