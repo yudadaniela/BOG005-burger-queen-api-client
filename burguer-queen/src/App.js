@@ -14,6 +14,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import GetProducts from './views/getProducts/getProducts';
 import MenuView from './views/mesero/menuView';
 import OrderState from './views/mesero/orderState';
+import GetOrders from './views/cocinero/cookOrders';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path="/waiter/MenuView" element={<MenuView />}/>
         <Route path="/waiter/orderState" element={<OrderState />}/>
 
-     
+        <Route path="/chef/OrdersView" element={<GetOrders/>}/>
 
         <Route path="*" element={'pagina no existe'} />
       </Routes>
