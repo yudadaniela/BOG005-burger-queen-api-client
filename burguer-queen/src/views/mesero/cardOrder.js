@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { createOrder, getToken } from '../../functions/requests'
 import { AiOutlineDelete } from "react-icons/ai";
 
-const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
+const CardOrder = ({ productsListOrder, setproductsListOrder, selectedProduct }) => {
   //console.log(productsListOrder,'es lo que entra');
   const [qtyroduct, setQtyroduct] = useState(1);
   const [nameClient, setNameClient] = useState('')
-  const [selectedProduct, setselectedProduct] = useState([])
+  //const [selectedProduct, setselectedProduct] = useState({})
 
   const qtyroductHandle = (event)=>{
     
@@ -47,26 +47,44 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
     //productsListOrder.splice(event.currentTarget.dataset.p, 1);
     
     //console.log(productsListOrder, 'se actualiza');
-    //console.log(event.currentTarget.dataset.p, 'id con current');
+    console.log(event.currentTarget.dataset.p, 'id con current');
 
-    const deleteOrder = productsListOrder.splice(event.currentTarget.dataset.p, 1)// retorna lo que borramos
+    // setproductsListOrder()
+
+    // console.log(productsListOrder.splice(event.currentTarget.dataset.p, 1),'<<<<<=====');
+
+    const x = productsListOrder.filter((ele)=>{
+      console.log('idele: ', ele.product.id);
+      return ele.product.id != event.currentTarget.dataset.p
+    })
+    console.log('productList=>>>>>>ldksajldjaljdla ', x);
+    setproductsListOrder([...x])
+
+    
+    // productsListOrder.splice()// retorna lo que borramos
     //setproductsListOrder(deleteOrder)
     //console.log(deleteOrder, 'lo borrado');
     //console.log(productsListOrder, 'productsListOrder');
     //setselectedProduct(productsListOrder)
     //setproductsListOrder(productsListOrder)
     //console.log(productsListOrder, 'se actualiza');
-    setproductsListOrder(productsListOrder)
-    console.log([...productsListOrder, productsListOrder.splice(event.currentTarget.dataset.p, 1)], 'lo dentro ');
-    console.log(productsListOrder, 'se actualiza');
+
+    // setproductsListOrder(productsListOrder)
+    // console.log(productsListOrder, 'se actualiza');
     
   }
 
+  // const n= productsListOrder.map(i=>i.qty)
+  //   console.log(n, 'es n');
 
-  useEffect(()=>{
-    //setselectedProduct(productsListOrder)
-    console.log(' useEffect');
-  },[productsListOrder])
+
+  // useEffect(()=>{
+  //   setproductsListOrder(productsListOrder)
+    
+  //   //setselectedProduct(productsListOrder)
+  //   console.log(productsListOrder,' useEffect');
+    
+  // },[selectedProduct])
 
 
 
@@ -101,7 +119,7 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
                 precio: {p.price}
                 <div
                   onClick={deleteProduct}
-                  data-p={i}
+                  data-p={p.product.id}
                 > <AiOutlineDelete/> </div>
                 <hr/>
               </div>)

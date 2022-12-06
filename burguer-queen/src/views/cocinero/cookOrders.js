@@ -9,13 +9,17 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const GetOrders = () => {
   const [currentOrders, setcurrentOrders] = useState([]); // ordenes actuales
+  const [timer, setTimer] = useState(''); // ordenes actuales
   const navigate = useNavigate();
   console.log(currentOrders, 'lo que entra');
   const loginOutHandle = () => {
     navigate("/");
   };
 
-  ///setTimeout(()=>{},1000)
+  const timeHandle =(i)=>{
+    console.log(currentOrders[i].dataEntry, 'fecha');
+    return  currentOrders[i].dataEntry
+  }
 
   useEffect(() => {
     getOrders(getToken())
@@ -50,6 +54,8 @@ const GetOrders = () => {
             <div key={i}>
               el id es: {order.id}
               {order.client}
+              {order.dataEntry}
+              es el tiempo{timeHandle}
               {order.products.map((p, j) => {
                 return (
                   <div key={j}>
