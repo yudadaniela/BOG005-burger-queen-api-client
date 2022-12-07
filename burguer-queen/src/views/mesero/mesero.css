@@ -20,7 +20,7 @@
 .cardContainer {
   /* background-color: cadetblue; */
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 /* div con el menu */
@@ -137,6 +137,19 @@
     justify-content: space-around;
 }
 
+.addQtyButton{
+background-color: rgb(158, 157, 157);
+}
+
+.restQtyButton{
+  background-color: rgb(68, 68, 68);
+  }
+
+.qtyContainer{
+  display: flex;
+  width: 4rem;
+  background-color: var(--white);
+}
 /** Vista de Estado de Pedido */
 /* tabla container */
 .title {

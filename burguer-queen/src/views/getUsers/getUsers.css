@@ -122,6 +122,9 @@ justify-content: center;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
+thead tr{
+font-weight: bolder;
+}
 
 tr {
   overflow: hidden;
