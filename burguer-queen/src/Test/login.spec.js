@@ -24,11 +24,11 @@ describe('Test de Login', () => {
             "password": "123456",
         }
 
-        postLogin.mockResolvedValueOnce(()=>{
-                return(()=>{
+        postLogin./* mockImplementation */mockResolvedValueOnce/* mockImplementationOnce */(()=>{
+                return((email, pasword)=>{
                     return Promise.resolve(({
                         json: () => {
-                          return Promise.resolve({ accessToken: '123', user: { role: 'admin' }})
+                          return Promise.resolve(resJson)
                         }
                       }))
                 })
@@ -46,7 +46,8 @@ describe('Test de Login', () => {
         fireEvent.click(buttonSubmit); /// pte para revisar
 
         await waitFor(() => {
-            /* expect(postLogin).toHaveBeenCalledTimes(1); */
+            expect(postLogin).toHaveBeenCalled();
+            expect(postLogin).toHaveBeenCalledTimes(1);
         });
     })
 
@@ -56,13 +57,6 @@ describe('Test de Login', () => {
     //     expect(buttonSubmitGet).toBeInTheDocument();
     // });
 
-
 })
 
 
-
-        // postLogin.mockResolvedValueOnce(()=>{
-        //     return((/* email, password */)=>{
-        //         return  Promise.resolve(resJson);
-        //     })
-        // })
