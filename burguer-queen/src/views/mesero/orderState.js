@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import { getOrders, getToken } from "../../functions/requests";
 import { useState, useEffect } from "react";
+import { VscBell } from "react-icons/vsc";
 
 const OrderState = () => {
   const [currentOrders, setcurrentOrders] = useState([]);
@@ -25,8 +26,14 @@ const OrderState = () => {
         path2={"/waiter/orderState"}
         title2={"Estado de Pedidos"}
       />
-      compotente OrderState
-      <div>
+    <div className="subHeader"> 
+      <h1 className="title">Estados de Pedido</h1>
+      <p> Listos Para servir <VscBell/> </p>
+      {/* Falta agregar selector para filtrar */}
+    </div>
+    
+    <div className="tableContainerMain"> 
+      <div className="tableContainer">
         <table className="headerTable">
           <thead key={1} className="dataTable">
             <tr key={1} className="titleTable">
@@ -60,6 +67,7 @@ const OrderState = () => {
             </table>
           );
         })}
+      </div>
       </div>
     </div>
   );

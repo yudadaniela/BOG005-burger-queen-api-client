@@ -6,7 +6,14 @@ const resJson = {
       id: 2
   }
 }
-export const postLogin = jest.fn((email, password) => { return Promise.resolve(Promise.resolve({delete:'delete'})) });
+
+//export const postLogin = jest.fn((email, password) => { return Promise.resolve(Promise.resolve({delete:'delete'})) });
+
+export const postLogin = () => {
+  return Promise.resolve(JSON.stringify({delete:'delete'
+}))
+
+}
 
 // export const getUsers = (tokenLogin/* , email, password */) => {}
 
@@ -22,3 +29,9 @@ export const postLogin = jest.fn((email, password) => { return Promise.resolve(P
 // export const editItem =(id, tokenLogin, email, password, role)=>{} 
 
 // export const editProduct =(id, tokenLogin, name, type, price, url)=>{}
+
+// timer que reciba como propiedad un valor inicial..
+// now -> da fecha actual
+
+// estado q guarde la diferencia de tiempo en tre horainicial y actual y que lo imprima
+// unix time 
