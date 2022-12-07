@@ -7,6 +7,7 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
   const [qtyProduct, setQtyProduct] = useState(true);
   const[qtyTotal, setqtyTotal]= useState(1)
   const [nameClient, setNameClient] = useState("");
+
   const qtyPlusHandle = (event) => {
    
     console.log('entre a suma ');
@@ -14,9 +15,9 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
       (p) => p.product.id == event.currentTarget.dataset.p
     );
    console.log(productSelected[0].qty,'lo que filtro');
-
+   console.log(productsListOrder, 'pa ve');
    productSelected[0].qty += 1;
-
+   productSelected[0].price = parseInt(productSelected[0].product.price) + parseInt(productSelected[0].price) 
     setproductsListOrder([...productsListOrder]);
      setQtyProduct(true);
   };
@@ -29,6 +30,7 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
     console.log(productSelected[0].qty, "es lo que filtró");
     if(productSelected[0].qty>=1){
       productSelected[0].qty -= 1;
+      productSelected[0].price =  parseInt(productSelected[0].price) - parseInt(productSelected[0].product.price) 
     }else{
       productSelected[0].qty -= 0;
     }
