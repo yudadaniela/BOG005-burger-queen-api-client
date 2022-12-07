@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createOrder, getToken } from "../../functions/requests";
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineMinus } from "react-icons/ai";
 import "./mesero.css";
+import { BiPlus} from "react-icons/bi";
 
 const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
   const [qtyProduct, setQtyProduct] = useState(true);
@@ -97,21 +98,51 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
               <div className="pedido" key={i}>
                 <div className="containerProductsOrder">
                   <p>{p.product.name}</p>
-                  <p>{p.qty}</p>
+                  <div className="qtyContainer">
+                    {" "}
+                    <div
+                      className="addQtyButton"
+                      onClick={qtyPlusHandle}
+                      data-p={p.product.id}
+                    >
+                      {" "}
+                      <BiPlus/>
+                      {" "}
+                    </div>
+                    <p>{p.qty}</p>
+                    <div
+                  className="restQtyButton"
+                  onClick={qtyRestHandle}
+                  data-p={p.product.id}
+                >
+                  {" "}
+                  <AiOutlineMinus/>
+                  {" "}
+                </div>
+                  </div>
+                
                   <p>{p.price} </p>
                   <div onClick={deleteProduct} data-p={i}>
                     {" "}
                     <AiOutlineDelete />{" "}
                   </div>
                 </div>
-                <div onClick={qtyPlusHandle} data-p={p.product.id}>
+                {/* <div
+                  className="addQtyButton"
+                  onClick={qtyPlusHandle}
+                  data-p={p.product.id}
+                >
                   {" "}
                   sumar{" "}
                 </div>
-                <div onClick={qtyRestHandle} data-p={p.product.id}>
+                <div
+                  className="restQtyButton"
+                  onClick={qtyRestHandle}
+                  data-p={p.product.id}
+                >
                   {" "}
                   restar{" "}
-                </div>
+                </div> */}
               </div>
             );
           })}
