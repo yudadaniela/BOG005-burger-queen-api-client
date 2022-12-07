@@ -139,4 +139,17 @@ export const getOrders = (tokenLogin) => fetch('http://localhost:8080/orders', {
   },
 })
 
+export const editOrder =(id, tokenLogin, status)=>{
+   
+  return fetch(`http://localhost:8080/orders/${id}` ,{
+    method: "PATCH",
+    headers: {
+      "Content-type": "application/json",
+      "authorization": "Bearer " + tokenLogin
+    },
+    body: JSON.stringify({
+      status: status
+    })
+  })
+} 
 

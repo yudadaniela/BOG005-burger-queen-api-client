@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "../../components/Header";
-import { getOrders, getToken } from "../../functions/requests";
+import { getOrders, getToken,editOrder } from "../../functions/requests";
 import { useState, useEffect } from "react";
 import { BiExit } from "react-icons/bi";
 import logo from "../../img/logo.png";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./cookOrders.css";
 import Timer from "../../components/timer";
+
 
 const GetOrders = () => {
   const [currentOrders, setcurrentOrders] = useState([]); // ordenes actuales
@@ -41,7 +42,14 @@ const GetOrders = () => {
   //   return cronometro //currentOrders[i].dataEntry
   // }
 
+const EditOrderHandle=(event)=>{
+ editOrder(event.currentTarget.value, getToken(), 'Listo para servir' )
+ 
+console.log('entro al boton');
+console.log(event.currentTarget.value,'evento chef');
 
+
+}
 
 
   useEffect(() => {
@@ -76,9 +84,7 @@ const GetOrders = () => {
                 <h3 className="titleCook"> Pedido #{order.id} </h3>
                 <p className="textClient"> Cliente: {order.client}</p>
                 <p className="textClient"> en cook  {order.dataEntry}</p>
-                <Timer dataCurrentOrder={order.dataEntry}
-                /* timeHandle={timeHandle} */
-                />
+                
                 
                 
                 {order.products.map((p, j) => {
@@ -91,7 +97,7 @@ const GetOrders = () => {
                 })}
               </div>
               <div>
-                <button className="buttonCook">Para entregar</button>
+                <button className="buttonCook" onClick={EditOrderHandle} value={order.id}>Para entregar</button>
               </div>
             </div>
           );
@@ -102,3 +108,8 @@ const GetOrders = () => {
 };
 
 export default GetOrders;
+
+
+// <Timer dataCurrentOrder={order.dataEntry}
+//                 /* timeHandle={timeHandle} */
+//                 />

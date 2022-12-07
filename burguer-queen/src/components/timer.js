@@ -23,7 +23,7 @@ const Timer = ({ dataCurrentOrder }) => {
         let cronometro = `${Math.abs([h1, m1, s1][0] - [h2, m2, s2][0])} : ${Math.abs([h1, m1, s1][1] - [h2, m2, s2][1])} : ${Math.abs([h1, m1, s1][2] - [h2, m2, s2][2])} `
         
         //   // console.log(calculoInicial, 'inicial', calculoFinal,'final');
-        console.log(cronometro, 'diferencia en horas');
+        // console.log(cronometro, 'diferencia en horas');
         setTimeShowed(cronometro)
         /////setcountSecond(countSecond +1)
         // if(countSecond  > 60){
@@ -40,12 +40,12 @@ const Timer = ({ dataCurrentOrder }) => {
         return timeShowed// cronometro //currentOrders[i].dataEntry
     }
 
-    const changeTime = setInterval(() => {// funcionnaaaaa cada segundo
-        ///console.log('algo');
-        getDate()
-        timeHandle()
+    // const changeTime = setInterval(() => {// funcionnaaaaa cada segundo
+    //     ///console.log('algo');
+    //     getDate()
+    //     timeHandle()
 
-    }, 1000);
+    // }, 1000);
 
     // useEffect(() => {
     //     //setTimeShowed(timeShowed)
