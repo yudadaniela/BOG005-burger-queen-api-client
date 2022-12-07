@@ -1,17 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { createOrder, getToken } from "../../functions/requests";
 import { AiOutlineDelete } from "react-icons/ai";
+import './mesero.css'
 
 const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
-  const [qtyroduct, setQtyroduct] = useState(1);
+  const [qtyProduct, setQtyProduct] = useState(true);
+  const[qtyTotal, setqtyTotal]= useState(1)
   const [nameClient, setNameClient] = useState("");
-
-  const qtyroductHandle = (event) => {
+  const qtyPlusHandle = (event) => {
+   
+    console.log('entre a suma ');
     const productSelected = productsListOrder.filter(
       (p) => p.product.id == event.currentTarget.dataset.p
     );
-    console.log(productSelected, "es lo que filtró");
-    setQtyroduct(qtyroduct + 1);
+   console.log(productSelected[0].qty,'lo que filtro');
+
+   productSelected[0].qty += 1;
+
+    setproductsListOrder([...productsListOrder]);
+     setQtyProduct(true);
+  };
+  const qtyRestHandle = (event) => {
+   
+    console.log('entre a suma ');
+    const productSelected = productsListOrder.filter(
+      (p) => p.product.id == event.currentTarget.dataset.p
+    );
+    console.log(productSelected[0].qty, "es lo que filtró");
+    if(productSelected[0].qty>=1){
+      productSelected[0].qty -= 1;
+    }else{
+      productSelected[0].qty -= 0;
+    }
+    setproductsListOrder([...productsListOrder]);
+    setQtyProduct(false);
   };
 
   const nameClientHandle = (e) => {
@@ -48,39 +70,48 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
     setproductsListOrder([...productsListOrder]);
   };
 
+
   return (
-    <div>
-      <form onSubmit={createOrderHandle}>
-        <p> Pedido # </p>
+    <div >
+      <form className="containerFormOrder" onSubmit={createOrderHandle}>
+        <div className="containerOneOrder"> 
+        <p className="textOrderTitle"> Pedido </p>
         <input
+          className="inputNameClient"
           type="text"
-          placeholder=" Escribe Nombre del CLiente"
+          placeholder=" Escribe nombre del Cliente"
           name="nameClient"
           value={nameClient}
           onChange={nameClientHandle}
           data-testid="nameClient"
           required
         ></input>
-        <p>Nombre FINAL del cliente:{nameClient} </p>
+        {/* <p>Nombre del Cliente:{nameClient} </p> */}
+        </div>
         <div>
           {productsListOrder.map((p, i) => {
             return (
               <div className="pedido" key={i}>
-                <hr />
-                producto: {p.product.name}
-                <br />
-                cantidad: {p.qty}
-                <div onClick={qtyroductHandle} data-p={p.product.id}>
-                  {" "}
-                  sumar{" "}
-                </div>
-                <br />
-                precio: {p.price}
-                <div onClick={deleteProduct} data-p={i}>
+                <div className="containerProductsOrder"> 
+                  <p>{p.product.name}</p>
+                  <p>{p.qty}</p>
+                  <p>{p.price} </p>
+                  <div onClick={deleteProduct} data-p={i}>
                   {" "}
                   <AiOutlineDelete />{" "}
                 </div>
-                <hr />
+                </div>
+                <div onClick={qtyPlusHandle} data-p={p.product.id}>
+                  {" "}
+                  sumar{" "}
+                </div>
+                <div onClick={qtyRestHandle} data-p={p.product.id}>
+                  {" "}
+                  restar{" "}
+                </div>
+          
+              
+             
               </div>
             );
           })}

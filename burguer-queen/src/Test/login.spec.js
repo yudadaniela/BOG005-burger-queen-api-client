@@ -7,7 +7,7 @@ jest.mock('../functions/requests'/* , () => jest.fn() */)
 
 describe('Test de Login', () => {
     beforeEach(() => {
-        render(<Login />, { wrapper: BrowserRouter })
+        
     })
 
     it('ingreso de usuario', async () => {
@@ -25,8 +25,7 @@ describe('Test de Login', () => {
             "password": "123456",
         }
 
-        //postLogin.mockImplementation(()=>{ resJson })//opc 2 :(
-
+        render(<Login />, { wrapper: BrowserRouter })
 
         const inputEmail = screen.getByTestId('emailUserLogin');
         fireEvent.change(inputEmail, { target: { value: loginUserMock.email } });
@@ -42,13 +41,8 @@ describe('Test de Login', () => {
         });
     })
 
-
-
-    it('should be a function', () => {
-        expect(typeof postLogin).toBe('function')
-    });
-
     it('should render button', () => {
+        render(<Login />, { wrapper: BrowserRouter })
         const buttonSubmitGet = screen.getByTestId('buttonLogin');
         expect(buttonSubmitGet).toBeInTheDocument();
     });
