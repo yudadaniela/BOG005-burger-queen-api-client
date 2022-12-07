@@ -1,14 +1,13 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import Login from '../views/login/login'
 import { BrowserRouter } from 'react-router-dom'
+import {postLogin} from '../functions/requests'
 
 jest.mock('../functions/requests'/* , () => jest.fn() */)
 
 
 describe('Test de Login', () => {
-    beforeEach(() => {
-        
-    })
+   
 
     it('ingreso de usuario', async () => {
 
@@ -25,6 +24,16 @@ describe('Test de Login', () => {
             "password": "123456",
         }
 
+        postLogin.mockResolvedValueOnce(()=>{
+                return(()=>{
+                    return Promise.resolve(({
+                        json: () => {
+                          return Promise.resolve({ accessToken: '123', user: { role: 'admin' }})
+                        }
+                      }))
+                })
+            })
+
         render(<Login />, { wrapper: BrowserRouter })
 
         const inputEmail = screen.getByTestId('emailUserLogin');
@@ -37,15 +46,15 @@ describe('Test de Login', () => {
         fireEvent.click(buttonSubmit); /// pte para revisar
 
         await waitFor(() => {
-            //expect(postLogin).toHaveBeenCalledTimes(1);
+            /* expect(postLogin).toHaveBeenCalledTimes(1); */
         });
     })
 
-    it('should render button', () => {
-        render(<Login />, { wrapper: BrowserRouter })
-        const buttonSubmitGet = screen.getByTestId('buttonLogin');
-        expect(buttonSubmitGet).toBeInTheDocument();
-    });
+    // it('should render button', () => {
+    //     render(<Login />, { wrapper: BrowserRouter })
+    //     const buttonSubmitGet = screen.getByTestId('buttonLogin');
+    //     expect(buttonSubmitGet).toBeInTheDocument();
+    // });
 
 
 })

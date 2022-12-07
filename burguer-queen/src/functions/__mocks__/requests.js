@@ -7,13 +7,25 @@ const resJson = {
   }
 }
 
-//export const postLogin = jest.fn((email, password) => { return Promise.resolve(Promise.resolve({delete:'delete'})) });
+export const postLogin = jest.fn(/* (email, password) => { return Promise.resolve(Promise.resolve({delete:'delete'})) } */);
 
-export const postLogin = () => {
-  return Promise.resolve(JSON.stringify({delete:'delete'
-}))
+// export const postLogin = () => {
+//   return Promise.resolve(({
+//     json: () => {
+//       return Promise.resolve({ accessToken: '123', user: { role: 'admin' }})
+//       setToken_role()
+//       setCurrenId()
+//       act(() => {
+//         navigate()
+//       })
+    
+//     }
+//   }))
+// }
 
-}
+// ;
+
+
 
 // export const getUsers = (tokenLogin/* , email, password */) => {}
 
