@@ -7,25 +7,24 @@ const resJson = {
   }
 }
 
-//export const postLogin = jest.fn((email, password) => { return Promise.resolve(Promise.resolve({delete:'delete'})) });
+export const postLogin = jest.fn(/* (email, password) => { return Promise.resolve(Promise.resolve({delete:'delete'})) } */);
 
-export const setToken_role =()=>{}
-export const setCurrenId =()=>{}
-export const navigate =()=>{}
-
-export const postLogin = () => {
-  return Promise.resolve(({
-    json: () => {
-      return Promise.resolve({ accessToken: '123', user: { role: 'admin' }})
-      setToken_role()
-      setCurrenId()
-      act(() => {
-        navigate()
-      })
+// export const postLogin = () => {
+//   return Promise.resolve(({
+//     json: () => {
+//       return Promise.resolve({ accessToken: '123', user: { role: 'admin' }})
+//       setToken_role()
+//       setCurrenId()
+//       act(() => {
+//         navigate()
+//       })
     
-    }
-  }))
-}
+//     }
+//   }))
+// }
+
+// ;
+
 
 ;
 
