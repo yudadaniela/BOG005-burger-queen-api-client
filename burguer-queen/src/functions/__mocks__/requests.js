@@ -1,9 +1,9 @@
 const resJson = {
-  accessToken :  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY2OTg1MzMzNSwiZXhwIjoxNjY5ODU2OTM1LCJzdWIiOiIyIn0.dTllOT6Hgeji3huoGIMVw3NIWA3ZpwaSYsvYJqVy1dM",
+  accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY2OTg1MzMzNSwiZXhwIjoxNjY5ODU2OTM1LCJzdWIiOiIyIn0.dTllOT6Hgeji3huoGIMVw3NIWA3ZpwaSYsvYJqVy1dM",
   user: {
-      email: 'grace.hopper@systers.xyz',
-      role: 'admin', 
-      id: 2
+    email: 'grace.hopper@systers.xyz',
+    role: 'admin',
+    id: 2
   }
 }
 
@@ -26,6 +26,9 @@ export const postLogin = jest.fn(/* (email, password) => { return Promise.resolv
 // ;
 
 
+;
+
+
 
 // export const getUsers = (tokenLogin/* , email, password */) => {}
 
@@ -38,12 +41,7 @@ export const postLogin = jest.fn(/* (email, password) => { return Promise.resolv
 
 // export const deleteItem = (id, tokenLogin, path) =>{}
 
-// export const editItem =(id, tokenLogin, email, password, role)=>{} 
+// export const editItem =(id, tokenLogin, email, password, role)=>{}
 
 // export const editProduct =(id, tokenLogin, name, type, price, url)=>{}
 
-// timer que reciba como propiedad un valor inicial..
-// now -> da fecha actual
-
-// estado q guarde la diferencia de tiempo en tre horainicial y actual y que lo imprima
-// unix time 
