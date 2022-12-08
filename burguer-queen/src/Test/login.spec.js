@@ -40,7 +40,9 @@ describe('Test de Login', () => {
                 return((email, pasword)=>{
                     return Promise.resolve(({
                         json: () => {
-                          return Promise.resolve(resJson)
+                          return Promise.resolve((resJson)=>{
+                            setToken_role(resJson.accessToken, resJson.user.role)
+                          })
                         }
                       }))
                 })

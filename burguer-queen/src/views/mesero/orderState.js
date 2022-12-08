@@ -20,6 +20,10 @@ const OrderState = () => {
       });
   }, [checked]);
 
+
+  const ordersDone = currentOrders.filter(order => order.status === "Listo para servir")
+
+
   const doneOrder = (event)=>{
 
   console.log(event.currentTarget.value, 'es el target clickeado');
@@ -47,7 +51,7 @@ const OrderState = () => {
         <h1 className="title">Estados de Pedido</h1>
         <p>
           {" "}
-          Listos Para servir <VscBell />{" "}
+          Listos Para servir <VscBell />{ordersDone.length}
         </p>
         {/* Falta agregar selector para filtrar */}
       </div>
@@ -103,6 +107,7 @@ const OrderState = () => {
               </table>
             );
           })}
+          
         </div>
       </div>
     </div>

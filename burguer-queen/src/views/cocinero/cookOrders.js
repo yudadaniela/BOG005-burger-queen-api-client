@@ -17,30 +17,7 @@ const GetOrders = () => {
     navigate("/");
   };
 
-  const getDate = () => new Date().toString();
-
-  // const timeHandle = (dataOrder) => {
-  //   console.log(dataOrder, 'lo que entra');
-
-  //   const [h1, m1, s1] = dataOrder.split(' ')[4].split(':')
-  //   const [h2, m2, s2] = getDate().split(' ')[4].split(':')
-  //   console.log([h1, m1, s1], 'h1,m1,s1');
-  //   console.log([h2, m2, s2], 'h2,m2,s2');
-  //   let cronometro = `${Math.abs([h1, m1, s1][0] - [h2, m2, s2][0])} : ${Math.abs([h1, m1, s1][1] - [h2, m2, s2][1])} : ${Math.abs([h1, m1, s1][2] - [h2, m2, s2][2])} `
-  //   // let calculoInicial = `${([h1, m1, s1][0])*60 + ([h1, m1, s1][1]) + ([h1, m1, s1][2])/60} `// fecha inicial en minutos
-  //   // let calculoFinal= `${([h2, m2, s2][0])*60 + ([h2, m2, s2][1]) + ([h2, m2, s2][2])/60} `
-  //   // console.log(calculoInicial, 'inicial', calculoFinal,'final');
-  //   // console.log(-calculoFinal+calculoInicial, 'resta');
-  //   //let calculo = `${([h1, m1, s1][0] - [h2, m2, s2][0])*60 + ([h1, m1, s1][1] - [h2, m2, s2][1]) + ([h1, m1, s1][2] - [h2, m2, s2][2])/60} `
-
-  //   console.log(cronometro, 'diferencia en horas');
-  //   console.log(typeof cronometro);
-  //   // let fecha = new Date()
-  //   // var currentDate = `${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`
-  //   // console.log(currentDate, 'es fecha');
-  //   // console.log(typeof currentDate, 'es el tipo');
-  //   return cronometro //currentOrders[i].dataEntry
-  // }
+const ordersToCook = currentOrders.filter(order => order.status === "Enviado a cocina")
 
 const EditOrderHandle=(event)=>{
  editOrder(event.currentTarget.value, getToken(), 'Listo para servir' )
@@ -74,6 +51,7 @@ console.log(event.currentTarget.value,'evento chef');
           <p>
             <BiExit className="exitIcon" onClick={loginOutHandle} />
           </p>
+          <p>{ordersToCook.length} es el numero</p> 
         </div>
       </nav>
       <div className="prueba">
