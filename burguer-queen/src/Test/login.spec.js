@@ -1,9 +1,11 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import Login from '../views/login/login'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, useNavigate } from 'react-router-dom'
 import {postLogin} from '../functions/requests'
 
 jest.mock('../functions/requests'/* , () => jest.fn() */)
+//jest.mock('react-router-dom').mockImplemation()
+//jest.SpyOn()
 
 
 describe('Test de Login', () => {
@@ -23,6 +25,7 @@ describe('Test de Login', () => {
             "email": "grace.hopper@systers.xyz",
             "password": "123456",
         }
+
 
         postLogin./* mockImplementation */mockResolvedValueOnce/* mockImplementationOnce */(()=>{
                 return((email, pasword)=>{
@@ -46,16 +49,18 @@ describe('Test de Login', () => {
         fireEvent.click(buttonSubmit); /// pte para revisar
 
         await waitFor(() => {
-            expect(postLogin).toHaveBeenCalled();
             expect(postLogin).toHaveBeenCalledTimes(1);
+            //expect(postLogin).toHaveBeenCalled();
+            expect(postLogin).toHaveBeenCalledWith(loginUserMock.email, loginUserMock.password);
+            //expect(navigate).toHaveBeenCalledWith("/admin/getUser");
         });
     })
 
-    // it('should render button', () => {
-    //     render(<Login />, { wrapper: BrowserRouter })
-    //     const buttonSubmitGet = screen.getByTestId('buttonLogin');
-    //     expect(buttonSubmitGet).toBeInTheDocument();
-    // });
+    it('should render button', () => {
+        render(<Login />, { wrapper: BrowserRouter })
+        const buttonSubmitGet = screen.getByTestId('buttonLogin');
+        expect(buttonSubmitGet).toBeInTheDocument();
+    });
 
 })
 

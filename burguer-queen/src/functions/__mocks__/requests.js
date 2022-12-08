@@ -7,7 +7,11 @@ const resJson = {
   }
 }
 
-export const postLogin = jest.fn(/* (email, password) => { return Promise.resolve(Promise.resolve({delete:'delete'})) } */);
+export const postLogin = jest.fn();
+
+
+/// mock de navigate
+
 
 // export const postLogin = () => {
 //   return Promise.resolve(({

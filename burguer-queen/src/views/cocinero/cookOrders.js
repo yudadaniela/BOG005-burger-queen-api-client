@@ -84,7 +84,9 @@ console.log(event.currentTarget.value,'evento chef');
                 <h3 className="titleCook"> Pedido #{order.id} </h3>
                 <p className="textClient"> Cliente: {order.client}</p>
                 <p className="textClient"> en cook  {order.dataEntry}</p>
-                
+                 <Timer dataCurrentOrder={order.dataEntry}
+                 /* timeHandle={timeHandle} */
+                />
                 
                 
                 {order.products.map((p, j) => {

@@ -42,6 +42,7 @@ function Login() {
   const fetchHandle = (event) => {
     
     event.preventDefault();
+    // agregar validaciones
     postLogin(email, password)
       .then((res) => {
         console.log("RES:::", res);

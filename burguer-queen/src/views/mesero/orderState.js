@@ -7,6 +7,7 @@ import { VscBell } from "react-icons/vsc";
 const OrderState = () => {
   const [currentOrders, setcurrentOrders] = useState([]);
   const [checked, setChecked] = useState(false);
+  const [checkedDone, setCheckedDone] = useState(true);
 
   useEffect(() => {
     getOrders(getToken())
@@ -26,9 +27,9 @@ const OrderState = () => {
   setChecked(event.currentTarget.checked)
   console.log(checked,'es el hook')
   if(checked=== true){
-  editOrder(event.currentTarget.value, getToken(), 'Entregado' )
-  }else{
   editOrder(event.currentTarget.value, getToken(), 'Listo para servir' )
+  }else{
+  editOrder(event.currentTarget.value, getToken(), 'Entregado' )
      }
 
   }
@@ -89,6 +90,7 @@ const OrderState = () => {
                       <input key={i}
                         type="checkbox"
                         value={order.id}
+                        //checked={order.status === "Entregado" ? true : false }
                         onChange={doneOrder}
                         //checked={checked}
                         //onChange={()=> checked ? doneOrder(): noDoneOrder() }
