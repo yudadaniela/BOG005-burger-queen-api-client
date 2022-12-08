@@ -22,9 +22,11 @@ const ordersToCook = currentOrders.filter(order => order.status === "Enviado a c
 const EditOrderHandle=(event)=>{
  editOrder(event.currentTarget.value, getToken(), 'Listo para servir' )
  
-console.log('entro al boton');
-console.log(event.currentTarget.value,'evento chef');
+//console.log('entro al boton');
+//console.log(event.currentTarget.value,'evento chef');
+currentOrders.splice(event.currentTarget.dataset.p, 1); // retorna lo que borramos
 
+setcurrentOrders([...currentOrders]);
 
 }
 
@@ -33,7 +35,8 @@ console.log(event.currentTarget.value,'evento chef');
     getOrders(getToken())
       .then((response) => response.json())
       .then((data) => {
-        setcurrentOrders(data);
+
+        setcurrentOrders(data.filter(order => order.status === "Enviado a cocina"));
       })
       .catch((error) => {
         console.log(error);

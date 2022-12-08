@@ -59,14 +59,14 @@ const Timer = ({ dataCurrentOrder }) => {
         //return timeShowed// cronometro //currentOrders[i].dataEntry
     }
 
-    const changeTime = setInterval(() => {// funcionnaaaaa cada segundo
+    // const changeTime = setInterval(() => {// funcionnaaaaa cada segundo
         
-        console.log('algo');
-        //getDate()
-        timeHandle()
-        //console.log(`${countHour}:${countMinute}:${countSecond}`);
+    //     console.log('algo');
+    //     //getDate()
+    //     timeHandle()
+    //     //console.log(`${countHour}:${countMinute}:${countSecond}`);
 
-    }, 1000/*1000*/);
+    // }, 1000/*1000*/);
 
     // useEffect(() => {
     //     //setTimeShowed(timeShowed)
