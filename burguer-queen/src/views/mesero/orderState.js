@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 import { VscBell } from "react-icons/vsc";
 
 const OrderState = () => {
-  const [currentOrders, setcurrentOrders] = useState([]);
-
+  const [currentOrders, setcurrentOrders ] = useState([]);
+  const [ checked, setChecked ] =useState(false)
   useEffect(() => {
     getOrders(getToken())
       .then((response) => response.json())
@@ -18,6 +18,18 @@ const OrderState = () => {
       });
   }, []);
 
+  console.log('checked ----', checked)
+  const OrderDoneHandle =(e)=>{
+    
+    console.log('done')
+    setChecked(true)
+   
+  }
+
+  const reverseOrderDoneHandle =(e)=>{
+    setChecked(false)
+    console.log('reverse')
+  }
   return (
     <div>
       <Header
@@ -66,13 +78,12 @@ const OrderState = () => {
                   <tr> {order.client} </tr>
                   <tr> {order.total} </tr>
                   <tr>
-                    {" "}
-                    {order.status}{" "}
-                    {order.status === "Listo para servir" ? (
-                      <input type="checkbox" />
-                    ) : (
-                      ""
-                    )}{" "}
+                    {order.status}
+                    {order.status === "Listo para servir" ?
+                     <input type="checkbox"
+                            onChange={()=>checked ? OrderDoneHandle() :  reverseOrderDoneHandle() }
+                            // checked={ checked} /> 
+                     : ""}
                   </tr>
                 </tbody>
               </table>
