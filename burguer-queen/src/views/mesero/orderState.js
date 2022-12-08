@@ -33,27 +33,6 @@ const OrderState = () => {
 
   }
 
-  // const noDoneOrder = (event)=>{
-  //   console.log(event.currentTarget.value, 'es el target clickeado');
-  //   console.log(event.currentTarget.checked, 'es el check');
-  //   setChecked(event.currentTarget.checked)
-  //   console.log(checked,'es el hook')
-  //   editOrder(event.currentTarget.value, getToken(), 'Listo para servir' )
-  // }
- 
-
-  useEffect(() => {
-   console.log('cambio a :', checked);
-
-  // if(checked=== true){
-  
-  
-  //   }else{
-
-
-  //   }
-  }, [checked]);
- 
 
   return (
     <div>
@@ -117,7 +96,6 @@ const OrderState = () => {
                     ) : (
                       ""
                     )}
-                    {checked} es check
                   </tr>
                 </tbody>
               </table>
