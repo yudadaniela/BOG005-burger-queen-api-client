@@ -52,7 +52,7 @@ function Login() {
         console.log(resJson, "log para test");
         errorHandle(resJson); /// manejador de error
         setToken_role(resJson.accessToken, resJson.user.role); // carga token y rol
-
+        
         setCurrenId(resJson.user.id);
         if (resJson.user.role === "admin") {
           console.log("es administrador");

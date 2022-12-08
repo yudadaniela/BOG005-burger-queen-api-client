@@ -2,10 +2,19 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import Login from '../views/login/login'
 import { BrowserRouter, useNavigate } from 'react-router-dom'
 import {postLogin} from '../functions/requests'
+import React from 'react'
+import * as router from 'react-router'
+
+
+const setToken_role = jest.fn()
+const setCurrenId = jest.fn()
+
+const navigate = jest.fn()
+beforeEach(() => {
+    jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate)
+  })
 
 jest.mock('../functions/requests'/* , () => jest.fn() */)
-//jest.mock('react-router-dom').mockImplemation()
-//jest.SpyOn()
 
 
 describe('Test de Login', () => {
@@ -53,8 +62,11 @@ describe('Test de Login', () => {
             //expect(postLogin).toHaveBeenCalled();
             expect(postLogin).toHaveBeenCalledWith(loginUserMock.email, loginUserMock.password);
             //expect(navigate).toHaveBeenCalledWith("/admin/getUser");
+            expect(navigate).toHaveBeenCalledTimes(0);
+            expect(setToken_role).toHaveBeenCalledTimes(0);
         });
     })
+
 
     it('should render button', () => {
         render(<Login />, { wrapper: BrowserRouter })
