@@ -19,16 +19,23 @@ const OrderState = () => {
       });
   }, [checked]);
 
+ 
+ 
   const doneOrder = (event)=>{
 
-  console.log(event.currentTarget.value, 'es el target clickeado');
+  //console.log(event.currentTarget.value, 'es el target clickeado');
+  
   console.log(event.currentTarget.checked, 'es el check');
   setChecked(event.currentTarget.checked)
   console.log(checked,'es el hook')
-  if(checked=== true){
-  editOrder(event.currentTarget.value, getToken(), 'Entregado' )
-  }else{
+  if(checked === true){
   editOrder(event.currentTarget.value, getToken(), 'Listo para servir' )
+  setChecked(event.currentTarget.checked)
+  console.log(event.currentTarget.checked,'if true');
+  }else if (checked === false){
+   editOrder(event.currentTarget.value, getToken(), 'Entregado' )
+   setChecked(event.currentTarget.checked)
+   console.log(event.currentTarget.checked,'else if false');
      }
 
   }
@@ -88,6 +95,7 @@ const OrderState = () => {
                     {order.status === "Listo para servir" || order.status === "Entregado" ? (
                       <input key={i}
                         type="checkbox"
+                        // checked ={order.status === "Entregado" ? true: false }
                         value={order.id}
                         onChange={doneOrder}
                         //checked={checked}
