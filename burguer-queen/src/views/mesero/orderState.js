@@ -1,11 +1,12 @@
 import React from "react";
 import Header from "../../components/Header";
-import { getOrders, getToken } from "../../functions/requests";
+import { getOrders, getToken, editOrder } from "../../functions/requests";
 import { useState, useEffect } from "react";
 import { VscBell } from "react-icons/vsc";
 
 const OrderState = () => {
   const [currentOrders, setcurrentOrders] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     getOrders(getToken())
@@ -16,7 +17,43 @@ const OrderState = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [checked]);
+
+  const doneOrder = (event)=>{
+
+  console.log(event.currentTarget.value, 'es el target clickeado');
+  console.log(event.currentTarget.checked, 'es el check');
+  setChecked(event.currentTarget.checked)
+  console.log(checked,'es el hook')
+  if(checked=== true){
+  editOrder(event.currentTarget.value, getToken(), 'Entregado' )
+  }else{
+  editOrder(event.currentTarget.value, getToken(), 'Listo para servir' )
+     }
+
+  }
+
+  // const noDoneOrder = (event)=>{
+  //   console.log(event.currentTarget.value, 'es el target clickeado');
+  //   console.log(event.currentTarget.checked, 'es el check');
+  //   setChecked(event.currentTarget.checked)
+  //   console.log(checked,'es el hook')
+  //   editOrder(event.currentTarget.value, getToken(), 'Listo para servir' )
+  // }
+ 
+
+  useEffect(() => {
+   console.log('cambio a :', checked);
+
+  // if(checked=== true){
+  
+  
+  //   }else{
+
+
+  //   }
+  }, [checked]);
+ 
 
   return (
     <div>
@@ -67,12 +104,20 @@ const OrderState = () => {
                   <tr> {order.total} </tr>
                   <tr>
                     {" "}
-                    {order.status}{" "}
-                    {order.status === "Listo para servir" ? (
-                      <input type="checkbox" />
+                    {order.status}
+                    {" "}
+                    {order.status === "Listo para servir" || order.status === "Entregado" ? (
+                      <input key={i}
+                        type="checkbox"
+                        value={order.id}
+                        onChange={doneOrder}
+                        //checked={checked}
+                        //onChange={()=> checked ? doneOrder(): noDoneOrder() }
+                      />
                     ) : (
                       ""
-                    )}{" "}
+                    )}
+                    {checked} es check
                   </tr>
                 </tbody>
               </table>
