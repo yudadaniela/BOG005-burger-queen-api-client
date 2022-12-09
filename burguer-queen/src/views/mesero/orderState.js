@@ -41,7 +41,7 @@ const OrderState = () => {
   }
 
 
-  console.log('checked ----', checked)
+  //console.log('checked ----', checked)
   const OrderDoneHandle =(e)=>{
     
     console.log('done')
