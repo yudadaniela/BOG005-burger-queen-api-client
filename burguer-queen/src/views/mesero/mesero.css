@@ -70,6 +70,9 @@
 }
 
 .descriptionProduct {
+  width: 90%;
+  white-space:pre-wrap;
+  background-color: aqua;
   display: flex;
   flex-direction: column;
 }
