@@ -23,7 +23,7 @@ const OrderState = () => {
   }, [checked]);
 
 
-  const ordersDone = currentOrders.filter(order => order.status === "Listo para servir")
+  const ordersDone = totalOrders.filter(order => order.status === "Listo para servir")
 
 
   const doneOrder = (event)=>{
