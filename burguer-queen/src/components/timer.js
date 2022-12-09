@@ -5,60 +5,76 @@ import React, { useState, useEffect } from "react";
 const Timer = ({ dataCurrentOrder }) => {
 
     const [timeShowed, setTimeShowed] = useState(''); // ordenes actuales
-    // const [countSecond, setcountSecond] = useState(0);
-    // const [countMinute, setcountMinute] = useState(0);
-    // const [countHour, setcountHour] = useState(0);
-    //let countSecond = 0;
-    //let countMinute = 0;
-    //let countHour = 0;
-    const getDate = () => new Date().toString();
+    const [countSecond, setcountSecond] = useState(new Date().getSeconds());
+    const [countMinute, setcountMinute] = useState(new Date().getMinutes());
+    const [countHour, setcountHour] = useState(new Date().getHours());
+    const [counter, setcounter] = useState(0);
+
+    const initialDateHour = new Date(dataCurrentOrder).getHours()// volver a date hora de orden
+    const initialDateMinute = new Date(dataCurrentOrder).getMinutes()// volver a date minutos de orden
+    const initialDateSecond = new Date(dataCurrentOrder).getMinutes()// volver a date segundos de orden
+   
 
     const timeHandle = () => {
-        //console.log(dataCurrentOrder, 'lo que entra');
 
-        const [h1, m1, s1] = dataCurrentOrder.split(' ')[4].split(':')
-        const [h2, m2, s2] = getDate().split(' ')[4].split(':')
-        //console.log([h1, m1, s1], 'h1,m1,s1');
-        //console.log([h2, m2, s2], 'h2,m2,s2');
-        let cronometro = `${Math.abs([h1, m1, s1][0] - [h2, m2, s2][0])} : ${Math.abs([h1, m1, s1][1] - [h2, m2, s2][1])} : ${Math.abs([h1, m1, s1][2] - [h2, m2, s2][2])} `
-        
-        //   // console.log(calculoInicial, 'inicial', calculoFinal,'final');
-        // console.log(cronometro, 'diferencia en horas');
-        setTimeShowed(cronometro)
-        /////setcountSecond(countSecond +1)
-        // if(countSecond  > 60){
-        //     setcountMinute(countMinute ++)
-        //     setcountSecond(countSecond =0)
-        // }
-        // if(countMinute>60){
-        //     setcountHour(countHour ++)
-        //     setcountMinute(countMinute =0)
-        //     setcountSecond(countSecond =0)
-        // }
-        /////console.log(`${countHour}:${countMinute}:${countSecond}`, 'tiempo');
-        ////setTimeShowed(`${countHour}:${countMinute}:${countSecond}`)
-        return timeShowed// cronometro //currentOrders[i].dataEntry
+    console.log('Min actual',countMinute,'min inicial', initialDateMinute);
+        if(countMinute < initialDateMinute ){
+
+            setcountMinute(countMinute + 60); // ajusto minuto actual ///NO ESTÁ SUMANDO
+            setcountHour(countHour - 1);   // ajusto hora actual
+           
+        console.log('resta 1h:',countHour, 'suma:60m',countMinute,'seg cte', countSecond, 'if1, cambia horas-minutos');
+        } else{
+            console.log('está entrando al else1');
+        }
+        console.log('seg actual',countSecond,'seg inicial', initialDateSecond);
+        if(countSecond < initialDateSecond ){
+            setcountMinute(countMinute - 1);   // ajusto hora actual
+            setcountSecond(countSecond + 60); // ajusto minuto actual ///NO ESTÁ SUMANDO
+        console.log('hora cte',countHour,'resta 1m:', countMinute,'suma:60s', countSecond, 'if2, cambia minutos-SEG');
+        }
+        else{
+            console.log('está entrando al else2');
+        }
+
+
+        console.log('arregFINAL',countHour,countMinute,countSecond); // NO SE ESTÁ ACTUZLIZANDO
+        console.log('al restar',`${countHour - initialDateHour} : ${ countMinute - initialDateMinute } : ${countSecond - initialDateSecond } `);
+        setTimeShowed((`${countHour - initialDateHour} : ${ countMinute - initialDateMinute } : ${countSecond - initialDateSecond } `));
+
+        return (`${countHour - initialDateHour} : ${ countMinute - initialDateMinute } : ${countSecond - initialDateSecond } `)
+
     }
 
-    // const changeTime = setInterval(() => {// funcionnaaaaa cada segundo
-    //     ///console.log('algo');
-    //     getDate()
-    //     timeHandle()
+    const changeTime = setInterval(() => {// funcionnaaaaa cada segundo
+        setcounter(counter + 1 )
+        //timeHandle()
+        //setTimeShowed(timeShowed) // genera errores de render
+        setTimeShowed((`${countHour - initialDateHour} : ${ countMinute - initialDateMinute } : ${countSecond - initialDateSecond } `))
+    }, 1000/*1000*/);
 
-    // }, 1000);
+    useEffect(() => {
+        // if(countMinute < initialDateMinute ){
+        //     setcountHour(countHour - 1);   // ajusto hora actual
+        //     setcountMinute(countMinute + 60); // ajusto minuto actual ///NO ESTÁ SUMANDO
+        // console.log('resta 1h:',countHour, 'suma:60m',countMinute,'seg cte', countSecond, 'if1, cambia horas-minutos');
+        // }
 
-    // useEffect(() => {
-    //     //setTimeShowed(timeShowed)
-    //     console.log('change');
-    //     //getDate()
-    //     //timeHandle()
-    // }, [changeTime])
+        // if(countSecond < initialDateSecond ){
+        //     setcountMinute(countMinute - 1);   // ajusto hora actual
+        //     setcountSecond(countSecond + 60); // ajusto minuto actual ///NO ESTÁ SUMANDO
+        // console.log('hora cte',countHour,'resta 1m:', countMinute,'suma:60s', countSecond, 'if1, cambia horas-minutos');
+        // }
+        timeHandle()
+        console.log('ENTRA AL UE');
+    }, [])
 
     return (
         <div>
-            <p> hora inicial {dataCurrentOrder.split(' ')[4]}</p>
-            <p> hora actual {getDate().split(' ')[4]}</p>
-            <p /* onClick={()=>timeHandle()} */> tiempo transcurrido {timeShowed}</p>
+            <p> hora inicial {`${initialDateHour} : ${initialDateMinute } : ${initialDateSecond } `}</p>
+            <p> hora actual {`${new Date().getHours() } : ${ new Date().getMinutes() } : ${new Date().getSeconds() } `}</p>
+            <p> hora hook ajustada {`${countHour } : ${ countMinute } : ${countSecond } `}</p>
+            <p onClick={()=>timeHandle()}> tiempo transcurrido {timeShowed}</p>
         </div>
     )
 }
