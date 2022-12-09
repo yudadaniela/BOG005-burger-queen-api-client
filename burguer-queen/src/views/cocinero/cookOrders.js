@@ -3,7 +3,7 @@ import { getOrders, getToken, editOrder } from "../../functions/requests";
 import { useState, useEffect } from "react";
 import { BiExit } from "react-icons/bi";
 import logo from "../../img/logo.png";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./cookOrders.css";
 import Timer from "../../components/timer";
 import { VscBell } from "react-icons/vsc";
@@ -44,7 +44,7 @@ const GetOrders = () => {
       <nav className="navHeader">
         <img className="logo" src={logo} />
         <div>
-          <h1>Pedidos</h1>
+          <h1>Pedidos <VscBell/>{ordersToCook.length} </h1>
         </div>
         <div>
           <p>
@@ -52,26 +52,29 @@ const GetOrders = () => {
           </p>
         </div>
       </nav>
-      <div> 
-        <h3>Pedidos Pendientes <VscBell /> {ordersToCook.length}</h3>
-      </div>
-      <div className="prueba">
+      <div className="containerOrders">
         {currentOrders.map((order, i) => {
           return (
             <div key={i} className="containerCardCook">
               <div className="containerHeaderCard">
+                <div className="titleAndTimer"> 
+                <div> 
                 <h3 className="titleCook"> Pedido #{order.id} </h3>
                 <p className="textClient"> Cliente: {order.client}</p>
-                <Timer dataCurrentOrder={order.dataEntry} />
-
-                {order.products.map((p, j) => {
-                  return (
-                    <div key={j} className="ContainerProductsCook">
-                      <p className="textProduct">{p.product.name}</p>
-                      <p className="textQty">{p.qty}</p>
-                    </div>
-                  );
-                })}
+                </div>
+                <Timer  dataCurrentOrder={order.dataEntry} />
+                </div>
+               
+                <div className="containerProductsCard">
+                  {order.products.map((p, j) => {
+                    return (
+                      <div key={j} className="ContainerProductsCook">
+                        <p className="textProduct">{p.product.name}</p>
+                        <p className="textQty">{p.qty}</p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
               <div>
                 <button
