@@ -97,6 +97,8 @@
   width: 30%;
   height: 60vh;
   background-color: var(--beige);
+  border-radius: 1rem;
+  padding: 0.5rem;
 }
 
 .containerNav {
@@ -116,6 +118,7 @@
   flex-direction: column;
   justify-content: space-around;
   height: 4rem;
+ 
 }
 
 .textOrderTitle {
@@ -127,31 +130,83 @@
   border: none;
   border-radius: 10px;
   width: 100%;
-  height: 1.6rem;
+  height: 1.9rem;
+  text-indent:10px;
 }
 
 .containerProductsOrder {
     /* background-color: aquamarine; */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.5fr 1fr;
+    margin: 0.9rem 0;
+    width: 100%;
+    align-items: center;  
+    /* justify-content:right;   */
+   
+    
 }
 
 .addQtyButton{
-background-color: rgb(158, 157, 157);
+background-color: var(--brown);
+padding: 6px;
+color: var(--beige);
+border-top-left-radius: 8px;
+border-bottom-left-radius: 8px;
 }
 
 .restQtyButton{
-  background-color: rgb(68, 68, 68);
+  background-color: var(--brown);
+  padding: 6px;
+  color: var(--beige);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   }
 
 .qtyContainer{
+  justify-content: space-between;
+  border-radius: 5px;
   display: flex;
-  width: 4rem;
+  width: 6rem;
   background-color: var(--white);
+  align-items: center;
+  
+}
+.containerDeleteIcon{
+  display:flex;
+  justify-content: center;
+}
+.containerPrice{
+  display:flex;
+  justify-content: flex-end;
 }
 /** Vista de Estado de Pedido */
 /* tabla container */
 .title {
   font-size: 1.4rem;
 }
+.containerTotal{
+  display: flex;
+  justify-content: space-between;
+}
+.totalText{
+  color: var(--actionButton);
+  font-weight: bolder;
+}
+.cotainerAllProducts{
+   /* background-color: aquamarine; 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 0.9rem 0;
+  width: 100%;
+   align-items: center;  
+   justify-content: center;  
+  place-content: center; */
+  
+  
+}
+.buttonOrders{
+  display: flex;
+  justify-content: center;
+  margin-top: 0.8rem;
+}
+

@@ -95,7 +95,7 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
           ></input>
           {/* <p>Nombre del Cliente:{nameClient} </p> */}
         </div>
-        <div>
+        <div className="containerAllProducts">
           {productsListOrder.map((p, i) => {
             return (
               <div className="pedido" key={i}>
@@ -123,21 +123,27 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
                   {" "}
                 </div>
                   </div>
-                
-                  <p>{p.price} </p>
-                  <div onClick={deleteProduct} data-p={i}>
+                  <div className='containerDeleteIcon' onClick={deleteProduct} data-p={i}>
                     {" "}
                     <AiOutlineDelete />{" "}
                   </div>
+                  <div className="containerPrice">
+                  <p>$ {p.price} </p>
+                  </div>
+                  
+                  
                 </div>
               </div>
             );
           })}
         </div>
-
-        <p>el total es: {getTotal()} </p>
-
-        <button
+        <div className="containerTotal">
+          <p className="totalText">Total</p>
+          <p className="totalText">$ {getTotal()}</p>
+        </div>
+        
+      <div className="buttonOrders">
+      <button
           type="submit"
           className="addUserButton"
           data-testid="buttonCreateOrder"
@@ -145,6 +151,8 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
         >
           Enviar a Cocina
         </button>
+      </div>
+       
       </form>
     </div>
   );

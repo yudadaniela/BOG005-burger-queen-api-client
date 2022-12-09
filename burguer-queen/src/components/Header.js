@@ -11,21 +11,26 @@ const Header = ({ path1, title1, path2, title2 }) => {
     navigate("/");
   };
 
-  useEffect(()=>{},[])
-
   const [linkSelected,setLinkSelected] = useState(true)
   const [linkNoSelected,setLinkNoSelected] = useState(false)
-  
+  // useEffect(()=>{
+  //  console.log('se selecciono')
+  //  console.log(linkSelected, 'linkseleted')
+  //  console.log(linkNoSelected, 'noselected')
+  //   },[])
 
   const isSelected =()=>{
     setLinkSelected(true)
+    console.log(linkSelected, 'hago click en el link 1 --> true')
     setLinkNoSelected(false)
+    console.log(linkNoSelected, 'link no seleccionado 1 --> false')
   }
   const isNoSelected =()=>{
-  
     setLinkNoSelected(true)
-    setLinkSelected(false)
-    console.log(linkNoSelected, 'link de isNoSelected')
+    console.log(linkNoSelected, 'hago click en el segundo link  2 --> true')
+    setLinkSelected(true)
+    console.log(linkSelected, 'hago click isSelected 2 --> false')
+  
   }
 
   return (
@@ -34,7 +39,7 @@ const Header = ({ path1, title1, path2, title2 }) => {
         <img className="logo" src={logo} />
         <div className="navHeaderSwitch">
           <Link onClick={isSelected} className={linkSelected?'linkSelected':'NoLinkSelected'} to={path1}> {title1} </Link>
-          <Link onClick={isNoSelected} className={linkNoSelected?'linkSelected':'NoLinkSelected'} to={path2}>{title2}</Link>
+          <Link onClick={isNoSelected} className={linkSelected?'NoLinkSelected':'linkSelected'} to={path2}>{title2}</Link>
         </div>
         <div>
           <p>
