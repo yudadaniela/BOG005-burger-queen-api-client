@@ -27,6 +27,11 @@ const CreateProductsView = ({onSave, closeModal}) => {
     }
 
     const createProductsHandle = (event) => {
+        setNewProductName('')
+        setNewProductId('')
+        setNewProductType('')
+        setNewProductPrice('')
+        setNewProductUrl('')
         event.preventDefault()
         getToken()
         getRole()
