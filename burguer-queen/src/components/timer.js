@@ -29,8 +29,8 @@ const Timer = ({ dataCurrentOrder }) => {
                 hora actual{" "}
                 {`${new Date().getHours()} : ${new Date().getMinutes()} : ${new Date().getSeconds()} `}
             </p> */}
-            <div>
-                <p>
+            <div  className="timer">
+                <p className="textTimer">
                     {`${countHour} : ${countMinute} : ${countSecond} `}
                 </p>
             </div>
