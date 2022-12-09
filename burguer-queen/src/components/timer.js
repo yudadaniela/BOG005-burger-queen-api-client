@@ -19,8 +19,10 @@ const Timer = ({ dataCurrentOrder }) => {
 
     console.log('Min actual',countMinute,'min inicial', initialDateMinute);
         if(countMinute < initialDateMinute ){
-            setcountHour(countHour - 1);   // ajusto hora actual
+
             setcountMinute(countMinute + 60); // ajusto minuto actual ///NO ESTÁ SUMANDO
+            setcountHour(countHour - 1);   // ajusto hora actual
+           
         console.log('resta 1h:',countHour, 'suma:60m',countMinute,'seg cte', countSecond, 'if1, cambia horas-minutos');
         } else{
             console.log('está entrando al else1');
@@ -29,47 +31,49 @@ const Timer = ({ dataCurrentOrder }) => {
         if(countSecond < initialDateSecond ){
             setcountMinute(countMinute - 1);   // ajusto hora actual
             setcountSecond(countSecond + 60); // ajusto minuto actual ///NO ESTÁ SUMANDO
-        console.log('hora cte',countHour,'resta 1m:', countMinute,'suma:60s', countSecond, 'if1, cambia horas-minutos');
+        console.log('hora cte',countHour,'resta 1m:', countMinute,'suma:60s', countSecond, 'if2, cambia minutos-SEG');
         }
         else{
             console.log('está entrando al else2');
         }
 
 
-        console.log('arregFINAL',countHour,countMinute,countSecond);
+        console.log('arregFINAL',countHour,countMinute,countSecond); // NO SE ESTÁ ACTUZLIZANDO
+        console.log('al restar',`${countHour - initialDateHour} : ${ countMinute - initialDateMinute } : ${countSecond - initialDateSecond } `);
         setTimeShowed((`${countHour - initialDateHour} : ${ countMinute - initialDateMinute } : ${countSecond - initialDateSecond } `));
 
         return (`${countHour - initialDateHour} : ${ countMinute - initialDateMinute } : ${countSecond - initialDateSecond } `)
 
     }
 
-    // const changeTime = setInterval(() => {// funcionnaaaaa cada segundo
-    //     setcounter(counter + 1 )
-    //     timeHandle()
-    //     //setTimeShowed(timeHandle())
-    // }, 1000/*1000*/);
+    const changeTime = setInterval(() => {// funcionnaaaaa cada segundo
+        setcounter(counter + 1 )
+        //timeHandle()
+        //setTimeShowed(timeShowed) // genera errores de render
+        setTimeShowed((`${countHour - initialDateHour} : ${ countMinute - initialDateMinute } : ${countSecond - initialDateSecond } `))
+    }, 1000/*1000*/);
 
-    // useEffect(() => {
-    //     if(countMinute < initialDateMinute ){
-    //         setcountHour(countHour - 1);   // ajusto hora actual
-    //         setcountMinute(countMinute + 60); // ajusto minuto actual ///NO ESTÁ SUMANDO
-    //     console.log('resta 1h:',countHour, 'suma:60m',countMinute,'seg cte', countSecond, 'if1, cambia horas-minutos');
-    //     }
+    useEffect(() => {
+        // if(countMinute < initialDateMinute ){
+        //     setcountHour(countHour - 1);   // ajusto hora actual
+        //     setcountMinute(countMinute + 60); // ajusto minuto actual ///NO ESTÁ SUMANDO
+        // console.log('resta 1h:',countHour, 'suma:60m',countMinute,'seg cte', countSecond, 'if1, cambia horas-minutos');
+        // }
 
-    //     if(countSecond < initialDateSecond ){
-    //         setcountMinute(countMinute - 1);   // ajusto hora actual
-    //         setcountSecond(countSecond + 60); // ajusto minuto actual ///NO ESTÁ SUMANDO
-    //     console.log('hora cte',countHour,'resta 1m:', countMinute,'suma:60s', countSecond, 'if1, cambia horas-minutos');
-    //     }
-   
-    //     console.log('ENTRA AL UE');
-    // }, [counter])
+        // if(countSecond < initialDateSecond ){
+        //     setcountMinute(countMinute - 1);   // ajusto hora actual
+        //     setcountSecond(countSecond + 60); // ajusto minuto actual ///NO ESTÁ SUMANDO
+        // console.log('hora cte',countHour,'resta 1m:', countMinute,'suma:60s', countSecond, 'if1, cambia horas-minutos');
+        // }
+        timeHandle()
+        console.log('ENTRA AL UE');
+    }, [])
 
     return (
         <div>
             <p> hora inicial {`${initialDateHour} : ${initialDateMinute } : ${initialDateSecond } `}</p>
             <p> hora actual {`${new Date().getHours() } : ${ new Date().getMinutes() } : ${new Date().getSeconds() } `}</p>
-            <p> hora hook {`${countHour } : ${ countMinute } : ${countSecond } `}</p>
+            <p> hora hook ajustada {`${countHour } : ${ countMinute } : ${countSecond } `}</p>
             <p onClick={()=>timeHandle()}> tiempo transcurrido {timeShowed}</p>
         </div>
     )
