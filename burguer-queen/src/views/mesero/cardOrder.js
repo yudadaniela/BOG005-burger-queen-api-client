@@ -66,7 +66,10 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
       productsListOrder,
       getTotal(),
       getDate()
-    ).then((res) => console.log(res)); // pte arreglar productsListOrder armar acá?
+    ).then((res) => {console.log(res)
+    setproductsListOrder([])
+    setNameClient('')
+    }); 
   };
 
   const deleteProduct = (event) => {
@@ -127,22 +130,6 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
                     <AiOutlineDelete />{" "}
                   </div>
                 </div>
-                {/* <div
-                  className="addQtyButton"
-                  onClick={qtyPlusHandle}
-                  data-p={p.product.id}
-                >
-                  {" "}
-                  sumar{" "}
-                </div>
-                <div
-                  className="restQtyButton"
-                  onClick={qtyRestHandle}
-                  data-p={p.product.id}
-                >
-                  {" "}
-                  restar{" "}
-                </div> */}
               </div>
             );
           })}
@@ -156,8 +143,7 @@ const CardOrder = ({ productsListOrder, setproductsListOrder }) => {
           data-testid="buttonCreateOrder"
           data-p="cocina"
         >
-          {" "}
-          Enviar a Cocina{" "}
+          Enviar a Cocina
         </button>
       </form>
     </div>

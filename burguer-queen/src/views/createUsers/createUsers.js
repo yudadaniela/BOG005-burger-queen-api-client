@@ -28,6 +28,7 @@ const CreateUsersView = ({ onSave, closeModal }) => {
   };
 
   const createUsersHandle = (event) => {
+    // setNewUserEmail('')
     event.preventDefault();
     getToken();
     getRole();

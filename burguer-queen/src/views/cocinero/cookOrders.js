@@ -1,13 +1,12 @@
 import React from "react";
-import Header from "../../components/Header";
-import { getOrders, getToken,editOrder } from "../../functions/requests";
+import { getOrders, getToken, editOrder } from "../../functions/requests";
 import { useState, useEffect } from "react";
 import { BiExit } from "react-icons/bi";
 import logo from "../../img/logo.png";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import "./cookOrders.css";
 import Timer from "../../components/timer";
-
+import { VscBell } from "react-icons/vsc";
 
 const GetOrders = () => {
   const [currentOrders, setcurrentOrders] = useState([]); // ordenes actuales
@@ -17,26 +16,23 @@ const GetOrders = () => {
     navigate("/");
   };
 
-const ordersToCook = currentOrders.filter(order => order.status === "Enviado a cocina")
+  const ordersToCook = currentOrders.filter(
+    (order) => order.status === "Enviado a cocina"
+  );
 
-const EditOrderHandle=(event)=>{
- editOrder(event.currentTarget.value, getToken(), 'Listo para servir' )
- 
-//console.log('entro al boton');
-//console.log(event.currentTarget.value,'evento chef');
-currentOrders.splice(event.currentTarget.dataset.p, 1); // retorna lo que borramos
-
-setcurrentOrders([...currentOrders]);
-
-}
-
+  const EditOrderHandle = (event) => {
+    editOrder(event.currentTarget.value, getToken(), "Listo para servir");
+    currentOrders.splice(event.currentTarget.dataset.p, 1); // retorna lo que borramos
+    setcurrentOrders([...currentOrders]);
+  };
 
   useEffect(() => {
     getOrders(getToken())
       .then((response) => response.json())
       .then((data) => {
-
-        setcurrentOrders(data.filter(order => order.status === "Enviado a cocina"));
+        setcurrentOrders(
+          data.filter((order) => order.status === "Enviado a cocina")
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -54,9 +50,11 @@ setcurrentOrders([...currentOrders]);
           <p>
             <BiExit className="exitIcon" onClick={loginOutHandle} />
           </p>
-          <p>{ordersToCook.length} es el numero</p> 
         </div>
       </nav>
+      <div> 
+        <h3>Pedidos Pendientes <VscBell /> {ordersToCook.length}</h3>
+      </div>
       <div className="prueba">
         {currentOrders.map((order, i) => {
           return (
@@ -64,12 +62,8 @@ setcurrentOrders([...currentOrders]);
               <div className="containerHeaderCard">
                 <h3 className="titleCook"> Pedido #{order.id} </h3>
                 <p className="textClient"> Cliente: {order.client}</p>
-                <p className="textClient"> en cook  {order.dataEntry}</p>
-                 <Timer dataCurrentOrder={order.dataEntry}
-                 /* timeHandle={timeHandle} */
-                />
-                
-                
+                <Timer dataCurrentOrder={order.dataEntry} />
+
                 {order.products.map((p, j) => {
                   return (
                     <div key={j} className="ContainerProductsCook">
@@ -80,7 +74,13 @@ setcurrentOrders([...currentOrders]);
                 })}
               </div>
               <div>
-                <button className="buttonCook" onClick={EditOrderHandle} value={order.id}>Para entregar</button>
+                <button
+                  className="buttonCook"
+                  onClick={EditOrderHandle}
+                  value={order.id}
+                >
+                  Para entregar
+                </button>
               </div>
             </div>
           );
@@ -91,8 +91,3 @@ setcurrentOrders([...currentOrders]);
 };
 
 export default GetOrders;
-
-
-// <Timer dataCurrentOrder={order.dataEntry}
-//                 /* timeHandle={timeHandle} */
-//                 />
