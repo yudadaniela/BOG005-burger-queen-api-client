@@ -8,12 +8,14 @@ const OrderState = () => {
   const [currentOrders, setcurrentOrders] = useState([]);
   const [checked, setChecked] = useState(false);
   const [checkedDone, setCheckedDone] = useState(true);
+  const[totalOrders, setTotalOrders] = useState([]);
 
   useEffect(() => {
     getOrders(getToken())
       .then((response) => response.json())
       .then((data) => {
         setcurrentOrders(data);
+        setTotalOrders(data)
       })
       .catch((error) => {
         console.log(error);
@@ -53,11 +55,16 @@ const OrderState = () => {
   }
   const stateHandle=(e)=>{
     console.log(e.currentTarget.value, 'es el target clickeado');
+   // const array =[...currentOrders]
+   if(e.currentTarget.value==='Selecciona categoría'){
+    setcurrentOrders(totalOrders)
+   }else{
+    const ordersFilter = totalOrders.filter(order => order.status === e.currentTarget.value )
+    console.log(ordersFilter);
+    setcurrentOrders(ordersFilter)
+    console.log(totalOrders)
+   }
     
-    const ordersFilter = currentOrders.filter(order => order.status === e.currentTarget.value )
-    
-
-
   }
 
   return (
@@ -81,10 +88,11 @@ const OrderState = () => {
                 required
                 onChange={stateHandle}
                 >
-                <option value="">Selecciona categoría </option> 
-                <option value="Listo para servir ">Listo para servir</option>    
+                <option value="Selecciona categoría">Filtra por estado</option> 
+                <option value="Listo para servir">Listo para servir</option>    
                 <option value="Entregado">Entregado</option>  
                 <option value="Enviado a cocina">Enviado a cocina</option>  
+                <option value="Selecciona categoría">Ver todas las ordenes</option> 
 
                 </select>
       </div>
