@@ -4,13 +4,13 @@ import React, { useState, useEffect } from "react";
 
 const Timer = ({ dataCurrentOrder }) => {
 
-    const [timeShowed, setTimeShowed] = useState(''); // ordenes actuales
+
 
     const [countSecond, setcountSecond] = useState(new Date().getSeconds());
     const [countMinute, setcountMinute] = useState(new Date().getMinutes());
     const [countHour, setcountHour] = useState(new Date().getHours());
 
-    const [counter, setcounter] = useState(0);
+
    
 
     const initialDateHour = new Date(dataCurrentOrder).getHours()// volver a date hora de orden
@@ -54,7 +54,7 @@ const Timer = ({ dataCurrentOrder }) => {
         const currentDate = new Date()
         const orderDate = new Date(dataCurrentOrder)
         const resta = new Date(currentDate.getTime()- orderDate.getTime())
-        setcountHour(resta.getHours())
+        setcountHour(resta.getHours()-19)
         setcountMinute(resta.getMinutes())
         setcountSecond(resta.getSeconds())
 
@@ -74,8 +74,7 @@ const Timer = ({ dataCurrentOrder }) => {
         <div>
             <p> hora inicial {`${initialDateHour} : ${initialDateMinute } : ${initialDateSecond } `}</p>
             <p> hora actual {`${new Date().getHours() } : ${ new Date().getMinutes() } : ${new Date().getSeconds() } `}</p>
-            <p> hora hook ajustada {`${countHour } : ${ countMinute } : ${countSecond } `}</p>
-            <p onClick={()=>timeHandle()}> tiempo transcurrido {timeShowed}</p>
+            <p> hora tiempo transcurrido {`${countHour } : ${ countMinute } : ${countSecond } `}</p>
         </div>
     )
 }
