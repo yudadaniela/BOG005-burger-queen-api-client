@@ -51,6 +51,15 @@ const OrderState = () => {
     setChecked(false)
     console.log('reverse')
   }
+  const stateHandle=(e)=>{
+    console.log(e.currentTarget.value, 'es el target clickeado');
+    
+    const ordersFilter = currentOrders.filter(order => order.status === e.currentTarget.value )
+    
+
+
+  }
+
   return (
     <div>
       <Header
@@ -66,6 +75,18 @@ const OrderState = () => {
           Listos Para servir <VscBell />{ordersDone.length}
         </p>
         {/* Falta agregar selector para filtrar */}
+       
+                <select
+                className="inputsCreateUsers"
+                required
+                onChange={stateHandle}
+                >
+                <option value="">Selecciona categoría </option> 
+                <option value="Listo para servir ">Listo para servir</option>    
+                <option value="Entregado">Entregado</option>  
+                <option value="Enviado a cocina">Enviado a cocina</option>  
+
+                </select>
       </div>
 
       <div className="tableContainerMain">
