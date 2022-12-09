@@ -20,6 +20,7 @@ function GetUser() {
   const [editState, setEditState] = useState(false); //Estado de edición
   const [agregarState, setagregarState] = useState(true); // estado de creación de usuario
   const [selectedUser, setSelectedUser] = useState({}); // Usuario seleccionado
+  const [selectedLink, setSelectedLink] = useState(true); // 
 
   const openModal = () => {
     setisOpenModal(true);
@@ -28,6 +29,8 @@ function GetUser() {
     setisOpenModal(false);
     setSelectedUser({}); // si el useEffect de editusers no funciona
   };
+
+ 
 
   console.log("datos de usuario en modal", selectedUser); /// verificación de datos cargados en el modal
 
@@ -96,6 +99,8 @@ function GetUser() {
         title1={"Crear Usuario"}
         path2={"/admin/getProducts"}
         title2={"Crear Productos"}
+        selectedLink={selectedLink}
+        
       />
       <section className="subHeader">
         <h1> Colaboradores </h1>

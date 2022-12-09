@@ -4,37 +4,44 @@ import { BiExit } from "react-icons/bi";
 import logo from "../img/logo.png";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
-const Header = ({ path1, title1, path2, title2 }) => {
+const Header = ({ path1, title1, path2, title2, selectedLink  }) => {
+
+  console.log('ENTRADA selectedLink', selectedLink);
   const navigate = useNavigate();
 
   const loginOutHandle = () => {
     navigate("/");
   };
 
-  useEffect(()=>{},[])
-
   const [linkSelected,setLinkSelected] = useState(true)
-  const [linkNoSelected,setLinkNoSelected] = useState(false)
+
+useEffect(()=>{
+console.log('entra al UE');
+if(selectedLink){
+  setLinkSelected(linkSelected)
+  console.log('se vuelve false');
+}
+else{
+  console.log('se vuelve true');
+  setLinkSelected(!linkSelected)
+}
+
+  },[selectedLink])
   
 
-  const isSelected =()=>{
-    setLinkSelected(true)
-    setLinkNoSelected(false)
-  }
   const isNoSelected =()=>{
-  
-    setLinkNoSelected(true)
     setLinkSelected(false)
-    console.log(linkNoSelected, 'link de isNoSelected')
   }
+
+  console.log('valor linkSelected',linkSelected);
 
   return (
     <header>
       <nav className="navHeader">
         <img className="logo" src={logo} />
         <div className="navHeaderSwitch">
-          <Link onClick={isSelected} className={linkSelected?'linkSelected':'NoLinkSelected'} to={path1}> {title1} </Link>
-          <Link onClick={isNoSelected} className={linkNoSelected?'linkSelected':'NoLinkSelected'} to={path2}>{title2}</Link>
+          <Link className={linkSelected?'linkSelected':'NoLinkSelected'} to={path1}> {title1} </Link>
+          <Link onClick={isNoSelected} className={!linkSelected?'linkSelected':'NoLinkSelected'} to={path2}>{title2}</Link>
         </div>
         <div>
           <p>
