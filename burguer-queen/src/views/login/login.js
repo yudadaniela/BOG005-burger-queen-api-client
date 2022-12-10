@@ -75,7 +75,7 @@ function Login() {
     <section className="login">
       <div className="nodoLogin">
         <form onSubmit={fetchHandle} className="formLogin">
-          <img className="logo" src={logo} />
+          <img className="logologin" src={logo} />
           <div className="containerInputsLogin">
             <label className="labelInputsLogin">Correo</label>
             <input

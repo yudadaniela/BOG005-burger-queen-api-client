@@ -97,14 +97,14 @@ const MenuView = () => {
         selectedLink={selectedLink}
       />
 
-      <section className="subHeader">
-        <h1 className="titulos"> Menú y tomar pedido</h1>
+      <section className="subHeader titleMenuView">
+        <h1 > Menú y tomar pedido</h1>
       </section>
 
       <div className="cardContainer">
         <div className="cardContainerMenu">
-        
-          <div className="navHeaderSwitch">
+        <div className="navHeader"> 
+          <div className="navHeaderSwitch navHeaderMenu">
             <p data-menu="Desayuno" className={linkSelectedMenu?'linkSelected':'NolinkSelected'} onClick={typeMenuHandle}>
               {" "}
               Desayuno{" "}
@@ -113,6 +113,7 @@ const MenuView = () => {
               {" "}
               Almuerzo y Cena{" "}
             </p>
+          </div>
           </div>
           <div className="cardMenu">
             {typeMenu.map((product, i) => {

@@ -106,7 +106,7 @@ function GetUser() {
         <h1> Colaboradores </h1>
         <button className="buttonAddUser" onClick={addHandle}>
           {" "}
-          Agregar colaborador <BiPlus />
+         <p className="textButtonAdd">  Agregar colaborador <BiPlus /> </p>
         </button>
         <Modal
           isOpen={isOpenModal}
