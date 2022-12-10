@@ -95,7 +95,7 @@
 /* div con las ordenes */
 .cardOrder {
   width: 30%;
-  height: 60vh;
+  height: 70vh;
   background-color: var(--beige);
   border-radius: 1rem;
   padding: 0.5rem;
@@ -192,7 +192,7 @@ border-bottom-left-radius: 8px;
   color: var(--actionButton);
   font-weight: bolder;
 }
-.cotainerAllProducts{
+.containerAllProducts{
    /* background-color: aquamarine; 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -201,7 +201,9 @@ border-bottom-left-radius: 8px;
    align-items: center;  
    justify-content: center;  
   place-content: center; */
-  
+  padding-top: 7px;
+  height: 19rem;
+  overflow-y: auto;
   
 }
 .buttonOrders{
