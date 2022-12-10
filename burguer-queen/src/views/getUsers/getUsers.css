@@ -102,9 +102,9 @@ table {
   min-width: 200px;
 }
 
-.tableContainerMain{
-display: flex;
-justify-content: center;
+.tableContainerMain {
+  display: flex;
+  justify-content: center;
 }
 
 .headerTable {
@@ -122,8 +122,8 @@ justify-content: center;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
-thead tr{
-font-weight: bolder;
+thead tr {
+  font-weight: bolder;
 }
 
 tr {
@@ -153,12 +153,45 @@ tr {
   align-items: center;
 }
 
+.textButtonAdd {
+  color: var(--beige);
+}
 .buttonAddUser:hover {
   background-color: var(--darkBrown);
   color: var(--beige);
 }
 
-@media (min-width: 768px) and (max-width:768px) {
+@media (min-width: 320px) and (max-width: 425px) {
+  .navHeaderSwitch {
+    width: 85%;
+  }
+  .navHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+   display: none;
+  }
+
+  .headerTable {
+    display: none;
+  }
+
+  .subHeader {
+    /* padding: 1rem 8rem; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+     justify-content: space-between;  */
+    /* background-color: blue; */
+    /* content:'hola'; */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 768px) {
   .dataTable {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
