@@ -92,9 +92,6 @@ const MenuView = () => {
 
       <section className="subHeader">
         <h1 className="titulos"> Menú y tomar pedido</h1>
-        <button className="buttonAddUser">
-          Añadir Pedido <BiPlus />
-        </button>
       </section>
 
       <div className="cardContainer">
