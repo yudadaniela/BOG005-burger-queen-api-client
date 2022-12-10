@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
+  console.log("navigate", navigate);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -40,19 +41,19 @@ function Login() {
   };
 
   const fetchHandle = (event) => {
-    
     event.preventDefault();
     // agregar validaciones
     postLogin(email, password)
       .then((res) => {
         console.log("RES:::", res);
+        console.log("RES:::", typeof res);
         return res.json();
       })
       .then((resJson) => {
         console.log(resJson, "log para test");
         errorHandle(resJson); /// manejador de error
         setToken_role(resJson.accessToken, resJson.user.role); // carga token y rol
-        
+
         setCurrenId(resJson.user.id);
         if (resJson.user.role === "admin") {
           console.log("es administrador");

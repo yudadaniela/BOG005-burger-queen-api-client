@@ -26,7 +26,7 @@
 /* div con el menu */
 .cardMenu {
   width: auto;
-  height: 80vh;
+  height: 60vh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -50,6 +50,7 @@
   flex-direction: column;
   border-radius: 20px;
   background-color: var(--beige);
+  height: 70vh;
 }
 .card:hover {
   box-shadow: 4px 6px 17px rgba(41, 16, 2, 0.109);
@@ -72,6 +73,7 @@
 .descriptionProduct {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .buttonAddProduct {
@@ -193,17 +195,10 @@ border-bottom-left-radius: 8px;
   font-weight: bolder;
 }
 .containerAllProducts{
-   /* background-color: aquamarine; 
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin: 0.9rem 0;
-  width: 100%;
-   align-items: center;  
-   justify-content: center;  
-  place-content: center; */
   padding-top: 7px;
-  height: 19rem;
-  overflow-y: auto;
+   height: 19rem;
+   overflow-y: auto; 
+   
   
 }
 .buttonOrders{
@@ -212,3 +207,8 @@ border-bottom-left-radius: 8px;
   margin-top: 0.8rem;
 }
 
+.cardContainerMenu > .navHeaderSwitch {
+  margin:20px auto;
+ 
+  
+}

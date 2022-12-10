@@ -11,6 +11,9 @@ const MenuView = () => {
   const [selectedProduct, setSelectedProduct] = useState(false); // por ahora se omite el uso del hook
   const [productsListOrder, setproductsListOrder] = useState([]); // array de productos de orden
   const [typeMenu, setTypeMenu] = useState([]);
+  const [selectedLink, setSelectedLink] = useState(true);
+  const[linkSelectedMenu, setLinkSelectedMenu]=useState(true)
+
 
   useEffect(() => {
     getProducts(getToken())
@@ -29,6 +32,7 @@ const MenuView = () => {
     if (currentProducts) {
       const breakfast = currentProducts.filter((i) => i.type === "Desayuno");
       setTypeMenu(breakfast);
+     
     } else {
       console.log("soy un array vacio");
     }
@@ -68,11 +72,13 @@ const MenuView = () => {
 
     if (event.currentTarget.dataset.menu === "Almuerzo") {
       setTypeMenu(lunch);
+      setLinkSelectedMenu(false)
       console.log("click almuerzo");
       console.log(typeMenu, "deberia renderizar");
     } else if (event.currentTarget.dataset.menu === "Desayuno") {
       console.log("click desayuno");
       setTypeMenu(breakfast);
+      setLinkSelectedMenu(true)
       console.log(typeMenu, "deberia renderizar");
     } else if (event.currentTarget.dataset.menu === "Desayuno") {
       console.log("click desayuno");
@@ -88,23 +94,22 @@ const MenuView = () => {
         title1={"Crear Pedido"}
         path2={"/waiter/orderState"}
         title2={"Estado de Pedidos"}
+        selectedLink={selectedLink}
       />
 
       <section className="subHeader">
         <h1 className="titulos"> Menú y tomar pedido</h1>
-        <button className="buttonAddUser">
-          Añadir Pedido <BiPlus />
-        </button>
       </section>
 
       <div className="cardContainer">
         <div className="cardContainerMenu">
-          <div className="containerNav">
-            <p data-menu="Desayuno" onClick={typeMenuHandle}>
+        
+          <div className="navHeaderSwitch">
+            <p data-menu="Desayuno" className={linkSelectedMenu?'linkSelected':'NolinkSelected'} onClick={typeMenuHandle}>
               {" "}
               Desayuno{" "}
             </p>
-            <p data-menu="Almuerzo" onClick={typeMenuHandle}>
+            <p data-menu="Almuerzo"  className={!linkSelectedMenu?'linkSelected':'NolinkSelected'} onClick={typeMenuHandle}>
               {" "}
               Almuerzo y Cena{" "}
             </p>
