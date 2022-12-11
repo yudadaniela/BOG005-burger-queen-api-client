@@ -213,10 +213,14 @@ border-bottom-left-radius: 8px;
   
 @media (min-width: 320px) and (max-width: 425px){
   .titleMenuView{
-   display: inline;
+   display: flex;
+   align-items: center;
+   padding: 1rem;
+   
   }
 
   .titleMenuView h1{
+    /* display: inline; */
   text-align: center;
   font-size: 1rem;
   margin: 0 auto;
@@ -275,4 +279,12 @@ border-bottom-left-radius: 8px;
   .cardOrder {
     width: 50%;
   }
+  .containerAllProducts {
+    height: 22rem; 
+}
+.cardMenu {
+  width: 95%;
+  margin: 0 7px;
+  overflow-x: auto;
+}
 }
