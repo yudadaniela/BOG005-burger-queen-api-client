@@ -1,0 +1,47 @@
+import {fireEvent, render, screen} from '@testing-library/react'
+import CreateUsersView from '../views/createUsers/createUsers'
+
+describe ('Test CreateUsers', ()=>{
+
+    it('crear un usuario', ()=>{
+        
+        const onSave = (users)=>{
+
+        }
+        const closeModal =()=>{
+
+        }
+
+        const newUserMock =  {
+            "email": "anita@meseraprueba",
+            "password": "123456",
+            "role": "waiter",
+            "id": "UFnUVXs"
+          }
+
+        const createUsers = ()=> {
+
+        }
+
+        render(<CreateUsersView
+            onSave={onSave}
+            closeModal = {closeModal}
+        />)
+
+        const inputEmail = screen.getByTestId( 'emailUser');
+        fireEvent.change(inputEmail, {target: {value: newUserMock.email }});
+        
+        const inputPassword = screen.getByTestId('passwordUser');
+        fireEvent.change(inputPassword, {target: {value: newUserMock.password }});
+
+        const inputRole = screen.getByTestId('roleUser');
+        fireEvent.change(inputRole, {target: {value: newUserMock.role }});
+
+        const inputId = screen.getByTestId('idUser');
+        fireEvent.change(inputId, {target: {value: newUserMock.id }});
+
+        const buttonSubmit = screen.getByTestId('buttonCreate');
+        fireEvent.click(buttonSubmit); /// pte para revisar
+
+    })
+})

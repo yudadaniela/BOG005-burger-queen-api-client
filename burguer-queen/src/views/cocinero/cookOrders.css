@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --orangeButton: #ffaa69;
+  --orange: #f49750;
+  --actionButton: #e27f34;
+  --beige: #fff5da;
+  --white: #ffffff;
+  --brown: #431a10;
+  --darkBrown: #2c1612;
+  --Inter: "Inter", "sans-serif;";
+}
+
+p {
+  color: var(--brown);
+}
+.containerCardCook {
+  background-color: var(--beige);
+  border-radius: 10px;
+  margin: 1.5rem;
+  width: 20rem;
+  padding: 0.9rem;
+}
+
+.containerHeaderCard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 14rem;
+}
+
+.containerOrders{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.titleCook {
+  color: var(--brown);
+  font-size: 1rem;
+}
+
+.textClient {
+  font-size: 0.9rem;
+}
+
+.ContainerProductsCook {
+  min-width: auto;
+  height: 3vh;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.textProduct {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.textQty{
+    font-weight: bolder;
+}
+.buttonCook {
+  background-color: var(--orangeButton);
+  width: 100%;
+  height: 2rem;
+  border-radius: 18px;
+  border: none;
+  color: var(--darkBrown);
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
+.buttonCook:hover {
+  background-color: var(--orange);
+}
+.buttonCook:active {
+  background-color: var(--actionButton);
+}
+
+.containerProductsCard{
+  width: 100%;
+  margin: 1rem;
+  overflow: auto;
+}
+.titleAndTimer{
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+.timer{
+  display: flex;
+  align-items: center;
+  background-color: var(--brown);
+  border-radius: 20px;
+}
+
+.textTimer{
+  padding: 0.5rem;
+  font-weight: bolder;
+  font-family: var(--inter);
+  font-size: 0.8rem;
+  color: var(--beige);
+}
+
+.titleOrdersPending{
+  color: var(--darkBrown);
+  margin: 1rem;
+}
+
+.navHeader{
+  margin: 0.9rem;
+}
+
+.titleOrderContainer{
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,6 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+
 :root{
+    --orangeButton: #FFAA69;
     --orange: #F49750;
+    --actionButton: #E27F34;
+    --beige:#FFF5DA;
+    --white: #FFFFFF;
+    --brown: #431A10;
+    --darkBrown: #2C1612;
+    --Inter: 'Inter', 'sans-serif;'
+  
   }
 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
 
-  
+html {
+  font-size: 16px;
+  font-family: var(--Inter);
+}
+
+
+
+  /* wallpaper */
+.login{
+    width: 100vw;
+    height: 100vh;
+    background-image:url('../../img/Hamburger_Wall.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: -1px -300px; - Ajustar el tamaño en celular*/
+  }
+
+.nodoLogin{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(24, 15, 13, 0.5);
+}
+
+  /* login form */
+.formLogin{        
+    /* max-width:900px; -porque no hace nada?*/
+    min-width: 280px;
+    height: 50vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logologin{
+  width: 9rem;
+}
+.containerInputsLogin{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.containerButtonLogin{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.labelInputsLogin {
+  font-family: var(--Inter);
+  font-weight: bolder;
+  color: var(--beige);
+}
+
+
+.inputsLogin{
+  text-indent:10px;
+  background-color: var(--beige);
+  width: 100%;
+  height: 2.5rem;
+  border-radius: 18px;
+  border: none;
+  text-indent:10px;
+}
+
+.errorLogin{
+  color: var(--white);
+  font-weight: bolder;
+  font-size: 16px;
+}
+::placeholder {
+  color: var(--brown);
+  font-size: 1rem;
+  padding-left: 0.5rem;
+}
+
+/* login button */
+.buttonLogin{
+  background-color: var(--orangeButton);
+  width: 70%;
+  height: 2.5rem;
+  border-radius: 18px;
+  border: none;
+  color: var(--darkBrown);
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
+.buttonLogin:hover{
+  background-color:var(--orange);
+  /* transition: 0.5s; */
+}
+
+.buttonLogin:active{
+  background-color:var(--actionButton);
+}
