@@ -71,7 +71,7 @@ const OrderState = () => {
         path2={"/waiter/orderState"}
         title2={"Estado de Pedidos"}
       />
-      <div className="subHeader">
+      <div className="subHeader titleMenuView">
         <h1 className="title">Estados de Pedido</h1>
         <p>
           {" "}
